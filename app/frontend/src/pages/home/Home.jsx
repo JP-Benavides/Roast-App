@@ -1,6 +1,6 @@
 import React from 'react'; 
 import './Home.css';
-import Navbar from './HomeComponents/Navbar.jsx';
+import Navbar from '../sharedComponents/Navbar.jsx';
 
 function Home(){
     return(

@@ -1,0 +1,7 @@
+#WhoAreWeSection{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    width: 90vh;
+    
+}
