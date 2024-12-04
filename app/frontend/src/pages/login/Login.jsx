@@ -6,16 +6,15 @@ function Login() {
     <>
       <main>
         <form id="loginForm">
-          <label class="loginLabel">
+          <label class="loginItem">
             Username
             <input type="text" placeholder="Enter Your Username"/>
             </label>
-          <br/>
-          <label class="loginLabel">
+          <label class="loginItem">
             Password
             <input type="password" placeholder="Enter Your Password"/>
           </label>
-          <button type = "submit">Login</button>
+          <button class="loginItem" type = "submit">Login</button>
         </form>
       </main>
       <footer>
