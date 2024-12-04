@@ -33,9 +33,18 @@ main{
 }
 
 input{ 
+    font-family: "Nunito",sans-serif;
     border-radius: 12px;
     height: 3vh;
     width: 20vh;
+}
+
+button{
+    height: 3vh;
+    font-family: "Nunito",sans-serif;
+    background-color: rgb(154, 220, 248);
+    border-radius: 12px;
+    width: 10vh;
 }
 
 footer{
