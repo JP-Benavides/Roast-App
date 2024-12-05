@@ -1,13 +1,13 @@
 import React from 'react';
 import NavBar from '../sharedComponents/Navbar.jsx';
 import Founders from './AboutComponents/Founders.jsx';
-import WhoAreWe from './AboutComponents/whoAreWe.jsx';
+import WhoAreWe from './AboutComponents/WhoAreWe.jsx';
 import Newsletter from './AboutComponents/Newsletter.jsx';
 import './About.css';
 
 function About(){
     return(
-    <>
+    <div className='background'>
         <NavBar/>
         <body id="AboutSection">
             <div id="leftAbout">
@@ -18,7 +18,7 @@ function About(){
                 <Newsletter/>
             </div>
         </body>
-    </>
+    </div>
     );
 }
 

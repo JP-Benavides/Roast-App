@@ -1,7 +1,6 @@
 import React from 'react';
 import './WhoAreWe.css';
 
-
 function WhoAreWe(){
     return(
         <body id="WhoAreWeSection">

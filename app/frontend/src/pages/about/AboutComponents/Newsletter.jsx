@@ -4,7 +4,7 @@ import './Newsletter.css';
 function Newsletter(){
     return(
         <body id="NewsletterSection">
-            <h3 id="NewsletterTitle">Who Are We?</h3>
+            <h3 id="NewsletterTitle">NewsLetter</h3>
             <p id="NewsletterParagraph">
                 Lorem ipsum dolor, 
                 sit amet consectetur adipisicing elit. Consequatur, 

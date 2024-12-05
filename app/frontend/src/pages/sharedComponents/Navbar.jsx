@@ -48,10 +48,10 @@ function Navbar(){
                     )}
                     {!isMobile || isHamburgerOpen ? (
                         <>
-                            <h3 className="item" id="homeButton" onClick={() => navigate('/home')}>
+                            <h3 className="item" id="homeButton" onClick={homeClick}>
                                 Home
                             </h3>
-                            <h3 className="item" id="aboutButton" onClick={() => navigate('/about')}>
+                            <h3 className="item" id="aboutButton" onClick={aboutClick}>
                                 About Us
                             </h3>
                         </>

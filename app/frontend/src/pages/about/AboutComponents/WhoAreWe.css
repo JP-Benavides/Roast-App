@@ -5,16 +5,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-style: solid;
     border-radius: 12px;
-    height: 60%;
+    height: 56%;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgb(25, 121, 255);
 }
-#WhoAreWeTitle{
-    border-style: solid;
 
-}
 
 #WhoAreWeParagraph{
-    border-style: solid;
     width: 80%;
 }
