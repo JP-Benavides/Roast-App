@@ -1,0 +1,17 @@
+#AboutSection{
+    display: flex;
+    border-style: solid;
+    height: 100vh;
+}
+
+#leftAbout{
+    border-style: dotted;
+    height: 100%;
+    width: 50%;
+}
+
+#rightAbout{
+    border-style: dotted;
+    height: 100%;
+    width: 50%;
+}

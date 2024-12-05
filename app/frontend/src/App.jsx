@@ -9,8 +9,8 @@ function App() {
     <div>
       <nav>
         <Link to="/"> Login</Link>| 
-        <Link to="/home">Home</Link>|
         <Link to="/about">About</Link>|
+        <Link to="/home"> Home</Link>|
       </nav>
       <Routes>
         <Route path="/" element={<Login/>}/>

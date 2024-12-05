@@ -1,12 +1,11 @@
 import React from 'react';
-import './WhoAreWe.css';
+import './Newsletter.css';
 
-
-function WhoAreWe(){
+function Newsletter(){
     return(
-        <body id="WhoAreWeSection">
-            <h3 id="WhoAreWeTitle">Who Are We?</h3>
-            <p id="WhoAreWeParagraph">
+        <body id="NewsletterSection">
+            <h3 id="NewsletterTitle">Who Are We?</h3>
+            <p id="NewsletterParagraph">
                 Lorem ipsum dolor, 
                 sit amet consectetur adipisicing elit. Consequatur, 
                 qui dolorem cupiditate non harum, ad accusamus 
@@ -17,4 +16,4 @@ function WhoAreWe(){
     );
 }
 
-export default WhoAreWe;
+export default Newsletter;

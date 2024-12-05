@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-#WhoAreWeSection{
+#NewsletterSection{
     font-family: 'Nunito',sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-style: solid;
+    width: 90vh;
     border-radius: 12px;
-    height: 60%;
+    height: 1000px;
+    height: 38%;
 }
-#WhoAreWeTitle{
+
+#NewsletterTitle{
     border-style: solid;
-
 }
 
-#WhoAreWeParagraph{
+#NewsletterParagraph{
     border-style: solid;
     width: 80%;
-}
+    }
