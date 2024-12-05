@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Map.css'; 
 
-let token = ''
+let token = '';
 mapboxgl.accessToken = token;
 
 function Map() {
@@ -11,7 +11,7 @@ function Map() {
     useEffect(() => {
         const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11', // Map style
+        style: 'mapbox://styles/mapbox/streets-v11', 
         center: [-74.5, 40], 
         zoom: 9 
         });
@@ -19,7 +19,7 @@ function Map() {
         }, []
     );
 
-  return <div id="map" style={{ width: '100%', height: '100vh' }}></div>;
+  return <div id="map" style={{ width: '100%', height: 'auto' }}></div>;
 }
 
 export default Map;

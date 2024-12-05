@@ -1,12 +1,12 @@
 #container{
     display: flex;
-    position: static;
     position: sticky;
-    top: 0; 
-    z-index: 100    ;
+    top: 0;
+    z-index: 100;
     flex-direction: row;
     justify-content: right;
-    width: 100%;
+    width: 98.9vw;
+    margin-top: -10px;
     height: 14vh;
     background-color: white;
 }
@@ -33,6 +33,11 @@
     transform: translateY(-3px); 
     box-shadow: 0 8px 16px rgba(82, 81, 81, 0.3); 
 }
+.item:active{
+    transform: translateY(2px); 
+    box-shadow: 0 8px 16px rgba(27, 26, 26, 0.3); 
+}
+
 
 
 
