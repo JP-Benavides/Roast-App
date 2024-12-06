@@ -4,25 +4,32 @@
     top: 0;
     z-index: 100;
     flex-direction: row;
-    justify-content: right;
+    justify-content: space-between;
     width: 98.9vw;
     margin-top: -10px;
     height: 14vh;
     background-color: white;
 }
 
+.logoClass{
+    display: flex;
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+}
+
 #totalItems{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 70px;
+    margin-right: 5px;
     width: 30%;
     height: 100%;
 }
 
 .item{
     height: 100%;
-    width: 30%;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,6 +45,59 @@
     box-shadow: 0 8px 16px rgba(27, 26, 26, 0.3); 
 }
 
+@media screen and (max-width: 768px){
+
+    #container{
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 98.9vw;
+        margin-top: -10px;
+        height: 10vh;
+        background-color: white;
+    }
+
+    .logoClass{
+        display: flex;
+        width: 35%;
+        justify-content: center;
+        align-items: center;
+        margin-left: -10vh;
+        font-size: 1.5vh;
+    }
+    
+    
+    #totalItems{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: right;
+        align-items: center;
+        margin-right: -10px;
+        width: 45%;
+        height: 100%;
+    }
+    
+    .item{
+        height: 100%;
+        width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+    }
+    
+    .item:hover{
+        transform: translateY(-2px); 
+        box-shadow: 0 8px 16px rgba(82, 81, 81, 0.3); 
+    }
+    .item:active{
+        transform: translateY(2px); 
+        box-shadow: 0 8px 16px rgba(27, 26, 26, 0.3); 
+    }
+}
 
 
 

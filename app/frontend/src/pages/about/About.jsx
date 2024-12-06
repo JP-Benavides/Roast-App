@@ -9,7 +9,7 @@ function About(){
     return(
     <div className='background'>
         <NavBar/>
-        <body id="AboutSection">
+        <div id="AboutSection">
             <div id="leftAbout">
                 <Founders/>
             </div>
@@ -17,7 +17,7 @@ function About(){
                 <WhoAreWe/>
                 <Newsletter/>
             </div>
-        </body>
+        </div>
     </div>
     );
 }

@@ -3,7 +3,7 @@ import './WhoAreWe.css';
 
 function WhoAreWe(){
     return(
-        <body id="WhoAreWeSection">
+        <div id="WhoAreWeSection">
             <h3 id="WhoAreWeTitle">Who Are We?</h3>
             <p id="WhoAreWeParagraph">
                 Lorem ipsum dolor, 
@@ -12,7 +12,7 @@ function WhoAreWe(){
                 odio quidem praesentium debitis quia magni voluptates 
                 numquam quae! Officia expedita dolor quis unde?
             </p>
-        </body>
+        </div>
     );
 }
 

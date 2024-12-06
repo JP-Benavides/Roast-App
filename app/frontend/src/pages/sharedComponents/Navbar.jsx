@@ -25,7 +25,10 @@ function Navbar(){
         
 
         return(
-            <main id="container">
+            <div id="container">
+                <div className='logoClass'> 
+                    <h1>Roast</h1>
+                </div>
                 <div id="totalItems">
                     {isMobile && (
                         <svg
@@ -57,7 +60,7 @@ function Navbar(){
                         </>
                     ) : null}
                 </div>
-            </main>
+            </div>
             );
     }
 

@@ -3,7 +3,7 @@ import './Newsletter.css';
 
 function Newsletter(){
     return(
-        <body id="NewsletterSection">
+        <div id="NewsletterSection">
             <h3 id="NewsletterTitle">NewsLetter</h3>
             <p id="NewsletterParagraph">
                 Lorem ipsum dolor, 
@@ -12,7 +12,7 @@ function Newsletter(){
                 odio quidem praesentium debitis quia magni voluptates 
                 numquam quae! Officia expedita dolor quis unde?
             </p>
-        </body>
+        </div>
     );
 }
 

@@ -3,7 +3,7 @@ import './Founders.css';
 
 function Founders(){
     return(
-        <body id="FoundersSection">
+        <div id="FoundersSection">
             <h2 id="FoundersTitle">Founders</h2>
             <p id="FoundersParagraph">
                 Lorem ipsum dolor sit amet consectetur,
@@ -11,7 +11,7 @@ function Founders(){
                 ipsum deleniti eveniet quis magnam, ad distinctio ullam officiis 
                 voluptatum facere corrupti accusantium voluptatibus quibusdam? Laudantium dolorum et exercitationem.
             </p>
-        </body>
+        </div>
     );
 }
 
