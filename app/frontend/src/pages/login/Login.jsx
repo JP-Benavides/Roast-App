@@ -26,7 +26,7 @@ function Login(){
 
   return (
     <>
-      <main>
+      <div className='loginPage'>
         <form id="loginForm" onSubmit={performLogin}>
           <label className="loginItem">
             Username
@@ -39,7 +39,7 @@ function Login(){
           <button className="loginItem" type = "submit">Login</button>
           <p id='message'></p>
         </form>
-      </main>
+      </div>
 
       <footer>
         <p>Roast INC.</p>

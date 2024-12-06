@@ -22,9 +22,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 5px;
+    margin-right: -10px;
     width: 30%;
     height: 100%;
+    font-size: .8rem;
 }
 
 .item{
@@ -75,7 +76,7 @@
         flex-direction: row-reverse;
         justify-content: right;
         align-items: center;
-        margin-right: -10px;
+        margin-right: -20px;
         width: 45%;
         height: 100%;
     }
@@ -98,6 +99,95 @@
         box-shadow: 0 8px 16px rgba(27, 26, 26, 0.3); 
     }
 }
+
+@media screen and (max-width: 425px){
+
+    #container{
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 98.9vw;
+        margin-top: -10px;
+        height: 10vh;
+        background-color: white;
+    }
+
+    .logoClass{
+        display: flex;
+        width: 35%;
+        justify-content: center;
+        align-items: center;
+        margin-left: -5vh;
+        font-size: 1.5vh;
+    }
+    
+    
+    #totalItems{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        margin-right: -10px;
+        width: 50%;
+        height: 100%;
+        font-size: .6rem;
+    }
+    
+    .item{
+        height: 100%;
+        width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+    }
+    
+    .item:hover{
+        transform: translateY(-2px); 
+        box-shadow: 0 8px 16px rgba(82, 81, 81, 0.3); 
+    }
+    .item:active{
+        transform: translateY(2px); 
+        box-shadow: 0 8px 16px rgba(27, 26, 26, 0.3); 
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    #container {
+        background-color: #1f1f1f; 
+        color: #f1f1f1; 
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        border-bottom: 1px solid #333;
+    }
+
+    .logoClass {
+        color: #ffffff; 
+    }
+
+    #totalItems {
+        color: #cccccc; 
+        border-color: #444; 
+    }
+
+    .item {
+        background-color: #2a2a2a; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); 
+    }
+
+    .item:hover{
+        transform: translateY(-2px); 
+        box-shadow: 0 8px 16px rgba(221, 221, 221, 0.3); 
+    }
+    .item:active{
+        transform: translateY(2px); 
+        box-shadow: 0 8px 16px rgb(255, 255, 255); 
+    }
+}
+
+
 
 
 
