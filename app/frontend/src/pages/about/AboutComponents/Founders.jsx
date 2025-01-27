@@ -4,9 +4,9 @@ import './Founders.css';
 function Founders(){
     return(
         <div id="FoundersSection">
-            <h2 id="FoundersTitle">Founders</h2>
+            <h2 id="FoundersTitle">About the Founders</h2>
             <p id="FoundersParagraph">
-                Sohan & JP:
+                Sohan & JP:<br />
                 Current engineering students at NYU
             </p>
         </div>
