@@ -6,11 +6,7 @@ function WhoAreWe(){
         <div id="WhoAreWeSection">
             <h3 id="WhoAreWeTitle">Who Are We?</h3>
             <p id="WhoAreWeParagraph">
-                Lorem ipsum dolor, 
-                sit amet consectetur adipisicing elit. Consequatur, 
-                qui dolorem cupiditate non harum, ad accusamus 
-                odio quidem praesentium debitis quia magni voluptates 
-                numquam quae! Officia expedita dolor quis unde?
+                Weither is finding a gatekept coffee shop or flexing how much caffine you had in a given week we got you. Log and rate your brews and share them with your friends.
             </p>
         </div>
     );
