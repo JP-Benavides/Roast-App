@@ -25,4 +25,22 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
     public List<CoffeeShop> getCoffeeShops() {
         return coffeeShopRepository.findAll();
     }
+
+    public boolean createCoffeeShop(CoffeeShop coffeeShop){
+        if(coffeeShop.getName() == null) {
+            CoffeeShop newCoffeeShop = new CoffeeShop();
+            newCoffeeShop.setName(coffeeShop.getName());
+            newCoffeeShop.setAddr(coffeeShop.getAddr());
+            newCoffeeShop.setPhone(coffeeShop.getPhone());
+            newCoffeeShop.setEmail(coffeeShop.getEmail());
+            newCoffeeShop.setCity(coffeeShop.getCity());
+            newCoffeeShop.setState(coffeeShop.getState());
+            newCoffeeShop.setInstagram(coffeeShop.getInstagram());
+            newCoffeeShop.setLocation(coffeeShop.getLocation());
+            newCoffeeShop.setEmail(coffeeShop.getEmail());
+            coffeeShopRepository.save(newCoffeeShop);
+            return true;
+        }
+        return false;
+    }
 }

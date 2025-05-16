@@ -3,103 +3,116 @@ package com.example.roast.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "CoffeeShops")
-
+@Table(name = "\"CoffeeShop_Table\"")
 public class CoffeeShop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(name = "\"Unnamed: 0\"")
+    private Long unnamed;
+
+    private Double lat;
+    private Double lon;
+
+    @Column(name = "\"addr:city\"")
     private String city;
 
-    @Column(nullable = false)
-    private Integer houseNumber;
+    @Column(name = "\"addr:housenumber\"")
+    private String houseNumber;
 
-    @Column(nullable = false)
+    @Column(name = "\"addr:state\"")
     private String state;
 
-    @Column(nullable = false)
+    @Column(name = "\"addr:street\"")
     private String street;
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = true)
     private String phone;
+    private Double capacity;
 
-    @Column(nullable = true)
+    @Column(name = "\"addr:postcode\"")
+    private String postcode;
+
+    @Column(name = "\"contact:instagram\"")
+    private String contactInstagram;
+
+    private String email;
+
+    @Column(name = "\"postal_code\"")
+    private Double postalCode;
+
     private String instagram;
+    private String twitter;
 
-    @Column(nullable = false)
-    private String rating;
+    @Column(name = "\"addr:housename\"")
+    private String houseName;
 
-    //Constructor
-    public CoffeeShop(String city, Integer houseNumber, String state, String street, String name, String phone, String instagram, String rating) {
-        this.city = city;
-        this.houseNumber = houseNumber;
-        this.state = state;
-        this.street = street;
-        this.name = name;
-        this.phone = phone;
-        this.instagram = instagram;
-        this.rating = rating;
-    }
+    private String location;
 
+    @Column(name = "\"addr\"")
+    private Double addr;
+
+    // No-argument constructor (required by JPA)
     public CoffeeShop() {}
 
-    //Getters
-    String getCity(){
-        return city;
-    }
-    Integer getHouseNumber(){
-        return houseNumber;
-    }
-    String getState(){
-        return state;
-    }
-    String getStreet(){
-        return street;
-    }
-    String getName(){
-        return name;
-    }
-    String getPhone(){
-        return phone;
-    }
-    String getInstagram(){
-        return instagram;
-    }
-    String getRating(){
-        return rating;
-    }
+    // Getters and Setters
 
-    //Setters
-    void setCity(String city){
-        this.city = city;
-    }
-    void setHouseNumber(Integer houseNumber){
-        this.houseNumber = houseNumber;
-    }
-    void setState(String state){
-        this.state = state;
-    }
-    void setStreet(String street){
-        this.street = street;
-    }
-    void setName(String name){
-        this.name = name;
-    }
-    void setPhone(String phone){
-        this.phone = phone;
-    }
-    void setInstagram(String instagram){
-        this.instagram = instagram;
-    }
-    void setRating(String rating){
-        this.rating = rating;
-    }
+    public Long getUnnamed() { return unnamed; }
+    public void setUnnamed(Long unnamed) { this.unnamed = unnamed; }
 
+    public Double getLat() { return lat; }
+    public void setLat(Double lat) { this.lat = lat; }
 
+    public Double getLon() { return lon; }
+    public void setLon(Double lon) { this.lon = lon; }
+
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+
+    public String getHouseNumber() { return houseNumber; }
+    public void setHouseNumber(String houseNumber) { this.houseNumber = houseNumber; }
+
+    public String getState() { return state; }
+    public void setState(String state) { this.state = state; }
+
+    public String getStreet() { return street; }
+    public void setStreet(String street) { this.street = street; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public Double getCapacity() { return capacity; }
+    public void setCapacity(Double capacity) { this.capacity = capacity; }
+
+    public String getPostcode() { return postcode; }
+    public void setPostcode(String postcode) { this.postcode = postcode; }
+
+    public String getContactInstagram() { return contactInstagram; }
+    public void setContactInstagram(String contactInstagram) { this.contactInstagram = contactInstagram; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public Double getPostalCode() { return postalCode; }
+    public void setPostalCode(Double postalCode) { this.postalCode = postalCode; }
+
+    public String getInstagram() { return instagram; }
+    public void setInstagram(String instagram) { this.instagram = instagram; }
+
+    public String getTwitter() { return twitter; }
+    public void setTwitter(String twitter) { this.twitter = twitter; }
+
+    public String getHouseName() { return houseName; }
+    public void setHouseName(String houseName) { this.houseName = houseName; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
+    public Double getAddr() { return addr; }
+    public void setAddr(Double addr) { this.addr = addr; }
 }

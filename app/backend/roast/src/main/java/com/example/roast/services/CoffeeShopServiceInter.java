@@ -7,6 +7,10 @@ import java.util.List;
 public interface CoffeeShopServiceInter {
 
     public CoffeeShop getCoffeeShopByName(String coffeeShopName);
+
     public List<CoffeeShop> getCoffeeShops();
+
+    public boolean createCoffeeShop(CoffeeShop coffeeShop);
+
 
 }

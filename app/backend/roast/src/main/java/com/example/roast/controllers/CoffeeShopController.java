@@ -1,7 +1,7 @@
 package com.example.roast.controllers;
-
 import ch.qos.logback.core.model.Model;
 import com.example.roast.models.CoffeeShop;
+import com.example.roast.repositories.CoffeeShopRepository;
 import com.example.roast.services.CoffeeShopService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class CoffeeShopController {
 
     @PostMapping("/api/coffeeshops")
     public boolean createCoffeeShop(@RequestBody CoffeeShop coffeeShop){
-        
+        return coffeeShopService.createCoffeeShop(coffeeShop);
     }
 
 }
