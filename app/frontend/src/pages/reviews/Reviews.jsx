@@ -1,6 +1,8 @@
 import React from 'react'; 
-import './Home.css';
+import './Reviews.css';
 
+function Reviews(){
 
+}
 
-export default Home; 
+export default Reviews; 

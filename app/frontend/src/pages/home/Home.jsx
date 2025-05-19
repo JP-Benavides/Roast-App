@@ -1,7 +1,7 @@
 import React from 'react'; 
 import './Home.css';
-import Navbar from '../sharedComponents/Navbar.jsx';
-import Map from './HomeComponents/Map.jsx';
+import Navbar from "../../components/Navbar.jsx";
+import Map from '../../components/map/Map.jsx';
 
 function Home(){
     return(
