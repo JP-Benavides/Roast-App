@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../sharedComponents/Navbar.jsx';
+import Navbar from "../../components/Navbar.jsx";
 import Founders from './AboutComponents/Founders.jsx';
 import WhoAreWe from './AboutComponents/WhoAreWe.jsx';
 import Newsletter from './AboutComponents/Newsletter.jsx';

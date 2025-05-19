@@ -55,7 +55,7 @@ function Navbar(){
                                 Home
                             </h3>
                             <h3 className="item" id="aboutButton" onClick={aboutClick}>
-                                About Us
+                                About
                             </h3>
                         </>
                     ) : null}
