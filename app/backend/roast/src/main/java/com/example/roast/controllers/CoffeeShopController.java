@@ -19,7 +19,6 @@ public class CoffeeShopController {
 
     @GetMapping("/coffeeshops")
     public ResponseEntity<CoffeeShop> getCoffeeShop(@RequestParam String coffeeShopName){
-        System.out.println("Coffee");
         CoffeeShop coffeeShop = coffeeShopService.getCoffeeShopByName(coffeeShopName);
         //Add exception handling
         return ResponseEntity.ok(coffeeShop);
@@ -29,16 +28,11 @@ public class CoffeeShopController {
     @GetMapping("/allcoffeeshops")
     public ResponseEntity<List<CoffeeShop>> getAllCoffeeShops() {
         List<CoffeeShop> shops = coffeeShopService.getCoffeeShops();
-        if (shops.isEmpty()) {
-            return ResponseEntity.noContent().build();
-            //Create Exception Here to Throw to Frontend
-        }
         return ResponseEntity.ok(shops);
     }
 
     @PostMapping("/coffeeshops")
     public boolean createCoffeeShop(@RequestBody CoffeeShop coffeeShop){
-        //Exception handling
         return coffeeShopService.createCoffeeShop(coffeeShop);
     }
 

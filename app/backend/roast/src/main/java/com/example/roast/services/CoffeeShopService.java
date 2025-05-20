@@ -1,5 +1,6 @@
 package com.example.roast.services;
 
+import com.example.roast.exceptions.NoCoffeeFoundException;
 import com.example.roast.models.CoffeeShop;
 import com.example.roast.repositories.CoffeeShopRepository;
 import org.springframework.stereotype.Service;
@@ -18,19 +19,20 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
 
     @Override
     public CoffeeShop getCoffeeShopByName(String coffeeShopName) {
-        return coffeeShopRepository.getCoffeeShopByName(coffeeShopName);
+        CoffeeShop newCoffeeShop = coffeeShopRepository.getCoffeeShopByName(coffeeShopName);
+        if (newCoffeeShop == null) {
+            throw new NoCoffeeFoundException();
+        }
+        return newCoffeeShop;
     }
 
     @Override
     public List<CoffeeShop> getCoffeeShops() {
-        try {
-            List<CoffeeShop> shops = coffeeShopRepository.findAll();
-            System.out.println("Fetched shops: " + shops);
-            return shops;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return List.of(); // Return empty list on failure
+        List<CoffeeShop> shops = coffeeShopRepository.findAll();
+        if(shops.isEmpty()){
+            throw new NoCoffeeFoundException();
         }
+        return shops;
     }
 
 
