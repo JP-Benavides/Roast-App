@@ -9,12 +9,12 @@ df = pd.read_csv("cafe_data.csv")
 username = "jean-pierrebenavidescruzatte"
 password = "BenavidesJ23"
 host = "localhost"
-port = "8080"
+port = "5432"
 database = "ROAST"
 
 #Upload to Postgres 
 engine = create_engine(f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}')
-df.to_sql("CoffeeShop_Table", engine, if_exists="replace", index=False)
+df.to_sql("coffee_shop_table", engine, if_exists="replace", index=False)
 
 
 print("Data uploaded")

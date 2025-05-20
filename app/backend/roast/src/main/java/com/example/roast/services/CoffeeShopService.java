@@ -23,14 +23,21 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
 
     @Override
     public List<CoffeeShop> getCoffeeShops() {
-        return coffeeShopRepository.findAll();
+        try {
+            List<CoffeeShop> shops = coffeeShopRepository.findAll();
+            System.out.println("Fetched shops: " + shops);
+            return shops;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return List.of(); // Return empty list on failure
+        }
     }
 
+
     public boolean createCoffeeShop(CoffeeShop coffeeShop){
-        if(coffeeShop.getName() == null) {
+        if(coffeeShop.getName() != null) {
             CoffeeShop newCoffeeShop = new CoffeeShop();
             newCoffeeShop.setName(coffeeShop.getName());
-            newCoffeeShop.setAddr(coffeeShop.getAddr());
             newCoffeeShop.setPhone(coffeeShop.getPhone());
             newCoffeeShop.setEmail(coffeeShop.getEmail());
             newCoffeeShop.setCity(coffeeShop.getCity());
