@@ -20,7 +20,6 @@ public class CoffeeShopController {
     @GetMapping("/coffeeshops")
     public ResponseEntity<CoffeeShop> getCoffeeShop(@RequestParam String coffeeShopName){
         CoffeeShop coffeeShop = coffeeShopService.getCoffeeShopByName(coffeeShopName);
-        //Add exception handling
         return ResponseEntity.ok(coffeeShop);
     }
 
