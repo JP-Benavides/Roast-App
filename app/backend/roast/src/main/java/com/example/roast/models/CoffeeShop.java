@@ -35,6 +35,9 @@ public class CoffeeShop {
     @Column(name = "addr")
     private Double addr;
 
+    private Double rating;
+    private Integer numOfRatings;
+
     // No-arg constructor
     public CoffeeShop() {}
 
@@ -90,4 +93,19 @@ public class CoffeeShop {
 
     public Double getAddr() { return addr; }
     public void setAddr(Double addr) { this.addr = addr; }
+
+    public Double getRating() { return rating; }
+    public void setRating(Double rating) { this.rating = rating; }
+    public Integer getNumOfRatings() { return numOfRatings; }
+    public void setNumOfRatings(Integer numOfRatings) { this.numOfRatings = numOfRatings; }
+
+    public void increaseRating(Double newRating){
+        numOfRatings++;
+        rating = (numOfRatings + newRating) / numOfRatings;
+    }
+
+    public void decreaseRating(Double newRating){
+        numOfRatings--;
+        rating = (numOfRatings - newRating) / numOfRatings;
+    }
 }

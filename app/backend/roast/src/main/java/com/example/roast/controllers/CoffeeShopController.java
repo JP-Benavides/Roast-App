@@ -30,6 +30,11 @@ public class CoffeeShopController {
         return ResponseEntity.ok(shops);
     }
 
+    @PostMapping("/ratings")
+    public boolean addRating(@RequestParam String coffeeShopName, @RequestParam Double rating){
+        return coffeeShopService.addRating(coffeeShopName, rating);
+    }
+
     @PostMapping("/coffeeshops")
     public boolean createCoffeeShop(@RequestBody CoffeeShop coffeeShop){
         return coffeeShopService.createCoffeeShop(coffeeShop);

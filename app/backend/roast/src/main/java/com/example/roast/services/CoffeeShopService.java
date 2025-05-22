@@ -26,6 +26,16 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
         return newCoffeeShop;
     }
 
+    public boolean addRating(String coffeeShopName, Double rating){
+        CoffeeShop updatedCoffeeShop = coffeeShopRepository.getCoffeeShopByName(coffeeShopName);
+        if (updatedCoffeeShop != null) {
+            updatedCoffeeShop.increaseRating(rating);
+            coffeeShopRepository.save(updatedCoffeeShop);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public List<CoffeeShop> getCoffeeShops() {
         List<CoffeeShop> shops = coffeeShopRepository.findAll();
