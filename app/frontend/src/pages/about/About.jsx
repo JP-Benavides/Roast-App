@@ -1,24 +1,20 @@
 import React from 'react';
 import Navbar from "../../components/Navbar.jsx";
-import Founders from './AboutComponents/Founders.jsx';
-import WhoAreWe from './AboutComponents/WhoAreWe.jsx';
-import Newsletter from './AboutComponents/Newsletter.jsx';
+import Newsletter from '../../components/Newsletter.jsx';
 import './About.css';
 
 function About(){
     return(
-    <div className='background'>
-        <NavBar/>
-        <div id="AboutSection">
-            <div id="leftAbout">
-                <Founders/>
-            </div>
-            <div id="rightAbout">
-                <WhoAreWe/>
-                <Newsletter/>
-            </div>
-        </div>
+    <>
+    <div className = "about-page">
+        <h1>About Us</h1>
+        <p>
+            Whether is finding a gatekept coffee shop or flexing how much caffine you had 
+            in a given week we got you. Log and rate your brews and share them with your friends.
+        </p>
     </div>
+    <Newsletter/>
+    </>
     );
 }
 

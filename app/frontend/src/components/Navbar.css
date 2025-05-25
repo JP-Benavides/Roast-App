@@ -28,15 +28,13 @@
 }
 
 .item {
-    height: 100%;
-    width: 40%;
+    padding: 10px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
     text-decoration: none;
-    color: inherit; /* Ensure it uses inherited color */
-    transition: all 0.2s ease-in-out;
+    color: inherit
 }
 
 .item:hover {
@@ -46,6 +44,22 @@
 
 .item:active {
     transform: translateY(2px);
+}
+
+.login-button {
+    width: auto;
+    height: auto;
+    padding: 6px 12px;
+}
+
+#loginButton {
+    background-color: black;
+    color: white;
+}
+
+#loginButton:hover {
+    background-color: #222;
+    text-decoration: underline;
 }
 
 /* Media Queries */
@@ -83,34 +97,3 @@
         font-size: 0.6rem;
     }
 }
-
-@media (prefers-color-scheme: dark) {
-    #container {
-        background-color: #1f1f1f;
-        color: #f1f1f1;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-        border-bottom: 1px solid #333;
-    }
-
-    .logoClass {
-        color: #ffffff;
-    }
-
-    #totalItems {
-        color: #cccccc;
-    }
-
-    .item {
-        background-color: #2a2a2a;
-    }
-
-    .item:hover {
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
-}
-
-
-
-
-
