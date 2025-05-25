@@ -1,42 +1,8 @@
-#AboutSection, #leftAbout, #rightAbout {
-    box-sizing: border-box;
-}
-
-#AboutSection {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    height: 100vh; 
-}
-
-#leftAbout, #rightAbout {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 50%;
-    padding: 10px;
-    height: auto; 
-}
-
-
-@media screen and (max-width: 430px) {
-    #AboutSection {
-        flex-direction: column; 
-        align-items: center;
-        justify-content: space-evenly;
-        gap: 2; 
-        height: auto; 
-    }
-
-    #leftAbout, #rightAbout {
-        width: 100%; 
-        padding: 10px; 
-        margin: 0; 
-    }
-
-    #rightAbout {
-        align-items: flex-start;
-        gap: 22px;
-    }
+.about-page {
+  background-color: white;   /* solid white background */
+  padding: 20px 30px;        /* side padding */
+  max-width: 700px;          /* optional: keeps content from stretching too wide */
+  margin: 0 auto;            /* center horizontally */
+  text-align: center;        /* center the text */
+  font-family: inherit;      /* inherit app font */
 }

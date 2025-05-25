@@ -1,5 +1,6 @@
 import React from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
+import Navbar from './components/Navbar.jsx'
 import Login from './pages/login/Login.jsx' ;
 import Home from './pages/home/Home.jsx';
 import About from './pages/about/About.jsx';
@@ -9,11 +10,13 @@ import './App.css';
 function App() {
   return (
     <div className='app-container'>
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<Login/>}/>
+        <Route path="/" element={<Navigate to ="/home"/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/reviews" element={<Reviews/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </div>
   );
