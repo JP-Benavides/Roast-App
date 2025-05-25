@@ -12,5 +12,6 @@ public interface CoffeeShopServiceInter {
 
     public boolean createCoffeeShop(CoffeeShop coffeeShop);
 
+    public boolean addRating(String coffeeShopName, Double rating);
 
 }
