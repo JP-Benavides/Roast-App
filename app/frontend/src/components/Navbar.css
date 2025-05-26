@@ -61,39 +61,3 @@
     background-color: #222;
     text-decoration: underline;
 }
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-    #container {
-        justify-content: space-around;
-        height: 10vh;
-    }
-
-    .logoClass {
-        width: 35%;
-        margin-left: -10vh;
-        font-size: 1.5vh;
-    }
-
-    #totalItems {
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        width: 45%;
-    }
-
-    .item {
-        width: 35%;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .logoClass {
-        margin-left: -5vh;
-        font-size: 1.5vh;
-    }
-
-    #totalItems {
-        width: 50%;
-        font-size: 0.6rem;
-    }
-}
