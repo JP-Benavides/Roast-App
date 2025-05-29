@@ -56,17 +56,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.1.2</version>
-				<configuration>
-					<argLine>
-						-javaagent:/Users/jean-pierrebenavidescruzatte/.m2/repository/org/mockito/mockito-inline/5.2.0/mockito-inline-5.2.0.jar
-					</argLine>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 </project>
