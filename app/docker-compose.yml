@@ -1,13 +1,26 @@
 services:
-  postgres:
+  #image for postgres
+  roast-postgres:
     image: postgres:latest
     container_name: roast-postgres
-    ports:
-      - "5432:5432"
     env_file:
       - .env
+    ports:
+      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./docker/initdb:/docker-entrypoint-initdb.d
+
+  #image for the backend
+  roast-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: roast-backend
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - roast-postgres
 volumes:
   postgres-data:
