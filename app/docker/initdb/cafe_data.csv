@@ -1,4 +1,4 @@
-,id,lat,lon,addr:city,addr:housenumber,addr:state,addr:street,name,phone,capacity,addr:postcode,contact:instagram,email,postal_code,instagram,twitter,addr:housename,location,addr
+id,addr,capacity,city,email,housenumber,instagram,lat,location,lon,name,num_of_ratings,phone,postal_code,postcode,rating,state,street,twitter
 0,418520887,40.636934,-74.076656,Staten Island,208,NY,Bay Street,Everything Goes Book Cafe,,,,,,,,,,,
 1,419360003,40.6647223,-73.9895351,,,,,La Fondita,+1-718-600-9884,,,,,,,,,,
 2,419360064,40.6901914,-73.9935675,,,,,Mocha Hookah,,,,,,,,,,,
