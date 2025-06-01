@@ -9,9 +9,9 @@ SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET transaction_timeout = 0;
-SET client_encoding = 'UTF8';
+SET client_encoding = ''UTF8'';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
+SELECT pg_catalog.set_config(''search_path'', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
@@ -102,7 +102,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 45	1427273332	40.7529578	-73.9752216	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 46	1427273368	40.7523179	-73.9738176	\N	\N	\N	\N	Maman	\N	\N	\N	\N	\N	\N	\N	\N	\N
 47	1427285902	40.7520527	-73.9759313	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
-48	1427286079	40.750611	-73.9768239	\N	370	\N	Lexington Avenue	Zucker's Bagels & Smoked Fish	+1-212-661-1080	\N	10017	\N	\N	\N	\N	\N	\N
+48	1427286079	40.750611	-73.9768239	\N	370	\N	Lexington Avenue	Zuckers Bagels & Smoked Fish	+1-212-661-1080	\N	10017	\N	\N	\N	\N	\N	\N
 49	1427286257	40.7519302	-73.978195	\N	\N	\N	\N	Central Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 50	1427499765	40.7519234	-73.9797222	New York	295	NY	Madison Avenue	Starbucks	\N	\N	10017	\N	\N	\N	\N	\N	\N
 51	1428036328	40.7528897	-73.9811056	\N	\N	\N	\N	Andaz	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -124,7 +124,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 67	1754412984	40.7330073	-73.9897302	New York	123	NY	4th Avenue	Think Coffee	\N	\N	10003	\N	\N	\N	\N	\N	\N
 68	1754975219	40.7420998	-73.9196581	\N	45-01	\N	Greenpoint Avenue	Ave Coffee House	\N	\N	\N	\N	\N	\N	\N	\N	\N
 69	1767273825	40.7002323	-73.9933602	\N	\N	\N	\N	Tutt Café	+1-718-722-7777	\N	\N	\N	\N	\N	\N	\N	\N
-70	1767282008	40.6995716	-73.9921353	\N	\N	\N	\N	Poppy's Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+70	1767282008	40.6995716	-73.9921353	\N	\N	\N	\N	Poppys Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 71	1770858847	40.669376	-73.9630352	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 72	1795796594	40.6777429	-73.9686298	\N	645	\N	Vanderbilt Avenue	Olde Brooklyn Bagel Shoppe	+1-718-622-6227	7	11238	\N	\N	\N	\N	\N	\N
 73	1802885415	40.7562302	-73.9750931	New York	280	NY	Park Avenue	Starbucks	+1 917-723-0193	\N	10172	\N	\N	\N	\N	\N	\N
@@ -150,7 +150,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 93	2020724922	40.7375845	-74.0001443	New York	35	NY	7th Avenue	Whole Green	\N	\N	10011	\N	\N	\N	\N	\N	\N
 94	2033946685	40.7072305	-74.0123877	\N	\N	\N	\N	Bean And Bean	\N	\N	\N	\N	\N	\N	\N	\N	\N
 95	2034011016	40.7043817	-74.0130472	New York	2	NY	Broadway	Starbucks	+1 212-344-4290	\N	10004	\N	\N	\N	\N	\N	\N
-96	2039276429	40.9065782	-73.9044152	\N	\N	\N	\N	Carlos and Gabby's	\N	\N	\N	\N	\N	\N	\N	\N	\N
+96	2039276429	40.9065782	-73.9044152	\N	\N	\N	\N	Carlos and Gabbys	\N	\N	\N	\N	\N	\N	\N	\N	\N
 97	2041169444	40.8735418	-73.9084923	New York	40	NY	West 225th Street	Starbucks	+1 718-733-7199	\N	10463	\N	\N	\N	\N	\N	\N
 98	2045635524	40.7401504	-73.984507	\N	38B	\N	Lexington Avenue	CoCo Fresh Tea & Juice	\N	\N	\N	\N	\N	\N	\N	\N	\N
 99	2045635529	40.7405189	-73.984262	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -177,7 +177,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 120	2268954771	40.6976119	-73.9361072	\N	\N	\N	\N	Skytown	+1-347-435-3252	\N	\N	\N	\N	\N	\N	\N	\N
 121	2274110508	40.7054406	-73.9334626	Brooklyn	49	NY	Bogart Street	Swallow Cafe	\N	\N	11206	\N	\N	\N	\N	\N	\N
 122	2274489113	40.7095666	-73.8302846	Kew Gardens	82-60	NY	Austin Street	Roast & Co	\N	\N	11415	\N	\N	\N	\N	\N	\N
-123	2274508178	40.7090136	-73.8299789	Kew Gardens	81-09	NY	Lefferts Boulevard	Baker's Dozen Bagels	\N	\N	11415	\N	\N	\N	\N	\N	\N
+123	2274508178	40.7090136	-73.8299789	Kew Gardens	81-09	NY	Lefferts Boulevard	Bakers Dozen Bagels	\N	\N	11415	\N	\N	\N	\N	\N	\N
 124	2276315902	40.7341833	-73.9550701	\N	\N	\N	\N	Little Armenia	\N	\N	\N	\N	\N	\N	\N	\N	\N
 125	2279508475	40.7308318	-73.983183	\N	219	\N	1st Avenue	Starbucks	\N	\N	10003	\N	\N	\N	\N	\N	\N
 126	2294802411	40.7602221	-73.9750354	\N	\N	\N	\N	Le Pain Quotidien	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -196,7 +196,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 139	2358048512	40.7332121	-74.0026862	New York	74	NY	Grove Street	Starbucks	\N	\N	10014	\N	\N	\N	\N	\N	\N
 140	2377128136	40.7461544	-73.9975859	New York	286	NY	8th Avenue	Brooklyn Bagel & Coffee Company	\N	\N	10001	\N	\N	\N	\N	\N	\N
 141	2377128148	40.7439702	-73.9997102	New York	211	NY	8th Avenue	St Kilda Coffee	\N	\N	10011	info@stkildacoffee.com	\N	\N	\N	\N	\N
-142	2377128172	40.7447814	-73.9985854	New York	500	NY	6th Avenue	Zucker's	\N	\N	10011	\N	\N	\N	\N	\N	\N
+142	2377128172	40.7447814	-73.9985854	New York	500	NY	6th Avenue	Zuckers	\N	\N	10011	\N	\N	\N	\N	\N	\N
 143	2377128180	40.7411054	-74.0012613	New York	124	NY	8th Avenue	Starbucks	+1 212-462-2020	\N	10011	\N	\N	\N	\N	\N	\N
 144	2377128182	40.7451876	-73.9988416	New York	300	NY	West 23rd Street	Starbucks	+1 646-638-1571	\N	10011	\N	\N	\N	\N	\N	\N
 145	2384821679	40.7384873	-74.0000074	\N	\N	\N	\N	Bagel and More	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -214,7 +214,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 157	2493964408	40.6468222	-73.9700366	\N	1007	\N	Church Avenue	LARK cafe	\N	\N	11218	\N	\N	\N	\N	\N	\N
 158	2494066985	40.6909413	-73.9962942	\N	119	\N	Atlantic Avenue	Salter House	+1-347-987-4675	\N	11201	\N	\N	\N	\N	\N	\N
 159	2494067738	40.6912914	-73.997559	\N	79	\N	Atlantic Avenue	Diem Eatery	+1-917-909-1037	\N	11201	\N	\N	\N	\N	\N	\N
-160	2494071345	40.6837765	-73.9541584	\N	1180	\N	Bedford Avenue	Napoleon's Southern Cuisine & Bakery	+1-347-663-3069	\N	11216	\N	\N	\N	\N	\N	\N
+160	2494071345	40.6837765	-73.9541584	\N	1180	\N	Bedford Avenue	Napoleons Southern Cuisine & Bakery	+1-347-663-3069	\N	11216	\N	\N	\N	\N	\N	\N
 161	2494104052	40.6475187	-73.973854	\N	622	\N	Caton Avenue	Parade Café	\N	\N	11218	\N	\N	\N	\N	\N	\N
 162	2494127828	40.7268178	-73.9887455	\N	88	\N	2nd Avenue	Sunflower	\N	\N	10003	\N	\N	\N	\N	\N	\N
 163	2494208354	40.6722202	-73.9835759	\N	337	\N	5th Avenue	Hungry Ghost	\N	\N	11215	\N	\N	\N	\N	\N	\N
@@ -233,9 +233,9 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 176	2522802854	40.7747988	-73.913727	\N	\N	\N	\N	New York City Bagel and Coffee House	\N	\N	\N	\N	\N	\N	\N	\N	\N
 177	2524539379	40.6862203	-73.9909614	Brooklyn	164	NY	Smith Street	Starbucks	+1 718-422-0178	\N	11201	\N	\N	\N	\N	\N	\N
 178	2525593698	40.6358633	-73.9623411	\N	1514	\N	Newkirk Avenue	Coffee Mob	\N	\N	\N	info@coffeemob.com	\N	\N	\N	\N	\N
-179	2545431426	40.5530397	-74.1927658	\N	262F	\N	Arden Avenue	Buddy's Cafe Play Place	+1-347-562-4842	\N	10312	\N	\N	\N	\N	\N	\N
+179	2545431426	40.5530397	-74.1927658	\N	262F	\N	Arden Avenue	Buddys Cafe Play Place	+1-347-562-4842	\N	10312	\N	\N	\N	\N	\N	\N
 180	2546985590	40.7258624	-73.9898947	\N	57	\N	2nd Avenue	Kona Coffee and Company	\N	\N	10003	\N	\N	\N	\N	\N	\N
-181	2547036417	40.726927	-73.9957148	\N	651	\N	Broadway	Grabenstein's Bagels	\N	\N	10012	\N	\N	\N	\N	\N	\N
+181	2547036417	40.726927	-73.9957148	\N	651	\N	Broadway	Grabensteins Bagels	\N	\N	10012	\N	\N	\N	\N	\N	\N
 182	2547041086	40.7225241	-73.9934347	New York	1	NY	Prince Street	PlantShed	+1-212-662-4400	\N	10012	\N	\N	\N	\N	\N	\N
 183	2547054885	40.7256046	-73.98962	\N	\N	\N	\N	The Bean	+1-917-262-0929	\N	\N	\N	\N	\N	\N	\N	\N
 184	2547109169	40.7261039	-73.9987153	New York	145	NY	Greene Street	Felix Roasting Co.	\N	\N	10012	\N	\N	\N	\N	\N	\N
@@ -258,7 +258,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 201	2549918806	40.6894847	-73.9725415	\N	180	\N	DeKalb Avenue	Bittersweet	\N	\N	11205	\N	\N	\N	\N	\N	\N
 202	2549928994	40.7273871	-73.9852333	\N	\N	\N	\N	The Wild Son Lunch Counter	+1-212-727-7900	\N	\N	\N	\N	\N	\N	\N	\N
 203	2549948620	40.7445908	-73.988682	New York	1158	NY	Broadway	Cha Cha Matcha	\N	\N	10001	\N	\N	\N	\N	\N	\N
-204	2549967215	40.6842945	-73.996843	\N	243	\N	Degraw Street	Poppy's Cafe	+1-646-459-2716	\N	11231	\N	\N	\N	\N	\N	\N
+204	2549967215	40.6842945	-73.996843	\N	243	\N	Degraw Street	Poppys Cafe	+1-646-459-2716	\N	11231	\N	\N	\N	\N	\N	\N
 205	2550007703	40.724302	-73.9912261	\N	\N	\N	\N	Kollectiv	+1-212-228-5909	\N	\N	\N	\N	\N	\N	\N	\N
 206	2550022491	40.6805213	-73.9892924	\N	\N	\N	\N	Cafecito Social	\N	\N	\N	\N	\N	\N	\N	\N	\N
 207	2550046897	40.7299427	-73.999592	New York	240	NY	Sullivan Street	Third Rail Coffee	\N	\N	10012	\N	\N	\N	\N	\N	\N
@@ -277,10 +277,10 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 220	2550585168	40.6674284	-73.9881499	\N	276B	\N	12th Street	Daily Dose	\N	\N	11215	\N	\N	\N	\N	\N	\N
 221	2550661504	40.5716024	-74.1121286	\N	314	\N	New Dorp Lane	Something Sweet	\N	\N	10306	\N	\N	\N	\N	\N	\N
 222	2550901690	40.7080879	-73.8027719	Jamaica	159-03	NY	Hillside Avenue	Bubble Tea Garden	(718) 487-4814	\N	11432	\N	\N	\N	\N	\N	\N
-223	2550990526	40.7285415	-73.7827809	\N	185-26	\N	Union Turnpike	Lulu's	\N	\N	11366	\N	\N	\N	\N	\N	\N
+223	2550990526	40.7285415	-73.7827809	\N	185-26	\N	Union Turnpike	Lulus	\N	\N	11366	\N	\N	\N	\N	\N	\N
 224	2551696571	40.7265425	-73.789793	\N	178-07	\N	Union Turnpike	Cafe Musscat	\N	\N	11366	\N	\N	\N	\N	\N	\N
 225	2552486455	40.6385548	-74.0354762	Brooklyn	10	NY	Bay Ridge Avenue	Pier 69 Market	\N	\N	11220	\N	\N	\N	\N	\N	\N
-226	2552542724	40.6173362	-74.0333855	\N	9419	\N	3rd Avenue	Mr. Bagel's Cafe	+1-718-836-3000	\N	11209	\N	\N	\N	\N	\N	\N
+226	2552542724	40.6173362	-74.0333855	\N	9419	\N	3rd Avenue	Mr. Bagels Cafe	+1-718-836-3000	\N	11209	\N	\N	\N	\N	\N	\N
 227	2552544634	40.617533	-74.033308	\N	9413	\N	3rd Avenue	Pep	+1-929-397-0094	\N	11209	\N	\N	\N	\N	\N	\N
 228	2552595875	40.6212293	-74.0318014	Brooklyn	8901	NY	3rd Avenue	Panino Rustico	+1-718-333-5144	\N	11209	\N	\N	\N	\N	\N	\N
 229	2552692643	40.631177	-74.0280699	\N	\N	\N	\N	Bagel Schmagel	+1-718-833-1774	\N	\N	\N	\N	\N	\N	\N	\N
@@ -308,14 +308,14 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 251	2557487255	40.6239764	-74.0041395	\N	1273C	\N	Bay Ridge Avenue	\N	\N	\N	11219	\N	\N	\N	\N	\N	\N
 252	2561344025	40.6351048	-73.992456	\N	1278	\N	49th Street	Milk Crate Coffee	+19144857135	\N	11219	\N	\N	\N	\N	\N	\N
 253	2561485165	40.6341283	-74.0105726	Brooklyn	806	NY	62nd Street	KULU Desserts	\N	\N	11220	\N	\N	\N	\N	\N	\N
-254	2561577792	40.6423115	-74.0130189	\N	5423	\N	5th Avenue	Barrera's	+1-929-337-6088	\N	11220	\N	\N	\N	\N	\N	\N
+254	2561577792	40.6423115	-74.0130189	\N	5423	\N	5th Avenue	Barreras	+1-929-337-6088	\N	11220	\N	\N	\N	\N	\N	\N
 255	2561615106	40.6377476	-74.0074241	\N	5602	\N	8th Avenue	Mudflow Bubble Tea	\N	\N	11220	\N	\N	\N	\N	\N	\N
-256	2561662288	40.6387505	-74.016308	\N	511	\N	61st Street	GiGi's Coffee Shop	+1-347-987-3082	\N	11220	\N	\N	\N	\N	\N	\N
+256	2561662288	40.6387505	-74.016308	\N	511	\N	61st Street	GiGis Coffee Shop	+1-347-987-3082	\N	11220	\N	\N	\N	\N	\N	\N
 257	2561792451	40.6490646	-74.0095749	\N	4501	\N	4th Avenue	Hua Hui Bakery	+1-718-853-5165	\N	11220	\N	\N	\N	\N	\N	\N
 258	2561887744	40.6557373	-74.0032437	\N	912	\N	4th Avenue	Axzo Cafe	+1-347-689-3977	\N	11232	\N	\N	\N	\N	\N	\N
 259	2561887844	40.6554369	-74.0060548	\N	\N	\N	\N	Bagel Pub	\N	\N	\N	\N	\N	\N	\N	\N	\N
 260	2561900330	40.6593583	-74.0046304	\N	\N	\N	\N	Market Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
-261	2561983227	40.6441763	-73.975829	Brooklyn	424	NY	Church Avenue	Angelica's Coffee Shop	+1-347-442-5226	\N	11218	\N	\N	\N	\N	\N	\N
+261	2561983227	40.6441763	-73.975829	Brooklyn	424	NY	Church Avenue	Angelicas Coffee Shop	+1-347-442-5226	\N	11218	\N	\N	\N	\N	\N	\N
 262	2561995554	40.6490827	-73.977662	\N	142	\N	East 4th Street	Windsor Coffee	\N	\N	11218	\N	\N	\N	\N	\N	\N
 263	2562006774	40.6544957	-73.97926	\N	\N	\N	\N	Terrace Coffee Shop	+1-718-854-1911	\N	\N	\N	\N	\N	\N	\N	\N
 264	2562015538	40.6532052	-74.0028079	\N	\N	\N	\N	DNA	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -340,17 +340,17 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 283	2567093845	40.6699471	-73.9580715	\N	833	\N	Franklin Avenue	Coffee Land	+1-718-363-5263	\N	11225	\N	\N	\N	\N	\N	\N
 284	2567548346	40.7165943	-73.9908966	\N	\N	\N	\N	Gather	+1-646-370-4672	\N	\N	\N	\N	\N	\N	\N	\N
 285	2567551910	40.7157788	-73.9965978	\N	48	\N	Bowery	Bake Culture	+1-646-858-2898	\N	10013	\N	\N	\N	\N	\N	\N
-286	2567561365	40.7157755	-73.9907804	\N	\N	\N	\N	Aujla's	\N	\N	\N	\N	\N	\N	\N	\N	\N
+286	2567561365	40.7157755	-73.9907804	\N	\N	\N	\N	Aujlas	\N	\N	\N	\N	\N	\N	\N	\N	\N
 287	2567902023	40.6716506	-73.9529601	Brooklyn	167	NY	Rogers Avenue	Manhattanville Coffee	\N	\N	11216	\N	\N	\N	\N	\N	\N
 288	2567902073	40.6713876	-73.9502108	\N	759	\N	Nostrand Avenue	Colina Cuevo	\N	\N	11216	\N	\N	\N	\N	\N	\N
-289	2567931029	40.6730557	-73.9500548	\N	707	\N	Nostrand Avenue	Meme's Healthy Nibbles	\N	\N	11216	\N	\N	\N	\N	\N	\N
+289	2567931029	40.6730557	-73.9500548	\N	707	\N	Nostrand Avenue	Memes Healthy Nibbles	\N	\N	11216	\N	\N	\N	\N	\N	\N
 290	2567931043	40.6728401	-73.950072	\N	715	\N	Nostrand Avenue	Babydudes	\N	\N	11216	\N	\N	\N	\N	\N	\N
 291	2568087522	40.682228	-73.9602911	\N	\N	\N	\N	Sweetbee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 292	2568119907	40.6881718	-73.9572415	\N	\N	\N	\N	Kitten Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 293	2568119935	40.6894576	-73.9515389	\N	\N	\N	\N	Natural Blend	\N	\N	\N	\N	\N	\N	\N	\N	\N
 294	2568120017	40.6875468	-73.9595811	\N	395	\N	Classon Avenue	Clementine Cafe & Bakery	+1-713-483-8788	\N	11238	info@clementinebakery.com	\N	\N	\N	\N	\N
 295	2568133724	40.6883962	-73.962964	\N	318	\N	Lafayette Avenue	Choice Market	+1-917-905-3313	\N	11238	\N	\N	\N	\N	\N	\N
-296	2568133754	40.6879326	-73.962875	\N	39	\N	Clifton Place	Guevara's	\N	\N	11238	\N	\N	\N	\N	\N	\N
+296	2568133754	40.6879326	-73.962875	\N	39	\N	Clifton Place	Guevaras	\N	\N	11238	\N	\N	\N	\N	\N	\N
 297	2568179560	40.694106	-73.9591645	\N	620	\N	Myrtle Avenue	enRoys Cafe	+1-646-678-8444	\N	11205	\N	\N	\N	\N	\N	\N
 298	2568197213	40.6720107	-73.9306681	\N	\N	\N	\N	Lakou	\N	\N	\N	\N	\N	\N	\N	\N	\N
 299	2568198167	40.6940318	-73.9619327	\N	\N	\N	\N	BKG Coffee Roasters	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -375,20 +375,20 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 318	2568867307	40.6711649	-73.9579423	\N	800	\N	Franklin Avenue	Chocolatte Espresso Bar	\N	\N	11238	\N	\N	\N	\N	\N	\N
 319	2568884262	40.6844638	-73.9502489	\N	387A	\N	Nostrand Avenue	Ursula	\N	\N	11216	\N	\N	\N	\N	\N	\N
 320	2569261266	40.736735	-74.0013586	\N	75	\N	Greenwich Avenue	Roasting Plant	\N	\N	10014	\N	\N	\N	\N	\N	\N
-321	2569266671	40.7408955	-74.0070903	\N	425	\N	West 13th Street	Jack's Coffee	\N	\N	10014	\N	\N	\N	\N	\N	\N
+321	2569266671	40.7408955	-74.0070903	\N	425	\N	West 13th Street	Jacks Coffee	\N	\N	10014	\N	\N	\N	\N	\N	\N
 322	2569888074	40.7193908	-73.8424538	\N	72-01	\N	Austin Street	Pink Forest	\N	\N	11375	\N	\N	\N	\N	\N	\N
 323	2569902274	40.7215673	-73.8434614	Forest Hills	108-01	NY	Queens Boulevard	Starbucks	+1 347-534-0009	\N	11375	\N	\N	\N	\N	\N	\N
-324	2569997914	40.7494756	-73.8900736	\N	35-62	\N	76th Street	Juju's Bagel Cafe	\N	\N	11372	\N	\N	\N	\N	\N	\N
+324	2569997914	40.7494756	-73.8900736	\N	35-62	\N	76th Street	Jujus Bagel Cafe	\N	\N	11372	\N	\N	\N	\N	\N	\N
 325	2569998627	40.7496039	-73.8888911	\N	35-57A	\N	77th Street	Espresso 77	\N	\N	11372	\N	\N	\N	\N	\N	\N
 326	2569998650	40.749454	-73.8882529	\N	77-15A	\N	37th Avenue	Arepa Lady	\N	\N	11372	\N	\N	\N	\N	\N	\N
 327	2569998659	40.7495446	-73.8873518	Queens	78-27	NY	37th Avenue	Starbucks	+1 718-457-0875	\N	11372	\N	\N	\N	\N	\N	\N
 328	2570139436	40.7500213	-73.8829205	\N	83-15	\N	37th Avenue	Over the Moon Juice & Coffee	+1-929-344-8058	\N	11372	\N	\N	\N	\N	\N	\N
 329	2570174028	40.7478048	-73.8857009	\N	37-65	\N	80th Street	969 NYC Coffee	\N	\N	11372	\N	\N	\N	\N	\N	\N
-330	2570174168	40.7494686	-73.8858258	\N	80-10	\N	37th Avenue	Brother's Bubble Tea	\N	\N	11372	\N	\N	\N	\N	\N	\N
+330	2570174168	40.7494686	-73.8858258	\N	80-10	\N	37th Avenue	Brothers Bubble Tea	\N	\N	11372	\N	\N	\N	\N	\N	\N
 331	2572411294	40.717109	-73.9945679	New York	73	NY	Chrystie Street	Kung Fu Tea	+1 646-288-4936	\N	10002	\N	\N	\N	\N	\N	\N
 332	2573047744	40.6809942	-73.9745562	\N	64	\N	6th Avenue	Companion	+1-347-689-3184	\N	11217	\N	\N	\N	\N	\N	\N
 333	2573098394	40.6802759	-73.9744858	Brooklyn	253	NY	Flatbush Avenue	Hungry Ghost	+1-718-483-8666	\N	11217	\N	\N	\N	\N	\N	\N
-334	2573098461	40.6796163	-73.9686086	\N	\N	\N	\N	Patti Ann's Bakery	\N	\N	\N	\N	\N	\N	\N	\N	\N
+334	2573098461	40.6796163	-73.9686086	\N	\N	\N	\N	Patti Anns Bakery	\N	\N	\N	\N	\N	\N	\N	\N	\N
 335	2573115164	40.6784658	-73.9687739	\N	598	\N	Vanderbilt Avenue	Little Cupcake Bakeshop	+1-718-783-0770	\N	11238	\N	\N	\N	\N	\N	\N
 336	2583190796	40.7766224	-73.9890983	\N	120	\N	Riverside Boulevard	Blu Café	\N	\N	\N	info@120cafe.com	\N	\N	\N	\N	\N
 337	2583212030	40.8010399	-73.9618044	New York	990	NY	Columbus Avenue	Crêpes on Columbus	\N	\N	10025	\N	\N	\N	\N	\N	\N
@@ -396,7 +396,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 339	2594630499	40.7047913	-74.0071236	New York	99	NY	Wall Street	Starbucks	+1 929-955-1841	\N	10005	\N	\N	\N	\N	\N	\N
 340	2596227489	40.69176	-73.9885471	Fulton Mall	348	NY	Fulton Street	Starbucks	+1 718-488-1719	\N	11201	\N	\N	\N	\N	\N	\N
 341	2597860936	40.7607479	-73.9706036	New York	109	\N	East 56th Street	Ninth Street Espresso	+1 646-559-4793	\N	10022	\N	\N	\N	\N	\N	\N
-342	2603955352	40.8414095	-73.9398998	\N	\N	\N	\N	Mike's Bagels	\N	\N	\N	\N	\N	\N	\N	\N	\N
+342	2603955352	40.8414095	-73.9398998	\N	\N	\N	\N	Mikes Bagels	\N	\N	\N	\N	\N	\N	\N	\N	\N
 343	2603955361	40.8413365	-73.9399524	New York	4001	NY	Broadway	Starbucks	+1 917-521-0342	\N	10032	\N	\N	\N	\N	\N	\N
 344	2603955364	40.8235504	-73.9490856	New York	1658	NY	Amsterdam Avenue	Yellow Banana Snack Bar	\N	\N	10031	\N	\N	\N	\N	\N	\N
 345	2605399148	40.6932623	-73.9686685	Brooklyn	423	NY	Myrtle Avenue	Connecticut Muffin	\N	\N	11205	\N	\N	\N	\N	\N	\N
@@ -474,7 +474,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 417	2745500634	40.7819863	-73.9813099	New York	2161	NY	Broadway	Le Pain Quotidien	+1 (332) 910-6880	\N	10024	\N	\N	\N	\N	\N	\N
 418	2745527658	40.7822863	-73.9787291	\N	375	\N	Amsterdam Avenue	Daily Provisions	\N	\N	10024	\N	\N	\N	\N	\N	\N
 419	2745534942	40.7818389	-73.9757879	New York	392	NY	Columbus Avenue	Wafels & Dinges	+1-646-454-1229	\N	10024	\N	\N	\N	\N	\N	\N
-420	2745620594	40.7847359	-73.9796748	\N	2241	\N	Broadway	Zabar's Cafe	(212) 787-2000	\N	10024	\N	\N	\N	\N	\N	\N
+420	2745620594	40.7847359	-73.9796748	\N	2241	\N	Broadway	Zabars Cafe	(212) 787-2000	\N	10024	\N	\N	\N	\N	\N	\N
 421	2758287019	40.7867605	-73.9722137	New York	540	NY	Columbus Avenue	Starbucks	+1 212-496-4163	\N	10024	\N	\N	\N	\N	\N	\N
 422	2758924029	40.8220999	-73.9496705	New York	1619	\N	Amsterdam Avenue	Café One	\N	\N	10031	\N	\N	\N	\N	\N	\N
 423	2759204916	40.7910099	-73.9741121	New York	2446	NY	Broadway	Tal Bagels	+1-212-712-0171	\N	10024	\N	\N	\N	\N	\N	\N
@@ -483,8 +483,8 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 426	2761570412	40.7984682	-73.9636775	New York	914	NY	Columbus Avenue	City Coffee Bar	+1-646-398-7772	\N	10025	\N	\N	\N	\N	\N	\N
 427	2761641622	40.7994859	-73.9610681	New York	153	NY	Manhattan Avenue	Park Cafe	+1-646-370-3773	\N	10025	\N	\N	\N	\N	\N	\N
 428	2761671634	40.8031673	-73.9670896	New York	2810	NY	Broadway	Gong Cha	+1-646-850-6566	\N	10025	\N	\N	\N	\N	\N	\N
-429	2762451097	40.7997636	-73.9526587	New York	19	NY	Saint Nicholas Avenue	Claire's Kitchen Cafe	+1 917-409-1717	\N	10026	\N	\N	\N	\N	\N	\N
-430	2768305932	40.8274731	-73.9493563	New York	3570;3576	NY	Broadway	Hamilton's Bakery and Cafe	\N	\N	10031	\N	\N	\N	\N	\N	\N
+429	2762451097	40.7997636	-73.9526587	New York	19	NY	Saint Nicholas Avenue	Claires Kitchen Cafe	+1 917-409-1717	\N	10026	\N	\N	\N	\N	\N	\N
+430	2768305932	40.8274731	-73.9493563	New York	3570;3576	NY	Broadway	Hamiltons Bakery and Cafe	\N	\N	10031	\N	\N	\N	\N	\N	\N
 431	2768438965	40.8113713	-73.961115	New York	3070	NY	Broadway	Broadway Au Lait	+1-212-865-8429	\N	10027	\N	\N	\N	\N	\N	\N
 432	2768451021	40.8140293	-73.959994	\N	121	\N	La Salle Street	Kuro Kuma	+1(347) 577-3177	\N	10027	\N	\N	\N	\N	\N	\N
 433	2768451031	40.8150497	-73.9590898	New York	3165	NY	Broadway	Starbucks	+1 929-243-2549	\N	10027	\N	\N	\N	\N	\N	\N
@@ -535,9 +535,9 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 478	2844971065	40.7422129	-73.9253981	\N	45-51	\N	47th Avenue	Moa Coffee	\N	\N	11104	\N	\N	\N	\N	\N	\N
 479	2844999918	40.7450262	-73.9204706	\N	43-24	\N	43rd Avenue	The Spot Café	+1 917-396-4036	\N	11104	\N	\N	\N	\N	\N	\N
 480	2845010834	40.7439034	-73.922528	Sunnyside	41-31	NY	Queens Boulevard	Bon Cafe & Restaurant	\N	50	11104	\N	\N	\N	\N	\N	\N
-481	2846354510	40.7489601	-73.8907354	\N	75-02	\N	37th Avenue	Ricky's Cafe	\N	\N	11372	\N	\N	\N	\N	\N	\N
+481	2846354510	40.7489601	-73.8907354	\N	75-02	\N	37th Avenue	Rickys Cafe	\N	\N	11372	\N	\N	\N	\N	\N	\N
 482	2846402163	40.7609317	-73.9089978	\N	47-14	\N	30th Avenue	Café Renis	+1-718-255-1730	\N	11103	info@caferenis.com	\N	\N	\N	\N	\N
-483	2846642881	40.7576335	-73.9224942	Long Island City	32-90	NY	36th Street	Monika's Cafe Bar	\N	\N	11106	\N	\N	\N	\N	\N	\N
+483	2846642881	40.7576335	-73.9224942	Long Island City	32-90	NY	36th Street	Monikas Cafe Bar	\N	\N	11106	\N	\N	\N	\N	\N	\N
 484	2846661366	40.7590916	-73.9187165	\N	31-89	\N	Steinway Street	Teamakers	\N	\N	11103	\N	\N	\N	\N	\N	\N
 485	2846677628	40.763595	-73.9150423	Astoria	30-05	\N	Steinway Street	Kinship Coffee Cooperative	\N	\N	11103	\N	\N	\N	\N	\N	\N
 486	2846684670	40.7677861	-73.9116338	\N	25-01	\N	Steinway Street	Sands of Persia	\N	\N	11103	\N	\N	\N	\N	\N	\N
@@ -545,18 +545,18 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 488	2846780759	40.765578	-73.9192929	\N	30-08	\N	34th Street	Kung Fu Tea	\N	\N	11103	\N	\N	\N	\N	\N	\N
 489	2846792636	40.7627789	-73.9204923	\N	34-20	\N	31st Avenue	Coffee Lab	\N	\N	11106	\N	\N	\N	\N	\N	\N
 490	2847155477	40.7650671	-73.9393789	\N	9-02	NY	34th Avenue	Flor De Azalea	+1 718 777 0523	\N	11106	\N	\N	\N	\N	\N	\N
-491	2850982606	40.7633433	-73.771073	\N	41-06	\N	Bell Boulevard	Martha's Country Bakery	\N	\N	11361	\N	\N	\N	\N	\N	\N
+491	2850982606	40.7633433	-73.771073	\N	41-06	\N	Bell Boulevard	Marthas Country Bakery	\N	\N	11361	\N	\N	\N	\N	\N	\N
 492	2853050594	40.7519896	-73.9255705	\N	37-18	NY	Northern Boulevard	Coffeed	+1 718 6061299	\N	11101	\N	\N	\N	\N	\N	\N
 493	2853426879	40.7704743	-73.8920016	\N	21-02	\N	78th Street	Bakery Cafe	\N	\N	11370	\N	\N	\N	\N	\N	\N
 494	2868687318	40.6606255	-73.7684448	\N	\N	\N	\N	Breaking Barriers Christian Bookstore and Coffee Shop	+1-631-504-4697	\N	\N	\N	\N	\N	\N	\N	\N
 495	2870890239	40.7092917	-73.8299776	Kew Gardens	80-62	NY	Lefferts Boulevard	Mr. Wish	+1-347-767-4344	\N	11415	\N	\N	\N	\N	\N	\N
-496	2881757687	40.7567369	-73.7678124	\N	47-04	\N	Bell Boulevard	Peter's Hot Bagel	\N	\N	11361	\N	\N	\N	\N	\N	\N
+496	2881757687	40.7567369	-73.7678124	\N	47-04	\N	Bell Boulevard	Peters Hot Bagel	\N	\N	11361	\N	\N	\N	\N	\N	\N
 497	2882114302	40.7400532	-73.7912001	Queens	183-01	NY	Horace Harding Expressway Service Road North;Horace Harding Expressway	Star Care	\N	\N	11365	\N	\N	\N	\N	\N	\N
 498	2882311702	40.7398345	-73.8152924	\N	60-04	\N	Kissena Boulevard	Kissena Cafe	\N	\N	11355	\N	\N	\N	\N	\N	\N
 499	2883466310	40.7596293	-73.8303649	Flushing	39-22	NY	Main Street	Coco	+1-718-321-8566	\N	11354	\N	\N	\N	\N	\N	\N
 500	2883480565	40.7580314	-73.829601	Flushing	41-02	NY	Main Street	Starbucks	+1 718-358-9355	\N	11355	\N	\N	\N	\N	\N	\N
 501	2883913635	40.7797043	-73.8461782	Queens	22-16	NY	College Point Boulevard	Inblue Coffee Roaster	\N	\N	11356	\N	\N	\N	\N	\N	\N
-502	2884017661	40.7460474	-73.8598778	\N	46-10	\N	104th Street	Mama's Backyard Cafe	+1-718-565-9104	\N	11368	\N	\N	\N	\N	\N	\N
+502	2884017661	40.7460474	-73.8598778	\N	46-10	\N	104th Street	Mamas Backyard Cafe	+1-718-565-9104	\N	11368	\N	\N	\N	\N	\N	\N
 503	2884381855	40.7614943	-73.8675775	\N	101-20	\N	Astoria Boulevard	Black Sheep Coffee House	\N	\N	11369	\N	\N	\N	\N	\N	\N
 504	2895301059	40.6576676	-73.8391993	\N	159-49	\N	Cross Bay Boulevard	Etto	\N	\N	11414	\N	\N	\N	\N	\N	\N
 505	2897265318	40.709679	-74.0083821	\N	71	\N	Nassau Street	d Elici	+1 212-587-5740	\N	10038	\N	\N	\N	\N	\N	\N
@@ -584,7 +584,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 527	3154231930	40.6869934	-73.9753732	Brooklyn	33	NY	Lafayette Avenue	Baba Cool	+1-347-689-2344	\N	11217	hello@babacoolbk.com	\N	\N	\N	\N	\N
 528	3154231943	40.6860974	-73.9735627	\N	781	\N	Fulton Street	Hungry Ghost	+1-718-797-3595	\N	11217	\N	\N	\N	\N	\N	\N
 529	3154274261	40.7082598	-73.9401186	\N	\N	\N	\N	Bread Brothers	\N	\N	\N	\N	\N	\N	\N	\N	\N
-530	3154274268	40.7081622	-73.9397458	\N	\N	\N	\N	Jessie's Bakery	\N	\N	\N	\N	\N	\N	\N	\N	\N
+530	3154274268	40.7081622	-73.9397458	\N	\N	\N	\N	Jessies Bakery	\N	\N	\N	\N	\N	\N	\N	\N	\N
 531	3154320971	40.6768587	-74.0132688	\N	\N	\N	\N	Baked	\N	\N	\N	\N	\N	\N	\N	\N	\N
 532	3154646654	40.7123642	-73.939496	\N	861	\N	Grand Street	Dumpling Cafe	7183028886	\N	\N	\N	\N	\N	\N	\N	\N
 533	3179745213	40.7504102	-73.9928259	New York	2	NY	Penn Plaza	Tim Hortons	+1 212-630-0320	\N	10121	\N	\N	\N	\N	\N	\N
@@ -595,13 +595,13 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 538	3214830154	40.6726439	-73.9623811	Brooklyn	409	NY	Lincoln Place	Lincoln Station	\N	\N	11238	\N	\N	\N	\N	\N	\N
 539	3217939901	40.7644229	-73.9879761	New York	774	NY	9th Avenue	Kahve	+1 212 256-0207	\N	10019	\N	\N	\N	\N	\N	\N
 540	3233781193	40.7327952	-73.9979676	New York	30	NY	West 8th Street	Stumptown	1-855-711-3385	\N	10011	info@stumptowncoffee.com	\N	\N	\N	\N	\N
-541	3233782170	40.7306205	-73.9951131	New York	29	NY	Waverly Place	Oren's Daily Roast	+1 212-420-5958	\N	10003	\N	\N	\N	\N	\N	\N
+541	3233782170	40.7306205	-73.9951131	New York	29	NY	Waverly Place	Orens Daily Roast	+1 212-420-5958	\N	10003	\N	\N	\N	\N	\N	\N
 542	3233791134	40.7293867	-73.9987052	New York	230	NY	Thompson Street	The Uncommons	+1-646-543-9215	\N	10012	us@uncommonsnyc.com	\N	\N	\N	\N	\N
 543	3235708620	40.7779198	-73.978202	New York	267-275	NY	Columbus Avenue	Starbucks	+1 212-579-7834	\N	10023	\N	\N	\N	\N	\N	\N
 544	3236430399	40.7631897	-73.9219964	Astoria	31-05	NY	33rd Street	Madame Sousou	(718) 710-6577	\N	11106	\N	\N	\N	\N	\N	\N
 545	3248774671	40.7810251	-73.981008	New York	2138	NY	Broadway	Starbucks	\N	\N	10023	\N	\N	\N	\N	\N	\N
 546	3264422314	40.7469335	-73.9933215	New York	315	NY	7th Avenue	Starbucks	+1 646-336-6462	\N	10001	\N	\N	\N	\N	\N	\N
-547	3265464818	40.746485	-73.9822904	\N	48	\N	East 33rd Street	Gregory's Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+547	3265464818	40.746485	-73.9822904	\N	48	\N	East 33rd Street	Gregorys Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 548	3273820747	40.7557287	-73.9904972	New York	274	NY	West 40th Street	Kiss My Slice	\N	\N	10018	\N	\N	\N	\N	\N	\N
 549	3315216998	40.5773628	-73.9612739	Brooklyn	602	NY	Brighton Beach Avenue	Euroasia Cafe	+1 718-891-0008	\N	11235	\N	\N	\N	\N	\N	\N
 550	3338584818	40.8472105	-73.8444918	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -659,7 +659,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 602	3829610926	40.7503257	-73.9716056	\N	\N	\N	\N	Chelsea Bagel	\N	\N	\N	\N	\N	\N	\N	\N	\N
 603	3843956495	40.807525	-73.9608785	\N	\N	\N	\N	Nous Espresso	\N	\N	\N	\N	\N	\N	\N	\N	\N
 604	3843979174	40.8858609	-73.9101471	Bronx	3503	NY	Johnson Avenue	Starbucks	+1 718-543-2348	\N	10463	\N	\N	\N	\N	\N	\N
-605	3856527489	40.7419355	-73.9608611	Long Island City	52-10	NY	Center Boulevard	Frank Ottomanelli's	\N	\N	11101	\N	\N	\N	\N	\N	\N
+605	3856527489	40.7419355	-73.9608611	Long Island City	52-10	NY	Center Boulevard	Frank Ottomanellis	\N	\N	11101	\N	\N	\N	\N	\N	\N
 606	3860891458	40.7600363	-73.9205039	\N	31-86	\N	37th Street	Seek Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 607	3862796859	40.780846	-73.917133	\N	\N	\N	\N	Agnanti Café	\N	\N	\N	\N	\N	\N	\N	\N	\N
 608	3862797058	40.754429	-73.933859	\N	38-08	\N	29th Street	Our Coffee Shop	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -677,7 +677,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 620	3938479922	40.712179	-74.008181	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 621	3938479923	40.7658131	-73.9653728	\N	861	\N	Lexington Avenue	Le Pain Quotidien	\N	\N	\N	\N	\N	\N	\N	\N	\N
 622	3953943320	40.6772443	-73.986012	\N	\N	\N	\N	Runner & Stone	+1-718-577-3360	\N	\N	\N	\N	\N	\N	\N	\N
-623	3953943884	40.67686	-73.9863149	\N	\N	\N	\N	Baba's Pierogies	+1 718 222 0777	\N	\N	\N	\N	\N	\N	\N	\N
+623	3953943884	40.67686	-73.9863149	\N	\N	\N	\N	Babas Pierogies	+1 718 222 0777	\N	\N	\N	\N	\N	\N	\N	\N
 624	3956950395	40.7437478	-73.9790582	\N	201	\N	East 31st Street	Banter	\N	\N	10016	\N	\N	\N	\N	\N	\N
 625	3958232658	40.7435815	-73.9920821	New York	750	NY	6th Avenue	Starbucks	+1 646-230-7208	\N	10010	\N	\N	\N	\N	\N	\N
 626	3958232662	40.7435359	-73.9925708	\N	729	\N	6th Avenue	The Corner Cafe	\N	\N	10010	\N	\N	\N	\N	\N	\N
@@ -715,17 +715,17 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 658	4230588256	40.7552587	-73.9945988	New York	265 w	NY	West 37th Street	Ramini espresso bar	\N	\N	10018	\N	\N	\N	\N	\N	\N
 659	4248928405	40.7515474	-73.9705865	New York	844	\N	2nd Avenue	Matto Espresso	\N	\N	10017	\N	\N	\N	\N	\N	\N
 660	4252850545	40.6751853	-73.9747957	\N	\N	\N	\N	Bar Basic	+1-347-348-3046	\N	\N	\N	\N	\N	\N	\N	\N
-661	4252887915	40.6756809	-73.9748149	\N	62	\N	7th Avenue	Cousin John's	+1-718-622-7333	\N	11217	\N	\N	\N	\N	\N	\N
+661	4252887915	40.6756809	-73.9748149	\N	62	\N	7th Avenue	Cousin Johns	+1-718-622-7333	\N	11217	\N	\N	\N	\N	\N	\N
 662	4252917490	40.6742229	-73.9752617	\N	\N	\N	\N	Velvette Black	\N	\N	\N	\N	\N	\N	\N	\N	\N
 663	4300438090	40.7281762	-73.9821791	New York	165	NY	Avenue A	Tompkins Square Bagels	+1-646-351-6520	\N	10009	\N	\N	\N	\N	\N	\N
-664	4300546590	40.7363315	-73.9971668	\N	500	\N	6th Avenue	Murray's Bagels	+1 212-462-2830	\N	10011	\N	\N	\N	\N	\N	\N
+664	4300546590	40.7363315	-73.9971668	\N	500	\N	6th Avenue	Murrays Bagels	+1 212-462-2830	\N	10011	\N	\N	\N	\N	\N	\N
 665	4312082389	40.7137511	-73.9985135	\N	\N	\N	\N	10 Below Ice Cream	\N	\N	\N	\N	\N	\N	\N	\N	\N
 666	4312750372	40.7136847	-73.9657829	Brooklyn	45	NY	South 3rd Street	Freehold	\N	\N	11211	\N	\N	\N	\N	\N	\N
 667	4315763593	40.6733902	-73.9630957	\N	820	\N	Washington Avenue	Most High	\N	\N	11238	\N	\N	\N	\N	\N	\N
 668	4315764095	40.6844714	-73.9291389	\N	243	\N	Malcolm X Boulevard	Natural Blend	\N	\N	\N	\N	\N	\N	\N	\N	\N
 669	4316449694	40.6870767	-73.944146	\N	\N	\N	\N	Maya Congee Cafe	+1-347-326-6003	\N	\N	\N	\N	\N	\N	\N	\N
 670	4316449792	40.7174195	-73.962872	\N	242	\N	Wythe Avenue	Depanneur	\N	\N	\N	\N	\N	\N	\N	\N	\N
-671	4316479489	40.6844783	-73.9918497	\N	\N	\N	\N	Bee's Knees Provisions	+1-718-971-1197	\N	\N	\N	\N	\N	\N	\N	\N
+671	4316479489	40.6844783	-73.9918497	\N	\N	\N	\N	Bee''s Knees Provisions	+1-718-971-1197	\N	\N	\N	\N	\N	\N	\N	\N
 672	4316480189	40.7171428	-73.962413	\N	85	\N	North 3rd Street	Shanti Shack	\N	\N	\N	\N	\N	\N	\N	\N	\N
 673	4325385750	40.7125186	-73.9660797	Brooklyn	396	NY	Wythe Avenue	Jane Motorcycles	\N	\N	11211	\N	\N	\N	\N	\N	\N
 674	4330787300	40.7608908	-73.9889333	\N	\N	\N	\N	Frisson Espresso	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -746,14 +746,14 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 688	4479721389	40.7643286	-73.984836	\N	891	\N	8th Avenue	Pick a Bagel	+1 212-582-8333	\N	10019	\N	\N	\N	\N	\N	\N
 689	4481455792	40.7469873	-73.9969959	\N	\N	\N	\N	Bean&Bean Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 690	4491325489	40.7175502	-73.9578621	Brooklyn	189	NY	Bedford Avenue	Bagelsmith	+1 718-218-7414	\N	11211	\N	\N	\N	\N	\N	\N
-691	4491370794	40.6759285	-73.9497883	\N	615	\N	Nostrand Avenue	Rosalia's Cafe	(718) 758-4640	\N	\N	\N	\N	\N	\N	\N	\N
+691	4491370794	40.6759285	-73.9497883	\N	615	\N	Nostrand Avenue	Rosalia''s Cafe	(718) 758-4640	\N	\N	\N	\N	\N	\N	\N	\N
 692	4491402090	40.6941122	-73.9867868	Brooklyn	6	NY	Metro Tech, Poly Tech Institute	Starbucks	+1 718-522-2396	\N	11201	\N	\N	\N	\N	\N	\N
 693	4494829289	40.7622096	-73.9874605	New York	325	NY	West 49th Street	Starbucks	+1 212-765-2205	\N	10019	\N	\N	\N	\N	\N	\N
 694	4503163757	40.7391221	-73.9899657	New York	902	NY	Broadway	Brooks Brothers - Red Fleece Cafe	\N	\N	10003	\N	\N	\N	\N	\N	\N
 695	4513631498	40.7227486	-73.9890819	\N	205	\N	Allen Street	ViVi Bubble Tea	+1 646-651-7779	\N	10014	\N	\N	\N	\N	\N	\N
 696	4515550805	40.7180559	-73.997117	New York	121	NY	Mott Street	12 Corners	+1 646 717 2849	\N	10013	\N	\N	\N	\N	\N	\N
 697	4518440389	40.5952532	-74.0000236	Brooklyn	8973	NY	Bay Parkway	Starbucks	+1 718-265-1069	\N	11214	\N	\N	\N	\N	\N	\N
-698	4526577170	40.6816603	-74.0007585	Brooklyn	570	\N	Henry Street	Henry's Local Café	\N	\N	11231	\N	\N	\N	\N	\N	\N
+698	4526577170	40.6816603	-74.0007585	Brooklyn	570	\N	Henry Street	Henry''s Local Café	\N	\N	11231	\N	\N	\N	\N	\N	\N
 699	4526840980	40.6935774	-73.9854421	Brooklyn	2	NY	Metrotech Center	Pret A Manger	\N	\N	11201	\N	\N	\N	\N	\N	\N
 700	4551161735	40.7273019	-73.9861875	New York	81	NY	East 7th Street	Abraço	+1 212 388 9731	\N	10003	\N	\N	\N	\N	\N	\N
 701	4555620974	40.7415915	-74.0052445	New York	61	NY	9th Avenue	Starbucks Reserve	+1 212-691-0531	\N	10011	\N	\N	\N	\N	\N	\N
@@ -811,7 +811,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 754	4845866425	40.7073586	-74.0022266	\N	223	\N	Front Street	Cafe Patoro	+19172620031	\N	10038	\N	\N	\N	\N	\N	\N
 755	4846158321	40.7056733	-74.0083741	\N	69B	\N	Wall Street	La Colombe Coffee Roasters	+1-212-220-0415	\N	10005	\N	\N	\N	\N	\N	\N
 756	4846658821	40.7520894	-73.9900673	\N	\N	\N	\N	The Bread Factory Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
-757	4847502523	40.7472688	-73.9841528	\N	\N	\N	\N	Captain's Cafe	+12127797191	\N	10016	\N	\N	\N	\N	\N	\N
+757	4847502523	40.7472688	-73.9841528	\N	\N	\N	\N	Captain''s Cafe	+12127797191	\N	10016	\N	\N	\N	\N	\N	\N
 758	4848257933	40.7188835	-74.0101049	New York	\N	\N	\N	Chanson le Salon	\N	\N	\N	\N	\N	\N	\N	\N	\N
 759	4850230746	40.7075935	-74.0021812	\N	\N	\N	\N	Made Fresh Daily	+12122852253	\N	10038	\N	\N	\N	\N	\N	\N
 760	4850230829	40.7061594	-74.008845	\N	\N	\N	\N	Starbucks	+13474614068	\N	10005	\N	\N	\N	\N	\N	\N
@@ -857,13 +857,13 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 800	5043497801	40.6668209	-73.9818315	Brooklyn	444	NY	9th Street	Starbucks	+1 929-214-8871	\N	11215	\N	\N	\N	\N	\N	\N
 801	5052125055	40.7305282	-73.9517696	Brooklyn	195	NY	Greenpoint Avenue	Pueblo Querido	+1-929-346-2986	\N	11222	\N	\N	\N	\N	\N	\N
 802	5063258515	40.7450889	-73.9038325	\N	60-15	\N	Woodside Avenue	Cornerstone Café	\N	\N	\N	\N	\N	\N	\N	\N	\N
-803	5065571121	40.66999	-73.9583748	\N	818	\N	Franklin Avenue	Agi's Counter	+1-718-822-7833	\N	11225	\N	\N	\N	\N	\N	\N
+803	5065571121	40.66999	-73.9583748	\N	818	\N	Franklin Avenue	Agi''s Counter	+1-718-822-7833	\N	11225	\N	\N	\N	\N	\N	\N
 804	5082105221	40.7403729	-73.937536	\N	30-18	\N	Hunters Point Avenue	Griddle Cafe & Deli	+17189377947	\N	11101	\N	\N	\N	\N	\N	\N
 805	5082832236	40.7452314	-73.9054991	\N	59-02	\N	Woodside Avenue	Dear Han	\N	\N	\N	\N	\N	\N	\N	\N	\N
 806	5083557375	40.7586389	-73.9194747	\N	32-14	\N	Steinway Street	Que Rico	+1 718-255-1541	\N	\N	\N	\N	\N	\N	\N	\N
 807	5087340921	40.7246703	-73.9511656	\N	664	\N	Manhattan Avenue	Bot Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
 808	5090743953	40.7786181	-73.9559843	New York	1261	NY	Lexington Avenue	Starbucks	+1 212-879-1764	\N	10028	\N	\N	\N	\N	\N	\N
-809	5091148526	40.6927399	-73.9404432	\N	907	\N	DeKalb Avenue	Mary's Coffee Shop	+1-917-893-9559	\N	\N	\N	\N	\N	\N	\N	\N
+809	5091148526	40.6927399	-73.9404432	\N	907	\N	DeKalb Avenue	Mary''s Coffee Shop	+1-917-893-9559	\N	\N	\N	\N	\N	\N	\N	\N
 810	5092488424	40.7434084	-73.9183013	Sunnyside	46-09	NY	Queens Boulevard	Starbucks	+1 718-472-5215	\N	11104	\N	\N	\N	\N	\N	\N
 811	5093178522	40.7243937	-73.9510032	\N	\N	\N	\N	Acai Berry	\N	\N	\N	\N	\N	\N	\N	\N	\N
 812	5101542622	40.7081578	-74.0139728	\N	16	\N	Rector Street	\N	\N	\N	10006	\N	\N	\N	\N	\N	\N
@@ -877,7 +877,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 820	5132368123	40.7175925	-73.9971381	\N	106	\N	Mott Street	Sweet Moment	\N	\N	10013	\N	\N	\N	\N	\N	\N
 821	5136315012	40.7580814	-73.9235018	\N	35-13	\N	34th Avenue	Sweet Scene	\N	\N	\N	\N	\N	\N	\N	\N	\N
 822	5145299521	40.7417897	-73.9807467	\N	200	\N	East 28th Street	Starbucks	\N	\N	10016	\N	\N	\N	\N	\N	\N
-823	5152969390	40.6286385	-74.0798621	\N	387	\N	Van Duzers	Duzer's Local Cafe & Market	\N	\N	\N	\N	\N	\N	\N	\N	\N
+823	5152969390	40.6286385	-74.0798621	\N	387	\N	Van Duzers	Duzer''s Local Cafe & Market	\N	\N	\N	\N	\N	\N	\N	\N	\N
 824	5155255411	40.7596918	-73.7724531	\N	210-21	\N	Northern Boulevard	Bean Square	\N	\N	\N	\N	\N	\N	\N	\N	\N
 825	5155761608	40.7494987	-73.897702	\N	64-23	\N	Broadway	Woodside Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 826	5156147426	40.7657215	-73.9191914	\N	33-20	\N	30th Avenue	La Sabrosura	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -908,14 +908,14 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 851	5227527424	40.7198938	-74.0038297	New York	319	NY	Church Street	La Colombe Coffee Roasters	\N	\N	10013	\N	\N	\N	\N	\N	\N
 852	5228777785	40.7525184	-73.9860712	\N	\N	\N	\N	Tim Hortons	\N	\N	\N	\N	\N	\N	\N	\N	\N
 853	5229539586	40.6268998	-73.9762242	\N	1081	\N	McDonald Avenue	The Little Things	\N	\N	\N	\N	\N	\N	\N	\N	\N
-854	5229541226	40.635727	-73.9778996	\N	757	\N	McDonald Avenue	Gabby's Coffee Shop	\N	\N	\N	\N	\N	\N	\N	\N	\N
+854	5229541226	40.635727	-73.9778996	\N	757	\N	McDonald Avenue	Gabby''s Coffee Shop	\N	\N	\N	\N	\N	\N	\N	\N	\N
 855	5229541507	40.6319734	-73.995071	\N	5405	\N	13th Avenue	1982 Coffee Roasters	+1-718-475-1982	\N	\N	\N	\N	\N	\N	\N	\N
 856	5229546633	40.6351466	-73.9957876	\N	5106	\N	12th Avenue	The Chocolate Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
 857	5231705717	40.7149276	-73.9983164	\N	26	\N	Pell Street	Mee Sum Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 858	5236507097	40.6669271	-73.9918474	\N	548	\N	4th Avenue	The Common	+1-718-971-9580	\N	11215	\N	\N	\N	\N	\N	\N
 859	5243548102	40.7190103	-73.9845737	New York	172	NY	Rivington Street	Black Cat LES	+1-646-918-7711	\N	10002	\N	\N	\N	\N	\N	\N
 860	5243561776	40.7143078	-73.9903911	New York	26	NY	Canal Street	Little Canal	+1 917-472-7479	\N	10002	\N	\N	\N	\N	\N	\N
-861	5243567855	40.727163	-73.9999069	\N	88	\N	West Houston Street	Morgenstern's Finest Ice Cream	+1-212-209-7684	\N	\N	\N	\N	\N	\N	\N	\N
+861	5243567855	40.727163	-73.9999069	\N	88	\N	West Houston Street	Morgenstern''s Finest Ice Cream	+1-212-209-7684	\N	\N	\N	\N	\N	\N	\N	\N
 862	5243646756	40.6549339	-73.9735328	\N	\N	\N	\N	Elk	+1-718-853-5500	\N	\N	\N	\N	\N	\N	\N	\N
 863	5248100573	40.7298789	-73.862735	Rego Park	95-17	NY	63rd Drive	Starbucks	+1 347-757-0261	\N	11374	\N	\N	\N	\N	\N	\N
 864	5265713044	40.7292145	-73.9981725	\N	552	\N	LaGuardia Place	Chihiro Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -938,7 +938,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 881	5334051621	40.7087364	-74.0069962	\N	110	\N	William Street	Voyager Espresso	\N	\N	\N	\N	\N	\N	\N	\N	\N
 882	5343852056	40.7073005	-73.8969064	Ridgewood	61-05	NY	Madison Street	The Spot	+1-929-228-9957	\N	11385	\N	\N	\N	\N	\N	\N
 883	5346841821	40.6531009	-73.9759494	\N	\N	\N	\N	Poetica Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
-884	5348392455	40.7006712	-73.9038041	\N	905	\N	Seneca Avenue	Rudy's Pastry Shop	+1 718-821-5890	\N	\N	\N	\N	\N	\N	\N	\N
+884	5348392455	40.7006712	-73.9038041	\N	905	\N	Seneca Avenue	Rudy''s Pastry Shop	+1 718-821-5890	\N	\N	\N	\N	\N	\N	\N	\N
 885	5349396115	40.6970156	-73.9062504	Ridgewood	915	NY	Wyckoff Avenue	Trans Am Cafe	+1-718-386-3718	\N	11385	\N	\N	\N	\N	\N	\N
 886	5351612917	40.7066709	-73.8972292	\N	66-72	\N	Fresh Pond Road	The Nest Fine Desserts	7184189493	\N	\N	\N	\N	\N	\N	\N	\N
 887	5351619383	40.7068651	-73.8969118	Ridgewood	66-69	NY	Fresh Pond Road	Cute Cat Café	+1-718-417-7500	\N	11385	\N	\N	\N	\N	\N	\N
@@ -949,20 +949,20 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 892	5364972600	40.7080471	-73.8979865	Ridgewood	66-30	NY	Fresh Pond Road	Spolem Café and Lounge	+1-347-725-3379	\N	11385	\N	\N	\N	\N	\N	\N
 893	5365021891	40.7056597	-73.9153112	Ridgewood	17-02	NY	Cypress Avenue	Cypress Inn Cafe	+1-347-889-5676	\N	11385	\N	\N	\N	\N	\N	\N
 1169	6001361798	40.7154345	-74.01633	\N	\N	\N	\N	Le Pain Quotidien	\N	\N	\N	\N	\N	\N	\N	\N	\N
-894	5365035494	40.7023975	-73.9008093	Ridgewood	59-02	NY	Catalpa Avenue	Norma's Corner Shoppe	+1-347-294-0185	\N	11385	\N	\N	\N	\N	\N	\N
-895	5365041381	40.7014113	-73.8887535	Glendale	65-53	NY	Myrtle Avenue	Evertz's Cafe Restaurant	\N	\N	11385	\N	\N	\N	\N	\N	\N
+894	5365035494	40.7023975	-73.9008093	Ridgewood	59-02	NY	Catalpa Avenue	Norma''s Corner Shoppe	+1-347-294-0185	\N	11385	\N	\N	\N	\N	\N	\N
+895	5365041381	40.7014113	-73.8887535	Glendale	65-53	NY	Myrtle Avenue	Evertz''s Cafe Restaurant	\N	\N	11385	\N	\N	\N	\N	\N	\N
 896	5367308116	40.680502	-73.9778454	\N	\N	\N	\N	Java Andina	\N	\N	\N	\N	\N	\N	\N	\N	\N
 897	5368647549	40.6788171	-73.986241	\N	\N	\N	\N	Mirror Tea and Sake House	+1-917-909-0557	\N	\N	\N	\N	\N	\N	\N	\N
 898	5368787741	40.7017554	-73.9061681	\N	778	\N	Seneca Avenue	Milk & Pull	+1-718-821-1155	\N	\N	\N	\N	\N	\N	\N	\N
 899	5373522803	40.7092698	-73.9042364	\N	63-59	\N	Forest Avenue	Rogner Cafe and Lounge	\N	\N	\N	\N	\N	\N	\N	\N	\N
 900	5373644722	40.604355	-73.9719259	Brooklyn	481	NY	Kings Highway	Starbucks	\N	\N	11223	\N	\N	\N	\N	\N	\N
-901	5378336828	40.7072182	-73.9147797	\N	377	\N	Seneca Avenue	Bravo's Café and Restaurant	+1-718-821-0492	\N	\N	\N	\N	\N	\N	\N	\N
+901	5378336828	40.7072182	-73.9147797	\N	377	\N	Seneca Avenue	Bravo''s Café and Restaurant	+1-718-821-0492	\N	\N	\N	\N	\N	\N	\N	\N
 902	5383045522	40.7251418	-73.98162	New York	178	NY	East 7th Street	C&B	\N	\N	10009	\N	\N	\N	\N	\N	\N
 903	5395639744	40.7270961	-73.993997	\N	372	\N	Lafayette Street	Honeybrains	\N	\N	10012	\N	\N	\N	\N	\N	\N
 904	5397270880	40.7294568	-73.9881288	New York	230	NY	East 9th Street	Cha-An Teahouse	+1 212-228-8030	\N	10003	info@chaanteahouse.com	\N	\N	\N	\N	\N
 905	5397494204	40.760603	-73.8329669	\N	37-06	\N	Prince Street	KULU Desserts Flushing	(718) 886-3302	\N	11354	\N	\N	\N	\N	\N	\N
 906	5399823086	40.7242595	-74.0019929	\N	399	\N	West Broadway	Ground Support Café	+1-212-219-8733	\N	\N	steven@groundsupportcafe.com	\N	\N	\N	\N	\N
-907	5400446681	40.7413267	-73.9216544	Sunnyside	43-04	NY	47th Avenue	Curley's Bagels	\N	\N	11104	\N	\N	\N	\N	\N	\N
+907	5400446681	40.7413267	-73.9216544	Sunnyside	43-04	NY	47th Avenue	Curley''s Bagels	\N	\N	11104	\N	\N	\N	\N	\N	\N
 908	5401946294	40.7392879	-74.001853	\N	\N	\N	\N	Big Famous Deli & Grocery	2127418065	\N	\N	\N	\N	\N	\N	\N	\N
 909	5401978031	40.7620536	-73.9910987	\N	\N	\N	\N	Al Horno	+1 212-977-1000	\N	\N	\N	\N	\N	\N	\N	\N
 910	5403591848	40.7585227	-73.9195571	\N	32-18	\N	Steinway Street	Bora Bora Smoothie Cafe	\N	\N	11103	\N	\N	\N	\N	\N	\N
@@ -978,7 +978,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 920	5415649562	40.719848	-74.0049417	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 921	5417695324	40.7088486	-73.8981061	\N	66-07	\N	Fresh Pond Road	European Coffee Bar	+1-718-418-8457	\N	\N	\N	\N	\N	\N	\N	\N
 922	5418882814	40.7063536	-73.9054469	Ridgewood	660	NY	Fairview Avenue	C.Lo Cafe	+1-929-295-0099	\N	11385	\N	\N	\N	\N	\N	\N
-923	5423595681	40.7118667	-73.9057757	Ridgewood	62-54	NY	Forest Avenue	L'aroma Dei Cafe	+1-718-456-9788	\N	11385	\N	\N	\N	\N	\N	\N
+923	5423595681	40.7118667	-73.9057757	Ridgewood	62-54	NY	Forest Avenue	L''aroma Dei Cafe	+1-718-456-9788	\N	11385	\N	\N	\N	\N	\N	\N
 924	5425572212	40.755117	-73.9909801	\N	270	\N	West 39th Street	Corvo Coffee	+1-917-409-2479	\N	\N	\N	\N	\N	\N	\N	\N
 925	5425892273	40.6940674	-73.8507034	\N	94-16	\N	Jamaica Avenue	Independence Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 926	5433332835	40.7554688	-73.9707954	\N	\N	\N	\N	The Picnic Basket	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -990,18 +990,18 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 932	5457976615	40.7607508	-73.8305309	Flushing	38-05	NY	Main Street	Starbucks	+1 718-445-0354	\N	11354	\N	\N	\N	\N	\N	\N
 933	5470130892	40.7036304	-73.8088849	Jamaica	8900	NY	Sutphin Boulevard	Starbucks	+1 347-233-1463	\N	11435	\N	\N	\N	\N	\N	\N
 934	5473383610	40.739498	-74.007702	New York	73	NY	Gansevoort Street	\N	\N	\N	10014	\N	\N	\N	\N	\N	\N
-935	5474081137	40.6828823	-73.9821946	\N	\N	\N	\N	Lano's Coffee Shop & Restaurant	+1 718 643 3617	\N	\N	\N	\N	\N	\N	\N	\N
+935	5474081137	40.6828823	-73.9821946	\N	\N	\N	\N	Lano''s Coffee Shop & Restaurant	+1 718 643 3617	\N	\N	\N	\N	\N	\N	\N	\N
 936	5477794022	40.7167956	-73.951889	\N	544	\N	Union Avenue	Reunion	7185993670	\N	11211	\N	\N	\N	\N	\N	\N
 937	5481496774	40.7658549	-73.9195051	\N	33-10	\N	30th Avenue	New York City Bagel Coffee House	\N	\N	11103	\N	\N	\N	\N	\N	\N
 938	5481546589	40.7033726	-73.9904309	\N	35	\N	Water Street	One Girl Cookies	+1-212-675-4996	\N	\N	\N	\N	\N	\N	\N	\N
 939	5487146971	40.6796283	-73.9822309	\N	333	\N	Douglass Street	Ninth Street Espresso	\N	\N	11217	\N	\N	\N	\N	\N	\N
-940	5494239445	40.6638024	-73.9910869	\N	\N	\N	\N	Marte's Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+940	5494239445	40.6638024	-73.9910869	\N	\N	\N	\N	Marte''s Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 941	5500393532	40.7029465	-73.9894489	\N	45	\N	Washington Street	Joe Coffee	\N	\N	11201	\N	\N	\N	\N	\N	\N
 942	5506774601	40.6716935	-73.9840041	\N	\N	\N	\N	Café Martin	\N	\N	\N	\N	\N	\N	\N	\N	\N
 943	5517079878	40.6721221	-73.9769228	\N	\N	\N	\N	Un Posto Italiano	+1-718-638-8500	\N	\N	\N	\N	\N	\N	\N	\N
 944	5518770599	40.6751381	-73.975415	\N	\N	\N	\N	Cafe Regular du Nord	+1-718-783-0673	\N	\N	regulardunord@gmail.com	\N	\N	\N	\N	\N
 945	5521624421	40.6897579	-73.98015	Brooklyn	80	NY	DeKalb Avenue	Hungry Ghost	\N	\N	11201	\N	\N	\N	\N	\N	\N
-946	5523537866	40.6722582	-73.9682033	\N	\N	\N	\N	Emma's Torch Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+946	5523537866	40.6722582	-73.9682033	\N	\N	\N	\N	Emma''s Torch Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 947	5526341737	40.6662534	-73.9852422	\N	497	\N	6th Avenue	Muse	+1 718 788 5800	\N	11215	\N	\N	\N	\N	\N	\N
 948	5528518947	40.6841419	-73.9835836	Brooklyn	253	NY	Bergen Street	Blank Street Coffee	\N	\N	11217	\N	\N	\N	\N	\N	\N
 949	5528676228	40.7579702	-73.9838946	\N	136	\N	West 46th Street	Margon Restaurant	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1015,7 +1015,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 957	5542976159	40.6998162	-73.9112732	Ridgewood	329	NY	Wyckoff Avenue	Starbucks	+1 347-668-5736	\N	11385	\N	\N	\N	\N	\N	\N
 958	5548940330	40.8327142	-73.8639673	\N	1859	\N	Westchester Avenue	Isla Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 959	5549150574	40.6778577	-73.9796531	\N	\N	\N	\N	Everyman Espresso	\N	\N	\N	\N	\N	\N	\N	\N	\N
-960	5552408327	40.8277423	-73.8502782	Bronx	1001	NY	Castle Hill Avenue	Johnny's Grand Cafe	+1-718-319-1200	\N	10472	\N	\N	\N	\N	\N	\N
+960	5552408327	40.8277423	-73.8502782	Bronx	1001	NY	Castle Hill Avenue	Johnny''s Grand Cafe	+1-718-319-1200	\N	10472	\N	\N	\N	\N	\N	\N
 1170	6003410969	40.6748895	-73.9889741	\N	\N	\N	\N	Allegro Coffee Roasters	\N	\N	\N	\N	\N	\N	\N	\N	\N
 961	5554842593	40.7049338	-73.9175904	\N	140	\N	Saint Nicholas Avenue	Gordo’s Cantina	+1-718-484-8183	\N	\N	\N	\N	\N	\N	\N	\N
 962	5555271895	40.6774606	-73.9835377	\N	620	\N	Union Street	Beanmonger Coffee	\N	\N	11215	\N	\N	\N	\N	\N	\N
@@ -1041,7 +1041,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 982	5600185466	40.6865989	-73.9547153	Brooklyn	1114	NY	Bedford Avenue	Playground Coffee Shop	+1-718-484-4833	\N	11216	\N	\N	\N	\N	\N	\N
 983	5601037419	40.7867898	-73.822062	\N	145-04	\N	14th Avenue	The Stonebridge	\N	\N	\N	\N	\N	\N	\N	\N	\N
 984	5603534984	40.7292335	-73.9814002	New York	195	NY	Avenue A	Boris and Horton	\N	\N	10009	\N	\N	\N	\N	\N	\N
-985	5603563258	40.7268161	-73.9831737	New York	125	NY	Saint Mark's Place	Starbucks	+1 917-648-3955	\N	10009	\N	\N	\N	\N	\N	\N
+985	5603563258	40.7268161	-73.9831737	New York	125	NY	Saint Mark''s Place	Starbucks	+1 917-648-3955	\N	10009	\N	\N	\N	\N	\N	\N
 986	5611592932	40.6824544	-73.9613917	\N	1013	\N	Fulton Street	Maya Congee Café	\N	\N	11238	\N	\N	\N	\N	\N	\N
 987	5611937541	40.7265689	-73.9996226	New York	71	NY	West Houston Street	Birch Coffee	+1 212-686-1444	\N	10012	soho@birchcoffee.com	\N	\N	\N	\N	\N
 988	5613044405	40.7073204	-73.9537223	\N	308	\N	Hooper Street	The Fiction	\N	\N	11211	\N	\N	\N	\N	\N	\N
@@ -1066,7 +1066,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1007	5664788646	40.7542367	-73.9889033	New York	200	\N	West 39th Street	Café Grumpy	+1 646-449-8747	\N	10018	\N	\N	\N	\N	\N	\N
 1008	5664801941	40.720511	-73.9960362	New York	177	\N	Mott Street	Café Grumpy	+1 212-226-6810	\N	10012	\N	\N	\N	\N	\N	\N
 1009	5664814202	40.7521444	-73.9757163	New York	89	\N	East 42nd Street	Café Grumpy	+1 212-661-2198	\N	10017	\N	\N	\N	\N	\N	\N
-1010	5669779496	40.7778553	-73.9782475	\N	273	\N	Columbus Avenue	Zucker's Bagels & Smoked Fish	+1 212-874-2800	\N	10023	\N	\N	\N	\N	\N	\N
+1010	5669779496	40.7778553	-73.9782475	\N	273	\N	Columbus Avenue	Zucker''s Bagels & Smoked Fish	+1 212-874-2800	\N	10023	\N	\N	\N	\N	\N	\N
 1011	5672782246	40.7874897	-73.953786	\N	1389	\N	Madison Avenue	Champignon Café	+1 212-987-1700	\N	10029	catering@champignoncafe.com	\N	\N	\N	\N	\N
 1012	5672860212	40.7876673	-73.954025	\N	1392	\N	Madison Avenue	Da Capo Aperitivo e Caffe	+1 646-707-0684	\N	10029	\N	\N	\N	\N	\N	\N
 1013	5686408267	40.7575483	-73.9269653	\N	34-56	\N	35th Avenue	Coffee Ave	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1087,7 +1087,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1028	5716116193	40.7523028	-73.9784305	\N	60	\N	East 42nd Street	Blue Bottle Coffee	\N	\N	10165	\N	\N	\N	\N	\N	\N
 1029	5721471863	40.7436528	-73.9203646	\N	44-01	\N	Queens Boulevard	Chakra Cafe	+1 929-462-0051	\N	\N	\N	\N	\N	\N	\N	\N
 1030	5723870934	40.6922146	-73.914522	\N	447	\N	Central Avenue	Caffeine Underground	+1-718-484-4806	\N	\N	tcunyc@gmail.com	\N	\N	\N	\N	\N
-1031	5723954896	40.6925908	-73.91525	\N	429	\N	Central Avenue	Aquino's	+1-718-574-5207	\N	\N	\N	\N	\N	\N	\N	\N
+1031	5723954896	40.6925908	-73.91525	\N	429	\N	Central Avenue	Aquino''s	+1-718-574-5207	\N	\N	\N	\N	\N	\N	\N	\N
 1032	5725918582	40.7106548	-74.0121277	New York	150	NY	Greenwich Street	Blue Bottle Coffee	\N	\N	10007	\N	\N	\N	\N	\N	\N
 1033	5725985607	40.7169605	-73.9610201	\N	76	\N	North 4th Street	Blue Bottle Coffee	\N	\N	11249	\N	\N	\N	\N	\N	\N
 1034	5726008201	40.7340565	-73.9924563	\N	101	\N	University Place	Blue Bottle Coffee	\N	\N	10003	\N	\N	\N	\N	\N	\N
@@ -1098,7 +1098,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1039	5734944621	40.7452186	-73.9902413	\N	49	\N	West 27th Street	Patent Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1040	5735248331	40.7050509	-73.928984	\N	119	\N	Knickerbocker Avenue	Crossroads Cafe	+1-347-422-0969	\N	\N	\N	\N	\N	\N	\N	\N
 1041	5739490440	40.7033905	-73.9301425	\N	17	\N	Wilson Avenue	Your Way Cafe	+1-347-745-8605	\N	\N	\N	\N	\N	\N	\N	\N
-1042	5747108148	40.6428261	-73.9797361	\N	97	\N	Church Avenue	Kabir's Bakery	+1-718-853-7907	\N	11218	\N	\N	\N	\N	\N	\N
+1042	5747108148	40.6428261	-73.9797361	\N	97	\N	Church Avenue	Kabir''s Bakery	+1-718-853-7907	\N	11218	\N	\N	\N	\N	\N	\N
 1043	5747283270	40.6353281	-73.9788437	Brooklyn	2	NY	Ditmas Avenue	Corner Cafe	\N	\N	11218	\N	\N	\N	\N	\N	\N
 1044	5747406152	40.7475924	-73.9415538	\N	26-25	\N	Jackson Avenue	Partners Coffee	+1 347-531-0477	\N	\N	\N	\N	\N	\N	\N	\N
 1045	5747519893	40.695591	-73.9089131	\N	462	\N	Irving Avenue	Saint Michel	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1114,12 +1114,12 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1055	5763904853	40.7689891	-73.9356112	\N	31-01	\N	Vernon Boulevard	Chateau le Woof	\N	\N	11106	\N	\N	\N	\N	\N	\N
 1056	5771831853	40.7524881	-73.9880033	\N	\N	\N	\N	Bluestone Lane	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1057	5775345819	40.6649151	-73.98342	\N	396	\N	7th Avenue	Lively	\N	\N	11215	\N	\N	\N	\N	\N	\N
-1058	5775345828	40.6653857	-73.9830381	\N	384	\N	7th Avenue	Naidre's	+1-718-965-7585	\N	11215	\N	\N	\N	\N	\N	\N
+1058	5775345828	40.6653857	-73.9830381	\N	384	\N	7th Avenue	Naidre''s	+1-718-965-7585	\N	11215	\N	\N	\N	\N	\N	\N
 1059	5782495654	40.7882751	-73.9490068	\N	1565	\N	Lexington Avenue	MY NY Bakery Cafe	+1 212-722-7383	\N	10029	\N	\N	\N	\N	\N	\N
 1060	5782496201	40.7945777	-73.9337278	\N	283	\N	Pleasant Avenue	Love Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1061	5782951777	40.6844405	-73.9788828	Brooklyn	572	NY	Atlantic Avenue	Squarrel Cafe	+1-718-237-4286	\N	11217	\N	\N	\N	\N	\N	\N
 1062	5788137439	40.7266858	-73.9959215	\N	643	\N	Broadway	CoCo Fresh Tea & Juice	+1-212-614-3170	\N	\N	info@everyday-hospitality.com	\N	\N	\N	\N	\N
-1063	5788273495	40.726876	-73.995752	\N	649	\N	Broadway	Gregory's Coffee	+1-646-478-7258	\N	10012	\N	\N	\N	\N	\N	\N
+1063	5788273495	40.726876	-73.995752	\N	649	\N	Broadway	Gregory''s Coffee	+1-646-478-7258	\N	10012	\N	\N	\N	\N	\N	\N
 1064	5792264308	40.726208	-73.9954844	\N	68	\N	Bleecker Street	Cafe Angelique	+1-212-475-3500	\N	\N	info@cafeangeliquenyc.com	\N	\N	\N	\N	\N
 1065	5792284140	40.7275742	-73.993705	\N	380	\N	Lafayette	Lafayette Grand Café & Bakery	+1-212-533-3000	\N	\N	info@lafayetteny.com	\N	\N	\N	\N	\N
 1066	5793095927	40.7634155	-73.9654893	\N	\N	\N	\N	Upper East Café	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1134,7 +1134,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1075	5801942482	40.7032509	-73.9328762	\N	995	\N	Flushing Avenue	Bake Shop	+1-718-381-3706	\N	\N	\N	\N	\N	\N	\N	\N
 1076	5805217646	40.6691904	-73.9859437	Brooklyn	313	NY	9th Street	Gong Cha	+1-347-294-0496	\N	11215	\N	\N	\N	\N	\N	\N
 1077	5806583254	40.7512755	-73.9793045	\N	33	\N	east 40th street	Taylor St. Baristas	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1078	5811536127	40.8440279	-73.7854627	\N	205	\N	City Island Avenue	Ray's Cafe	+1-347-346-9119	\N	\N	\N	\N	\N	\N	\N	\N
+1078	5811536127	40.8440279	-73.7854627	\N	205	\N	City Island Avenue	Ray''s Cafe	+1-347-346-9119	\N	\N	\N	\N	\N	\N	\N	\N
 1079	5812464935	40.7521357	-73.9915345	\N	234	\N	West 35th Street	Madman Espresso	\N	\N	10001	info@madmanespresso.com	\N	\N	\N	\N	\N
 1080	5817720353	40.7793161	-73.9808861	New York	279	NY	Amsterdam Avenue	Blue Bottle Coffee	\N	\N	10023	\N	\N	\N	\N	\N	\N
 1081	5818421646	40.7560886	-73.9926331	\N	333	\N	West 39th Street	Aleef Coffee House Inc	+1-212-7564-2723	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1152,11 +1152,11 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1093	5849801770	40.7456636	-73.9884874	\N	1188	\N	Broadway	Black Seed Bagels	\N	\N	10001	\N	\N	\N	\N	\N	\N
 1094	5849929497	40.7296485	-73.9988026	\N	78	\N	West 3rd Street	Irving Farm Coffee Roasters	+1-646-398-7146	\N	\N	holler@irvingfarm.com	\N	\N	\N	\N	\N
 1526	8265056191	40.6678048	-73.9806236	Brooklyn	\N	NY	\N	Brew Memories	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1095	5852314821	40.8055083	-73.9653737	New York	2882	NY	Broadway	Oren's Daily Roast	+1 212-749-8779	\N	10025	\N	\N	\N	\N	\N	\N
+1095	5852314821	40.8055083	-73.9653737	New York	2882	NY	Broadway	Oren''s Daily Roast	+1 212-749-8779	\N	10025	\N	\N	\N	\N	\N	\N
 1096	5852364693	40.7718742	-73.9563636	\N	1475	\N	2nd Avenue	Pick-A-Bagel	+1 212-717-4668	\N	10075	\N	\N	\N	\N	\N	\N
-1097	5852378587	40.6819521	-73.995929	\N	\N	\N	\N	Monteleone's Bakery & Cafe	+1-718-852-5600	\N	\N	\N	\N	\N	\N	\N	\N
+1097	5852378587	40.6819521	-73.995929	\N	\N	\N	\N	Monteleone''s Bakery & Cafe	+1-718-852-5600	\N	\N	\N	\N	\N	\N	\N	\N
 1098	5853859976	40.6127415	-74.000354	\N	7815	\N	17th Avenue	Mochick Tea	+1 347-254-6486	\N	11214	\N	\N	\N	\N	\N	\N
-1099	5856029899	40.7478787	-73.9763222	\N	569	\N	3rd Avenue	Daniel's Bagels	+1 212-972-9733	\N	10016	\N	\N	\N	\N	\N	\N
+1099	5856029899	40.7478787	-73.9763222	\N	569	\N	3rd Avenue	Daniel''s Bagels	+1 212-972-9733	\N	10016	\N	\N	\N	\N	\N	\N
 1100	5859542351	40.6758276	-73.9838715	\N	\N	\N	\N	Whisk & Whiskey	+1-347-799-1639	\N	\N	\N	\N	\N	\N	\N	\N
 1101	5859940717	40.7720548	-73.9608314	\N	1045	\N	Lexington Avenue	Joe Coffee Company	+1 212-988-2500	\N	10021	\N	\N	\N	\N	\N	\N
 1102	5862744811	40.7750206	-73.9803155	\N	187	\N	Columbus Avenue	Joe Coffee Company	+1 212-877-0244	\N	10023	\N	\N	\N	\N	\N	\N
@@ -1194,8 +1194,8 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1134	5937436932	40.6707067	-73.9862615	\N	\N	\N	\N	Cafe Nanahoshi	\N	8	\N	\N	\N	\N	\N	\N	\N
 1135	5937855588	40.7049901	-73.9234506	Brooklyn	207	NY	Starr Street	Pitanga	+1-718-456-1048	\N	\N	\N	\N	\N	\N	\N	\N
 1136	5939562687	40.7761994	-73.9815882	\N	143	\N	West 69th Street	Noi Due Cafe	+1-212-712-2222	\N	\N	\N	\N	\N	\N	\N	\N
-1137	5941202236	40.6559297	-74.0030444	\N	\N	\N	\N	Mama Lupita's Bistro	+1-917-909-0522	\N	\N	\N	\N	\N	\N	\N	\N
-1138	5949200228	40.6937046	-73.9646875	\N	\N	\N	\N	Petee's Cafe	+1-646-494-3630	\N	\N	\N	\N	\N	\N	\N	\N
+1137	5941202236	40.6559297	-74.0030444	\N	\N	\N	\N	Mama Lupita''s Bistro	+1-917-909-0522	\N	\N	\N	\N	\N	\N	\N	\N
+1138	5949200228	40.6937046	-73.9646875	\N	\N	\N	\N	Petee''s Cafe	+1-646-494-3630	\N	\N	\N	\N	\N	\N	\N	\N
 1139	5955392985	40.7027759	-74.012773	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1140	5963034386	40.7162589	-73.9554176	Brooklyn	88	NY	Roebling Street	7 Grain Army	\N	\N	11211	\N	\N	\N	\N	\N	\N
 1141	5978556693	40.7715971	-73.9611763	\N	1031	\N	Lexington Avenue	Colomba Coffee	\N	\N	10021	\N	\N	\N	\N	\N	\N
@@ -1241,14 +1241,14 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1183	6037257725	40.7183082	-73.9573908	\N	166	\N	Bedford Avenue	Vittoria	718-388-3118	\N	\N	\N	\N	\N	\N	\N	\N
 1184	6037820263	40.66171	-73.9892569	\N	\N	\N	\N	Mexique Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1185	6044339377	40.7186713	-74.0005149	\N	120C	\N	Lafayette Street	Kaigo Coffee Room	+1-646-504-5353	\N	10013	\N	\N	\N	\N	\N	\N
-1186	6053555793	40.7294715	-73.9844822	\N	342	\N	East 11th Street	Veniero's Pasticcera & Caffé	+1-212-674-7070	\N	10003	\N	\N	\N	\N	\N	\N
+1186	6053555793	40.7294715	-73.9844822	\N	342	\N	East 11th Street	Veniero''s Pasticcera & Caffé	+1-212-674-7070	\N	10003	\N	\N	\N	\N	\N	\N
 1187	6055272196	40.7913646	-73.9513622	\N	1490	\N	Madison Avenue	Superior Café	+1 646-666-0095	\N	10029	\N	\N	\N	\N	\N	\N
-1188	6057926785	40.6870195	-73.9901147	\N	\N	\N	\N	Mia's Bakery	+1-347-987-3194	\N	11201	\N	\N	\N	\N	\N	\N
+1188	6057926785	40.6870195	-73.9901147	\N	\N	\N	\N	Mia''s Bakery	+1-347-987-3194	\N	11201	\N	\N	\N	\N	\N	\N
 1189	6067214134	40.7541518	-73.9861387	\N	1440	\N	Broadway	Le Café Coffee	+1 212-768-3602	\N	\N	\N	\N	\N	\N	\N	\N
 1190	6068979466	40.7603546	-73.9611323	New York	1102	NY	1st Avenue	Starbucks	+1 212-618-9118	\N	10065	\N	\N	\N	\N	\N	\N
 1191	6071485490	40.7681491	-73.9853167	New York	884	NY	9th Avenue	Birch Coffee	+1-212-686-1444	\N	10019	57thstreet@birchcoffee.com	\N	\N	\N	\N	\N
 1192	6071606246	40.6628451	-73.991657	\N	639	\N	5th Avenue	Roots Cafe	+1-929-301-5535	\N	11215	\N	\N	\N	\N	\N	\N
-1193	6073872634	40.7131587	-73.9087002	\N	55-03	\N	Metropolitan Avenue	Sebastian's Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1193	6073872634	40.7131587	-73.9087002	\N	55-03	\N	Metropolitan Avenue	Sebastian''s Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1194	6074315900	40.7108654	-74.0059234	New York	8	\N	Spruce Street	Birch Coffee	+1 212-686-1444	\N	10038	8sprucest@birchcoffee.com	\N	\N	\N	\N	\N
 1195	6088775969	40.6760534	-73.963613	\N	\N	\N	\N	Penny House Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1196	6090813612	40.6647385	-73.9898041	\N	\N	\N	\N	Le French Tart	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1276,7 +1276,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1218	6188784951	40.6815369	-73.9558972	\N	\N	\N	\N	Golda	+1-718-484-7065	\N	\N	\N	\N	\N	\N	\N	\N
 1219	6190098843	40.6978902	-73.9371547	\N	\N	\N	\N	Café Erzulie	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1220	6201492297	40.7627635	-73.9779699	New York	1350	NY	6th Avenue	Joe & The Juice	\N	\N	10019	\N	\N	\N	\N	\N	\N
-1221	6201867798	40.6410569	-73.7825643	\N	\N	\N	\N	Peet's Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1221	6201867798	40.6410569	-73.7825643	\N	\N	\N	\N	Peet''s Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1222	6206584785	40.7278638	-74.001067	New York	169	NY	Sullivan Street	Banter	\N	\N	10012	\N	\N	\N	\N	\N	\N
 1223	6206712391	40.7928702	-73.9410205	\N	2127	\N	2nd Avenue	Raspberry Deli & Grocery	+1 212-860-2615	\N	\N	\N	\N	\N	\N	\N	\N
 1224	6208859175	40.7629454	-73.8307646	\N	137-06	\N	Northern Boulevard	Sweet Cake	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1295,7 +1295,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1237	6236943852	40.7208818	-73.9898439	New York	151	NY	Allen Street	Kabisera	(929) 920-8250	\N	10002	\N	\N	\N	\N	\N	\N
 1238	6237945202	40.6722974	-73.9417546	\N	\N	\N	\N	Cocoa Grinder	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1239	6238292396	40.6735922	-73.9894442	\N	\N	\N	\N	By Clio	+1-516-636-6008	\N	\N	\N	\N	\N	\N	\N	\N
-1240	6242155998	40.6660315	-73.9367904	\N	361	\N	Troy Avenue	Bunch o' Bagels	+1-718-604-0634	\N	11213	\N	\N	\N	\N	\N	\N
+1240	6242155998	40.6660315	-73.9367904	\N	361	\N	Troy Avenue	Bunch o'' Bagels	+1-718-604-0634	\N	11213	\N	\N	\N	\N	\N	\N
 1241	6244721154	40.765555	-73.9655855	New York	849	NY	Lexington Avenue	Hale and Hearty Soups	(212)517-7600	\N	10065	\N	\N	\N	\N	\N	\N
 1242	6248588890	40.7146755	-73.9566512	Brooklyn	133	\N	Roebling Street	Oslo Coffee	\N	\N	11211	\N	\N	\N	\N	\N	\N
 1243	6249163403	40.6738224	-73.7305469	\N	\N	\N	\N	Urban Gourmet	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1312,7 +1312,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1254	6270644226	40.7906349	-73.9519553	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1255	6270649485	40.7871321	-73.9544023	New York	1378	NY	Madison Avenue	Starbucks	+1 212-534-7225	\N	10128	\N	\N	\N	\N	\N	\N
 1256	6293667225	40.7204867	-73.9842269	New York	26	NY	Clinton Street	Koneko Cat Cafe	+1 646-370-9699	\N	10002	info@konekonyc.com	\N	konekonyc	konekonyc	\N	\N
-1257	6298097844	40.6834956	-73.9951868	\N	\N	\N	\N	D'Amico Coffee	+1-718-857-5403	\N	\N	\N	\N	\N	\N	\N	\N
+1257	6298097844	40.6834956	-73.9951868	\N	\N	\N	\N	D''Amico Coffee	+1-718-857-5403	\N	\N	\N	\N	\N	\N	\N	\N
 1258	6300063006	40.6600786	-73.9808244	\N	\N	\N	\N	Terrace Bagels	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1259	6304108186	40.7429857	-73.9733767	\N	\N	\N	\N	Kimmel Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1260	6306935878	40.6874328	-73.9903925	\N	\N	\N	\N	One Girl Cookies	+1-212-675-4996	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1323,7 +1323,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1265	6314905340	40.6760985	-73.9987426	\N	\N	\N	\N	Simple Green	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1266	6319618552	40.6887402	-73.9908157	\N	95	\N	Boerum Place	Pure Green	+1-917-398-3488	10	11201	\N	\N	\N	\N	\N	\N
 1267	6327650155	40.6719654	-73.9609686	Brooklyn	841	NY	Classon Avenue	Villager	\N	\N	11238	\N	\N	\N	\N	\N	\N
-1268	6334491280	40.6617857	-73.9931918	\N	\N	\N	\N	Laurentino's Pasticceria & Caffé	+1-718-832-1871	\N	\N	\N	\N	\N	\N	\N	\N
+1268	6334491280	40.6617857	-73.9931918	\N	\N	\N	\N	Laurentino''s Pasticceria & Caffé	+1-718-832-1871	\N	\N	\N	\N	\N	\N	\N	\N
 1269	6335960768	40.7453692	-73.9776863	\N	\N	\N	\N	Babylon Hookah Lounge	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1270	6340488794	40.6847188	-73.9949279	Brooklyn	276	NY	Court Street	Saturn Road	+13477992500	\N	11231	\N	\N	\N	\N	\N	\N
 1271	6345333428	40.7312029	-73.9899196	New York	79	NY	East 10th Street	Irving Farm New York	+1-212-206-0707 x 10	\N	10003	\N	\N	\N	\N	\N	\N
@@ -1331,15 +1331,15 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1273	6347916313	40.7463142	-73.9799924	\N	120	\N	East 34th Street	Utopia Bagels	+1-646-914-6981	\N	10016	\N	\N	\N	\N	\N	\N
 1274	6356425186	40.7776871	-73.9783679	New York	267	NY	Columbus Avenue	TAP NYC	+1-929-930-3095	\N	10023	\N	\N	\N	\N	\N	\N
 1275	6362867801	40.7431214	-73.9802602	\N	\N	\N	\N	16 Handles	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1276	6369348985	40.7541973	-73.9738747	\N	\N	\N	\N	Gregory's cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1276	6369348985	40.7541973	-73.9738747	\N	\N	\N	\N	Gregory''s cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1277	6371590885	40.7363825	-74.0060719	\N	581	\N	Hudson Street	MeMe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1278	6372786027	40.6908749	-73.9972733	\N	\N	\N	\N	Espresso Me	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1279	6376472185	40.7716285	-73.9657301	\N	888	\N	Madison Avenue	Ralph's Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1279	6376472185	40.7716285	-73.9657301	\N	888	\N	Madison Avenue	Ralph''s Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1280	6376760969	40.7466025	-73.98086	\N	\N	\N	\N	Starbucks	+1-212-725-9469	\N	\N	\N	\N	\N	\N	\N	\N
 1281	6376980023	40.6778879	-73.9792905	\N	\N	\N	\N	T Baar	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1282	6382251178	40.693417	-74.000816	\N	139	\N	Bridge Park Drive	Kaigo Coffee Room	+1-347-529-6180	\N	11201	\N	\N	\N	\N	\N	\N
 1283	6392106685	40.7003851	-73.9226935	\N	1434	\N	\N	Dweebs	\N	\N	11237	\N	\N	\N	\N	\N	\N
-1284	6399642997	40.7741707	-73.9082046	\N	36-02	\N	Ditmars Boulevard	Queen's Room	+1-347-987-3994	\N	\N	info@queensroomnyc.com	\N	\N	\N	\N	\N
+1284	6399642997	40.7741707	-73.9082046	\N	36-02	\N	Ditmars Boulevard	Queen''s Room	+1-347-987-3994	\N	\N	info@queensroomnyc.com	\N	\N	\N	\N	\N
 1285	6402697500	40.6970422	-73.9336001	Brooklyn	1158	NY	Myrtle Avenue	Baby Skips	+1-929-210-8101	\N	11221	\N	\N	\N	\N	\N	\N
 1286	6403172421	40.7734593	-73.9598061	New York	1095	NY	Lexington Avenue	Starbucks	+1 347-658-3047	\N	10075	\N	\N	\N	\N	\N	\N
 1287	6411869610	40.7443305	-73.976439	\N	\N	\N	\N	Charlotte Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1392,7 +1392,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1334	6621617747	40.7358148	-73.9976834	\N	\N	\N	\N	O Café	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1335	6621617750	40.7326818	-73.9902436	\N	114	\N	4th Avenue	Paradis	+1-646-416-6709	\N	10003	\N	\N	\N	\N	\N	\N
 1336	6621617751	40.7347019	-73.9929545	\N	\N	\N	\N	Blue stripes	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1337	6621617759	40.739814	-73.999021	\N	\N	\N	\N	Yanni's coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1337	6621617759	40.739814	-73.999021	\N	\N	\N	\N	Yanni''s coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1338	6630517160	40.7276195	-74.0074601	New York	345	NY	Hudson Street	Starbucks	+1 646-486-0514	\N	10014	\N	\N	\N	\N	\N	\N
 1339	6630517163	40.7277372	-74.0070702	New York	350	NY	Hudson Street	Gregorys Coffee	+1-646-657-0803	\N	10014	\N	\N	\N	\N	\N	\N
 1340	6631198486	40.757132	-73.9733698	\N	\N	\N	\N	Church Cafe Outside	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1401,8 +1401,8 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1343	6636462195	40.715754	-74.003128	New York	111	NY	Worth Street	Starbucks	+1 212-964-8846	\N	10013	\N	\N	\N	\N	\N	\N
 1344	6638585608	40.7508895	-73.9978633	\N	\N	\N	\N	Cafe Bravo	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1345	6639326250	40.7269517	-73.7137926	Bellerose	251-05	NY	Jamaica Avenue	Starbucks	+1 718-347-1304	\N	11426	\N	\N	\N	\N	\N	\N
-1346	6666722028	40.754399	-73.993352	New York	320	NY	West 37th Street	The People's Forum	+1 347-695-1095	\N	10018	info@peoplesforum.org	\N	peoplesforumnyc	PeoplesForumNYC	\N	\N
-1347	6670244825	40.7676839	-73.9528947	\N	\N	\N	\N	Claire's Kitchen Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1346	6666722028	40.754399	-73.993352	New York	320	NY	West 37th Street	The People''s Forum	+1 347-695-1095	\N	10018	info@peoplesforum.org	\N	peoplesforumnyc	PeoplesForumNYC	\N	\N
+1347	6670244825	40.7676839	-73.9528947	\N	\N	\N	\N	Claire''s Kitchen Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1348	6670244863	40.7654726	-73.9581504	\N	359	\N	East 68th Street	MATTO	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1349	6670244872	40.7663291	-73.9599375	\N	1298	\N	2nd Avenue	Gotham Café	\N	\N	10065	\N	\N	\N	\N	\N	\N
 1350	6676466677	40.6194688	-74.0328783	Brooklyn	9124	NY	3rd Avenue	Paneantico	+1-718-680-2347	\N	11209	\N	\N	\N	\N	\N	\N
@@ -1425,7 +1425,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1367	6744695372	40.7502199	-73.9401895	Long Island City	25-14	NY	Queens Plaza South	Starbucks	+1 718-433-4844	\N	11101	\N	\N	\N	\N	\N	\N
 1368	6744726774	40.7439734	-73.9148875	\N	43-12	\N	50th Street	New City Billiards & Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1369	6752564944	40.7418737	-73.9933052	New York	684	NY	6th Avenue	Starbucks	+1 212-691-1948	\N	10010	\N	\N	\N	\N	\N	\N
-1370	6757143486	40.6829912	-73.953657	\N	\N	\N	\N	Martha's Pastries & Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1370	6757143486	40.6829912	-73.953657	\N	\N	\N	\N	Martha''s Pastries & Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1371	6757777586	40.7598078	-73.9876125	\N	\N	\N	\N	Patis	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1372	6761763979	40.7207076	-73.9577014	Brooklyn	101	NY	North 10th Street	Marcy and Myrtle	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1373	6764076981	40.747162	-73.9418041	Long Island City	26-14	NY	Jackson Avenue	Starbucks	+1 347-533-2101	\N	11101	\N	\N	\N	\N	\N	\N
@@ -1443,13 +1443,13 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1384	6816991370	40.7399793	-73.9841814	\N	23	\N	Lexington Avenue	Smile To Go	+1-212-529-1580	\N	10010	\N	\N	\N	\N	\N	\N
 1385	6818236367	40.6775944	-74.0182684	\N	185	\N	Van Dyke Street	Uhuru Design	\N	\N	11231	\N	\N	\N	\N	\N	\N
 1386	6833456286	40.7429989	-74.007331	New York	\N	NY	High Line	Hearth on the High Line	+1-646-602-1300	72	10011	info@restauranthearth.com	\N	\N	\N	\N	\N
-1387	6839024569	40.6910101	-73.9959583	\N	311	\N	Henry Street	Amy's Bread	\N	\N	11201	\N	\N	\N	\N	\N	\N
+1387	6839024569	40.6910101	-73.9959583	\N	311	\N	Henry Street	Amy''s Bread	\N	\N	11201	\N	\N	\N	\N	\N	\N
 1388	6852143017	40.7491928	-73.9751891	New York	605	NY	3rd Avenue	Starbucks	+1 917-574-4123	\N	10016	\N	\N	\N	\N	\N	\N
 1389	6852842985	40.7473146	-74.0046803	\N	\N	\N	\N	Juban	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1390	6859180119	40.6891039	-73.9859325	Brooklyn	45	NY	Hoyt Street	Starbucks	+1 718-797-1777	\N	11201	\N	\N	\N	\N	\N	\N
 1391	6872279129	40.7058096	-73.9219002	\N	\N	\N	\N	Hala Coffee & Kitchen	+1-718-821-1850	\N	\N	\N	\N	\N	\N	\N	\N
 1392	6872279133	40.7058618	-73.9219914	Brooklyn	40	NY	Wyckoff Avenue	The Bad Bagel	+1-929-324-3130	\N	11237	\N	\N	\N	\N	\N	\N
-1393	6874194970	40.661254	-73.9937327	\N	\N	\N	\N	Dee Dee's Sweets & Treats	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1393	6874194970	40.661254	-73.9937327	\N	\N	\N	\N	Dee Dee''s Sweets & Treats	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1394	6876199945	40.6908789	-73.9567887	\N	\N	\N	\N	La Villa Café	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1395	6876199946	40.6906742	-73.9584138	\N	\N	\N	\N	Initial Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1396	6876895217	40.6923347	-73.9458487	\N	194	\N	Tompkins Avenue	Bklyn Blend	+1-718-484-2247	\N	11206	\N	\N	\N	\N	\N	\N
@@ -1477,7 +1477,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1418	6955003385	40.7512185	-73.9743935	\N	\N	\N	3rd Avenue	Joe The Juice Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1419	6955034549	40.7416427	-73.9903239	New York	14	NY	West 23rd Street	Starbucks	+1 212-367-2050	\N	10010	\N	\N	\N	\N	\N	\N
 1420	6955898919	40.7162732	-73.7449665	\N	\N	\N	\N	Victor’s	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1421	6966637055	40.6119143	-73.9831641	\N	\N	\N	\N	Vivi's Bubble Tea	+1-917-933-9978	\N	\N	\N	\N	\N	\N	\N	\N
+1421	6966637055	40.6119143	-73.9831641	\N	\N	\N	\N	Vivi''s Bubble Tea	+1-917-933-9978	\N	\N	\N	\N	\N	\N	\N	\N
 1422	6980049833	40.758667	-73.8309328	Flushing	135-15	NY	40th Road	Yi Fang Tea	\N	\N	11354	\N	\N	\N	\N	\N	\N
 1423	6980049847	40.7592353	-73.8301751	Flushing	40-10	NY	Main Street	Tiger Sugar	\N	\N	11354	\N	\N	\N	\N	\N	\N
 1424	6992697770	40.7107631	-73.7933421	Jamaica	168-45	NY	Hillside Avenue	Smart 3 Café	+1 929-589-7760	\N	11432	\N	\N	\N	\N	\N	\N
@@ -1497,7 +1497,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1438	7093921948	40.7568104	-73.9811459	\N	\N	\N	\N	Café Cello	+1-212-764-8600	\N	\N	\N	\N	\N	\N	\N	\N
 1439	7093921956	40.7588628	-73.9789097	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1440	7094126612	40.7984981	-73.9686236	\N	2680	\N	Broadway	Picky Barista	+1-646-684-3037	\N	10025	\N	\N	\N	\N	\N	\N
-1441	7097820976	40.7003629	-73.9932875	Brooklyn	43	NY	Hicks Street	Alice's Tea Cup To Go	\N	\N	11201	\N	\N	\N	\N	\N	\N
+1441	7097820976	40.7003629	-73.9932875	Brooklyn	43	NY	Hicks Street	Alice''s Tea Cup To Go	\N	\N	11201	\N	\N	\N	\N	\N	\N
 1442	7097867546	40.7225587	-73.988108	\N	\N	\N	\N	Dr Smood - Orchard	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1443	7118282583	40.6082646	-74.0046167	Brooklyn	1712	NY	86th Street	Gotcha Cafe	+1-347-789-7878	\N	11214	\N	\N	\N	\N	\N	\N
 1444	7124991341	40.6804868	-73.9680977	\N	\N	\N	\N	Ciao Gloria	+1-716-666-2426	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1509,7 +1509,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1450	7134303414	40.7618661	-73.9730709	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1451	7147454646	40.6900359	-73.9653948	\N	\N	\N	\N	Rosalu Diner	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1452	7150082985	40.7238897	-73.9967151	\N	\N	\N	\N	T2 tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1453	7159234142	40.791353	-73.9725728	New York	650	NY	Amsterdam Avenue	Edgar's Cafe	\N	\N	10025	\N	\N	\N	\N	\N	\N
+1453	7159234142	40.791353	-73.9725728	New York	650	NY	Amsterdam Avenue	Edgar''s Cafe	\N	\N	10025	\N	\N	\N	\N	\N	\N
 1454	7165158294	40.6708551	-73.9850972	\N	\N	\N	\N	390 Social	+1-718-734-2902	\N	\N	\N	\N	\N	\N	\N	\N
 1455	7177751484	40.6876887	-73.9793247	\N	78	\N	Rockwell Place	Coffee Project New York	+1-585-888-3153	\N	11217	\N	\N	\N	\N	\N	\N
 1456	7178256995	40.6869181	-73.9786569	\N	15	\N	Lafayette Avenue	Pub Date	\N	\N	11217	\N	\N	\N	\N	\N	\N
@@ -1531,7 +1531,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1472	7288725909	40.8310165	-73.8779366	Bronx	1265	NY	Ward Avenue	ABC Cafe	\N	\N	10472	\N	\N	\N	\N	\N	\N
 1473	7297326137	40.6431597	-74.1036994	Staten Island	\N	NY	Cottage Row	Harbor Eats	\N	\N	10301	\N	\N	\N	\N	\N	\N
 1474	7314202222	40.7306776	-73.9952135	New York	31	NY	Waverly Place	Kung Fu Tea	\N	\N	10003	\N	\N	\N	\N	\N	\N
-1475	7330107131	40.7710875	-73.9905939	New York	860	NY	11th Avenue	Li'l Jay's Cafe	\N	\N	10019	\N	\N	\N	\N	\N	\N
+1475	7330107131	40.7710875	-73.9905939	New York	860	NY	11th Avenue	Li''l Jay''s Cafe	\N	\N	10019	\N	\N	\N	\N	\N	\N
 1476	7360048859	40.7404201	-73.9859376	\N	303	\N	Park Avenue South	Paris Baguette	\N	\N	10010	\N	\N	\N	\N	\N	\N
 1477	7360048873	40.7377576	-73.9878579	\N	235	\N	Park Avenue South	Union Square Cafe	+1-212-243-4020	\N	10003	\N	\N	\N	\N	\N	\N
 1478	7363764833	40.729577	-73.9788303	\N	534	\N	East 14th Street	Perk	\N	\N	10009	\N	\N	\N	\N	\N	\N
@@ -1582,7 +1582,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1523	8220642027	40.7564343	-73.7556644	\N	\N	\N	\N	Science Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1524	8220642029	40.7558425	-73.7565685	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1525	8238256286	40.7364893	-73.9784178	New York	400	NY	East 23rd st	Starbucks	+1 212-673-4213	\N	10010	\N	\N	\N	\N	\N	\N
-1527	8265254785	40.6907261	-73.9916814	Brooklyn	105	NY	Court Street	I'Milky Bubble Tea	\N	\N	11201	\N	\N	\N	\N	\N	\N
+1527	8265254785	40.6907261	-73.9916814	Brooklyn	105	NY	Court Street	I''Milky Bubble Tea	\N	\N	11201	\N	\N	\N	\N	\N	\N
 1528	8272824072	40.7222054	-73.9821254	New York	226	NY	East 3rd Street	Gaia Italian Cafè	+1-646-350-3977	\N	10009	info@gaiaitaliancafe.com	\N	\N	\N	\N	\N
 1529	8284627179	40.7832576	-73.9475535	New York	1834	NY	2nd Avenue	Madame Bonté Café	\N	\N	10128	\N	\N	\N	\N	\N	\N
 1530	8284985198	40.6484686	-73.9788506	\N	\N	\N	\N	Steeplechase Coffee	+1-347-799-2640	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1609,7 +1609,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1551	8551640071	40.7514356	-73.9764854	\N	\N	\N	\N	Gregorys Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1552	8570222327	40.6843423	-73.97863	Brooklyn	578	NY	Atlantic Avenue	Starbucks	+1-929-367-4549	\N	11217	\N	\N	\N	\N	\N	\N
 1553	8622598771	40.7197342	-73.9991471	New York	157	NY	Lafayette	Starbucks	+1 646-838-4269	\N	10013	\N	\N	\N	\N	\N	\N
-1554	8631908538	40.6934184	-73.9673028	\N	455A	\N	Myrtle Ave	Peck's	+1 347-689-4969	\N	\N	\N	\N	\N	\N	\N	\N
+1554	8631908538	40.6934184	-73.9673028	\N	455A	\N	Myrtle Ave	Peck''s	+1 347-689-4969	\N	\N	\N	\N	\N	\N	\N	\N
 1555	8641328556	40.7935231	-73.9705072	New York	723	NY	Amsterdam Avenue	PlantShed New York Flowers	\N	\N	10025	\N	\N	\N	\N	\N	\N
 1556	8641328557	40.7941755	-73.9710563	New York	204	NY	West 96th Street	gertrude	\N	\N	10025	\N	\N	\N	\N	\N	\N
 1557	8644307517	40.7137611	-74.009094	New York	120	NY	Church Street	Starbucks	+1 212-513-1451	\N	10007	\N	\N	\N	\N	\N	\N
@@ -1619,7 +1619,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1561	8670146200	40.7579172	-73.9890503	\N	680	\N	8th Avenue	The Times Eatery	\N	\N	10036	\N	\N	\N	\N	\N	\N
 1562	8685702116	40.7026414	-73.9012082	Ridgewood	68-38	NY	Forest Avenue	Cafe Plein Air	+1-917-522-6133	\N	11385	\N	\N	\N	\N	\N	\N
 1563	8687882712	40.7942067	-73.9724815	New York	2541	\N	Broadway	Charlotte Cafe	+1-347-235-2807	\N	\N	\N	\N	\N	\N	\N	\N
-1564	8695143164	40.7368812	-73.9848111	\N	238	\N	3rd Avenue	Eleni's Goods	+1-646-449-0221	\N	10003	\N	\N	\N	\N	\N	\N
+1564	8695143164	40.7368812	-73.9848111	\N	238	\N	3rd Avenue	Eleni''s Goods	+1-646-449-0221	\N	10003	\N	\N	\N	\N	\N	\N
 1565	8709392098	40.7853877	-73.9791671	New York	2263	\N	Broadway	Royal Coffee	+1-646-905-8006	\N	10024	\N	\N	\N	\N	\N	\N
 1566	8732421661	40.7898312	-73.9482267	New York	129	NY	East 102nd Street	Frenchy Cafe	+1 646-891-0088	\N	10029	info@frenchycoffeenyc.com	\N	\N	\N	\N	\N
 1567	8772495902	40.7749318	-73.9480822	\N	1597	\N	York Avenue	Black Star Bakery & Cafe	+1 646-726-4546	\N	10028	\N	\N	\N	\N	\N	\N
@@ -1657,12 +1657,12 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1599	9035676817	40.7476635	-73.9864189	\N	15	\N	West 32nd Street	Tea Makers	\N	\N	10001	\N	\N	\N	\N	\N	\N
 1600	9036389122	40.7297115	-73.9909671	\N	\N	\N	\N	Astor Plate	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1601	9036389125	40.7282924	-73.9891267	\N	\N	\N	\N	Le Petit Parisien	+1-917-262-0406	\N	\N	\N	\N	\N	\N	\N	\N
-1602	9045283641	40.7317675	-74.0064128	\N	\N	\N	\N	Oscar's Place	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1602	9045283641	40.7317675	-74.0064128	\N	\N	\N	\N	Oscar''s Place	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1603	9051228617	40.5760866	-73.9715426	Brooklyn	271	NY	Sea Breeze Avenue	Pep Bakehouse and Coffee Shop	+1 929 397 0094	\N	11224	info@pepbakery.com	\N	\N	\N	\N	\N
 1604	9051241922	40.7124741	-73.9605821	Brooklyn	743	NY	Driggs Avenue	Ceremonia Bakeshop	+1 (347) 384-2212	\N	11211	\N	\N	\N	\N	\N	\N
 1605	9051252639	40.7118326	-73.9647216	Brooklyn	95	NY	South 5th Street	Butler	\N	\N	11249	\N	\N	\N	\N	\N	\N
 1606	9064064217	40.7234822	-73.9886664	New York	72	\N	East 1st Street	The Lazy Llama Coffee Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1607	9075295302	40.7656124	-73.9570688	\N	404	\N	East 69th Street	Yia Yia's Homemade Greek Food	+1 212-452-1210	\N	10021	info@yiayiasnyc.com	\N	yiayiashomemadegreekfood	\N	\N	\N
+1607	9075295302	40.7656124	-73.9570688	\N	404	\N	East 69th Street	Yia Yia''s Homemade Greek Food	+1 212-452-1210	\N	10021	info@yiayiasnyc.com	\N	yiayiashomemadegreekfood	\N	\N	\N
 1608	9088344065	40.7306929	-73.9858959	New York	184	NY	2nd Avenue	Tompkins Square Bagels	+1-917-472-7639	\N	10003	\N	\N	\N	\N	\N	\N
 1609	9098890025	40.768414	-73.9588952	\N	1353	\N	2nd Avenue	Matto Espresso	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1610	9104671450	40.7443565	-73.9542634	Long Island City	5-43	NY	48th Avenue	Little Chef Little Café	+1-845-310-4255	\N	11101	info@littlecheflittlecafe.com	\N	\N	\N	\N	\N
@@ -1686,7 +1686,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1628	9291191721	40.6682057	-73.9510178	\N	1183	\N	President Street	P-Street Cafe	+1-718-954-1150	\N	11225	\N	\N	\N	\N	\N	\N
 1629	9312819779	40.781057	-73.9525772	New York	1592	NY	3rd Avenue	Marathon Coffee	\N	\N	10128	\N	\N	\N	\N	\N	\N
 1630	9321723922	40.7671717	-73.9593112	\N	1322	\N	2nd Avenue	le Réveil	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1631	9321760830	40.7715895	-73.956552	\N	1465	\N	2nd Avenue	Ella's Cafe	+1 917-409-0307	\N	\N	\N	\N	\N	\N	\N	\N
+1631	9321760830	40.7715895	-73.956552	\N	1465	\N	2nd Avenue	Ella''s Cafe	+1 917-409-0307	\N	\N	\N	\N	\N	\N	\N	\N
 1632	9325661457	40.7559346	-73.9942088	\N	\N	\N	\N	Cafe Aroma	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1633	9330613472	40.6950814	-73.9948457	Brooklyn	115	NY	Montague Street	L’Appartement 4F	\N	\N	11201	\N	\N	\N	\N	\N	\N
 1634	9340215860	40.7181358	-73.9860644	\N	156	\N	Delancey Street	Hawa Smoothies	+1 646-799-9605	\N	\N	\N	\N	hawasmoothies	\N	\N	\N
@@ -1696,7 +1696,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1638	9354070873	40.7277344	-73.8920293	\N	\N	\N	\N	Mimi & Coco	+1-718-606-0101	\N	\N	\N	\N	\N	\N	\N	\N
 1639	9356114560	40.6768133	-73.9803621	\N	\N	\N	\N	Grounded Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1640	9371206973	40.7168549	-73.9856403	\N	\N	\N	\N	GrandLo Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1641	9374707265	40.7175729	-73.9880757	\N	\N	\N	\N	Café d'Avignon	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1641	9374707265	40.7175729	-73.9880757	\N	\N	\N	\N	Café d''Avignon	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1642	9393419568	40.6191734	-73.989937	Brooklyn	6423	NY	18th Avenue	Starbucks	+1 718-234-7160	\N	11204	\N	\N	\N	\N	\N	\N
 1643	9403176561	40.6807305	-73.9513739	\N	1251	\N	Fulton Street	Star Cafe & Bakery	+1-718-496-5098	\N	11216	\N	\N	\N	\N	\N	\N
 1644	9403176563	40.6806602	-73.9520472	\N	\N	\N	\N	Bagel Nest	+1-718-872-7545	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1716,7 +1716,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1658	9528305921	40.693533	-73.992074	\N	\N	\N	\N	Sippy Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1659	9543748330	40.6609899	-73.9533535	\N	\N	\N	\N	Hamlet	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1660	9543860017	40.8149807	-73.9443109	\N	\N	\N	\N	PROOF Coffee Roasters	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1661	9543863717	40.8041731	-73.9541227	\N	235	\N	West 116th Street	BO's Bagels	\N	\N	10026	\N	\N	\N	\N	\N	\N
+1661	9543863717	40.8041731	-73.9541227	\N	235	\N	West 116th Street	BO''s Bagels	\N	\N	10026	\N	\N	\N	\N	\N	\N
 1662	9543871617	40.7675057	-73.9931234	New York	750	NY	11th Avenue	Afficionado Coffee Roasters	+1-914-482-1521	\N	10019	\N	\N	\N	\N	\N	\N
 1663	9543885217	40.7303032	-73.9839567	\N	345	\N	East 12th Street	Saltwater Coffee	\N	\N	10003	\N	\N	\N	\N	\N	\N
 1664	9543892117	40.7293995	-73.9868476	\N	\N	\N	\N	La Cabra	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1728,21 +1728,21 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1671	9543940517	40.7145938	-73.9450381	\N	\N	\N	\N	Hungry Ghost Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1672	9543941517	40.7194959	-73.96067	\N	\N	\N	\N	Alex Coffee Roasters Brooklyn	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1673	9546428495	40.7373761	-73.7782358	\N	195-9	\N	69th Avenue	Meadows Cafe	+1-929-499-3559	\N	11365	\N	\N	\N	\N	\N	\N
-1674	9550708171	40.7400868	-73.9909032	\N	160	\N	5th Avenue	Ralph's Coffee	+1 212-627-2040	\N	10010	\N	\N	\N	\N	\N	\N
+1674	9550708171	40.7400868	-73.9909032	\N	160	\N	5th Avenue	Ralph''s Coffee	+1 212-627-2040	\N	10010	\N	\N	\N	\N	\N	\N
 1675	9552593824	40.7297984	-73.9928785	New York	740	NY	Broadway	The Donut Pub	+1 646-974-1221	\N	10003	donutpub@gmail.com	\N	\N	\N	\N	\N
 1676	9556844292	40.7608594	-73.997937	New York	555	NY	West 42nd Street	Romeo And Juliet Colombian Coffee	646-707-3789	\N	\N	\N	\N	\N	\N	\N	\N
-1677	9559658875	40.7293544	-73.989023	New York	11	NY	Saint Mark's Place	Beard Papa's	+1-212-960-8472	\N	10003	\N	\N	\N	\N	\N	\N
-1678	9566829986	40.7290595	-73.9884404	New York	27	NY	Saint Mark's Place	N25 Nitro Tea & Coffee	\N	\N	10003	\N	\N	\N	\N	\N	\N
+1677	9559658875	40.7293544	-73.989023	New York	11	NY	Saint Mark''s Place	Beard Papa''s	+1-212-960-8472	\N	10003	\N	\N	\N	\N	\N	\N
+1678	9566829986	40.7290595	-73.9884404	New York	27	NY	Saint Mark''s Place	N25 Nitro Tea & Coffee	\N	\N	10003	\N	\N	\N	\N	\N	\N
 1679	9571769981	40.7762901	-73.9542806	\N	226	\N	East 83rd Street	Cafè Blériot	\N	\N	10028	\N	\N	\N	\N	\N	\N
 1680	9579314646	40.7329596	-73.9859835	New York	227	NY	East 14th Street	MooMooCha	\N	\N	10003	\N	\N	\N	\N	\N	\N
 1681	9579377217	40.7316535	-73.9880652	New York	83	NY	3rd Avenue	Sammy L Coffee	+1-917-770-4047	\N	10003	\N	\N	\N	\N	\N	\N
-1682	9581958450	40.7977141	-73.9343965	\N	2137	\N	1st Avenue	Evelyn's Kitchen	+1 646-476-7906	\N	10035	\N	\N	\N	\N	\N	\N
+1682	9581958450	40.7977141	-73.9343965	\N	2137	\N	1st Avenue	Evelyn''s Kitchen	+1 646-476-7906	\N	10035	\N	\N	\N	\N	\N	\N
 1683	9583638725	40.690448	-73.9518833	\N	90	\N	Kosciuszko Street	Burly Coffee	\N	\N	11205	\N	\N	\N	\N	\N	\N
 1684	9583789837	40.6938515	-73.9614424	\N	\N	\N	\N	TB Coffee House	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1685	9583805196	40.6938331	-73.963668	\N	\N	\N	\N	OJBK Tea Shop	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1686	9586083804	40.7639375	-73.9667072	New York	801	NY	Lexington Avenue	Joe & The Juice	\N	\N	10065	\N	\N	\N	\N	\N	\N
-1687	9586659413	40.7651701	-73.9657768	\N	156	\N	East 64th Street	Alice's Tea Cup	+1 212-486-9200	\N	10065	\N	\N	\N	\N	\N	\N
-1688	9590309771	40.7870041	-73.9540362	New York	50	NY	East 96th Street	Grabstein's Bagels	\N	\N	10128	\N	\N	\N	\N	\N	\N
+1687	9586659413	40.7651701	-73.9657768	\N	156	\N	East 64th Street	Alice''s Tea Cup	+1 212-486-9200	\N	10065	\N	\N	\N	\N	\N	\N
+1688	9590309771	40.7870041	-73.9540362	New York	50	NY	East 96th Street	Grabstein''s Bagels	\N	\N	10128	\N	\N	\N	\N	\N	\N
 1689	9595950539	40.7081895	-73.9202089	\N	321	\N	Starr Street	Kings Kolache	\N	\N	11237	\N	\N	\N	\N	\N	\N
 1690	9596938816	40.7809445	-73.954711	\N	1324	\N	Lexington Avenue	Tal Bagels	+1 646-850-0133	\N	\N	\N	\N	\N	\N	\N	\N
 1691	9601671752	40.5778339	-73.9612102	Brooklyn	607	NY	Brighton Beach Avenue	Starbucks	+1 718-934-3211	\N	11235	\N	\N	\N	\N	\N	\N
@@ -1765,7 +1765,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1708	9671008994	40.7603503	-73.829261	Flushing	136-28	NY	39th Avenue	Mango Mango	\N	\N	11355	\N	\N	\N	\N	\N	\N
 1709	9671893394	40.7390365	-73.9203347	\N	48-09	\N	45th Street	Dolci Paradise Bakery	+1 718-937-3410	\N	11377	\N	\N	\N	\N	\N	\N
 1710	9678976667	40.6913614	-73.866156	Woodhaven	75-08	NY	Jamaica Avenue	Pop Pot Noodle & Tea Spot	+1-718-296-2172	\N	11421	\N	\N	\N	\N	\N	\N
-1711	9683497137	40.7771173	-73.9525218	\N	1631	\N	2nd Avenue	Caroline's Donuts	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1711	9683497137	40.7771173	-73.9525218	\N	1631	\N	2nd Avenue	Caroline''s Donuts	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1712	9690757656	40.7747408	-73.9506866	\N	1592	\N	1st Avenue	Le Pain Quotidien	+1 646-681-3110	\N	10028	\N	\N	\N	\N	\N	\N
 1713	9696507316	40.7033542	-73.986766	\N	52	\N	Jay Street	Fuel Fever	+1-929-298-0323	\N	11201	\N	\N	\N	\N	\N	\N
 1714	9699175979	40.7591032	-73.9918725	\N	\N	\N	\N	Rind	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1773,13 +1773,13 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1716	9707608778	40.7405219	-73.9225659	Sunnyside	42-14	NY	Greenpoint Avenue	Full Moon Cafe	+1 929-522-0944	\N	11377	\N	\N	\N	\N	\N	\N
 1717	9709878987	40.5902134	-74.0884316	Staten Island	1562	NY	Hylan Boulevard	Tim Hortons	+1 718-980-0091	\N	10305	\N	\N	\N	\N	\N	\N
 1718	9711419117	40.709544	-74.0085841	\N	\N	\N	\N	Healthy Green Juice Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1719	9715980449	40.7162197	-73.9895853	New York	39	NY	Essex Street	Flower's Cafe	+1 2123900630	\N	10002	\N	\N	\N	\N	\N	\N
+1719	9715980449	40.7162197	-73.9895853	New York	39	NY	Essex Street	Flower''s Cafe	+1 2123900630	\N	10002	\N	\N	\N	\N	\N	\N
 1720	9717340504	40.7156154	-73.9902595	New York	46	NY	Hester Street	Meow Parlour	\N	\N	10002	\N	\N	\N	\N	\N	\N
 1721	9735398744	40.7146689	-73.9981529	\N	\N	\N	\N	Art Bean	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1722	9736192080	40.5789775	-73.9760326	Brooklyn	626	NY	Sheepshead Bay Road	Georgian Corner	+1 347-240-0940	\N	11224	georgiancorner2022@gmail.com	\N	\N	\N	\N	\N
 1723	9742033446	40.7208138	-73.8468607	\N	\N	\N	\N	Kung Fu Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1724	9758458699	40.6199686	-73.9070033	Brooklyn	7112	NY	Avenue U	Bergen Beach Cafe	+1 718-444-9473;+1 718-241-1891	\N	11234	\N	\N	\N	\N	\N	\N
-1725	9762844875	40.6449048	-74.0242528	\N	140	\N	58th Street	Pete's Brooklyn Eats Cafe	\N	\N	11220	\N	\N	\N	\N	\N	\N
+1725	9762844875	40.6449048	-74.0242528	\N	140	\N	58th Street	Pete''s Brooklyn Eats Cafe	\N	\N	11220	\N	\N	\N	\N	\N	\N
 1726	9770640988	40.7755074	-73.9536926	\N	1585	\N	2nd Avenue	Bonjour Crepes & Waffles	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1727	9777821013	40.6231911	-74.0313616	Brooklyn	8610	NY	3rd Avenue	Pegasus	+1-718-748-6977	\N	11209	\N	\N	\N	\N	\N	\N
 1728	9779751521	40.6364476	-74.0259492	\N	\N	\N	\N	Bai’ Dar	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1806,7 +1806,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1749	9845278413	40.6049946	-73.9985584	Brooklyn	1971	NY	86th Street	Starbucks	+1 718-266-1503	\N	11214	\N	\N	\N	\N	\N	\N
 1750	9858858654	40.5768186	-73.9659384	Brooklyn	239	NY	Brighton Beach Avenue	Güllüoglu Baklava	+1-347-577-6150	\N	11235	\N	\N	\N	\N	\N	\N
 1751	9858858655	40.5767921	-73.9660844	Brooklyn	231	NY	Brighton Beach Avenue	Kaffeine 231	+1-929-437-5697	\N	11235	\N	\N	\N	\N	\N	\N
-1752	9859366273	40.7927777	-73.9406366	\N	2128	\N	2nd Avenue	Lamb's Bread	+1 646-649-3023	\N	10029	order@lambsbreadcafe.com	\N	\N	\N	\N	\N
+1752	9859366273	40.7927777	-73.9406366	\N	2128	\N	2nd Avenue	Lamb''s Bread	+1 646-649-3023	\N	10029	order@lambsbreadcafe.com	\N	\N	\N	\N	\N
 1753	9862528717	40.6916182	-73.9306515	\N	71	\N	Malcolm X Boulevard	Space 71x Cafe	3475337533	\N	11221	\N	\N	\N	\N	\N	\N
 1754	9874879428	40.7173256	-73.9944535	\N	\N	\N	\N	\N	+1-212-219-0981	\N	\N	\N	\N	\N	\N	\N	\N
 1755	9875326357	40.7798658	-73.9507315	\N	254	\N	East 89th Street	Kafe Neo	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1821,7 +1821,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1764	9964704539	40.6977235	-73.9709547	\N	146	\N	Flushing Avenue	Head Hi	+1-917-909-0005	\N	11205	\N	\N	\N	\N	\N	\N
 1765	9978637390	40.7262473	-73.9911911	\N	\N	\N	\N	Three Jewels	+1-646-964 5736	\N	\N	\N	\N	\N	\N	\N	\N
 1766	10000660266	40.7514513	-73.9955788	\N	\N	\N	\N	Blue Bottle Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1767	10024111241	40.6992617	-73.9128696	\N	1524	\N	Myrtle Avenue	L'imprimerie	\N	\N	11237	\N	\N	\N	\N	\N	\N
+1767	10024111241	40.6992617	-73.9128696	\N	1524	\N	Myrtle Avenue	L''imprimerie	\N	\N	11237	\N	\N	\N	\N	\N	\N
 1768	10047602537	40.6840079	-73.9296241	\N	616	\N	Halsey Street	Trash Island	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1769	10064144417	40.7225249	-73.9974462	New York	67	NY	Spring Street	Joe & The Juice	\N	\N	10012	\N	\N	\N	\N	\N	\N
 1770	10065571478	40.6836278	-73.9263876	\N	210	\N	Patchen Avenue	Early Yves	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1833,8 +1833,8 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1776	10103143985	40.7212565	-73.8519263	Queens	68-04	NY	Burns Street	Forest Cafe	\N	\N	11375	\N	\N	\N	\N	\N	\N
 1777	10112378651	40.6935927	-73.9858169	\N	\N	\N	\N	Blank Street Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1778	10136292572	40.5828543	-73.954431	Brooklyn	2	NY	Neptune Avenue	The Bay Cafe	+1 347-554-8811	\N	11235	\N	\N	\N	\N	\N	\N
-1779	10145183255	40.7351387	-73.9794032	\N	\N	\N	\N	Rosemary's Pantry	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1780	10148136558	40.6736727	-73.9606526	\N	\N	\N	\N	Polly's	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1779	10145183255	40.7351387	-73.9794032	\N	\N	\N	\N	Rosemary''s Pantry	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1780	10148136558	40.6736727	-73.9606526	\N	\N	\N	\N	Polly''s	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1781	10155740444	40.6837163	-73.9350613	\N	347	\N	Lewis Avenue	Secret Garden	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1782	10160790949	40.7859285	-73.9847142	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1783	10162028274	40.6326133	-74.0274968	\N	\N	\N	\N	Crepe Factory	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -1879,42 +1879,42 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1822	10577727225	40.7151665	-73.9128882	\N	\N	\N	\N	La Lampara Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1823	10584741959	40.7177951	-73.9949335	\N	\N	\N	\N	New Kamboat Bakery & Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1824	10584741960	40.7183685	-73.9941338	\N	\N	\N	\N	Daronghua Bakery	+1-212-941-1924	\N	\N	\N	\N	\N	\N	\N	\N
-1825	10584741963	40.7184114	-73.994286	\N	\N	\N	\N	I'Milky	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1825	10584741963	40.7184114	-73.994286	\N	\N	\N	\N	I''Milky	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1826	10592171291	40.7404973	-73.9816996	New York	351	NY	3rd Avenue	Matto Espresso	\N	\N	10010	\N	\N	\N	\N	\N	\N
 1827	10595013925	40.6844938	-73.9440073	\N	\N	\N	\N	Bklyn Kettle Cafe	+1-718-676-5154	\N	\N	\N	\N	\N	\N	\N	\N
 1828	10611597220	40.6379186	-73.8961722	\N	\N	\N	\N	Bagels & Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1829	10613041697	40.717779	-73.9543949	Brooklyn	221	NY	North 9th Street	pinkFROG Cafe	(929) 265-3350	\N	11211	\N	\N	\N	\N	\N	\N
-1830	10616783226	40.7518188	-73.9815906	New York	455	NY	5th Avenue	The Library Café by Amy's Bread	\N	\N	10018	\N	\N	\N	\N	\N	\N
+1830	10616783226	40.7518188	-73.9815906	New York	455	NY	5th Avenue	The Library Café by Amy''s Bread	\N	\N	10018	\N	\N	\N	\N	\N	\N
 1831	10642744091	40.6815777	-73.9533915	\N	\N	\N	\N	Seed Brklyn Green House	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1832	10651869821	40.6919072	-73.9828819	\N	136	\N	Willoughby Street	Gong Cha	+1-917-909-1207	\N	11201	\N	\N	\N	\N	\N	\N
 1833	10661660092	40.720871	-73.8463425	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1834	10679436534	40.7199493	-73.8433764	\N	\N	\N	\N	Coffee Shot	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1835	10679766624	40.6220455	-74.0320421	\N	276	\N	88th Street	Coffee Rx	\N	\N	11209	\N	\N	\N	\N	\N	\N
-1836	10684451345	40.7660888	-73.7893409	\N	34-01	\N	Francis Lewis Boulevard	Annie's Social	\N	\N	11358	\N	\N	\N	\N	\N	\N
+1836	10684451345	40.7660888	-73.7893409	\N	34-01	\N	Francis Lewis Boulevard	Annie''s Social	\N	\N	11358	\N	\N	\N	\N	\N	\N
 1837	10689045274	40.7084835	-74.0135243	\N	\N	\N	\N	Dragon Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1838	10689197471	40.7328775	-73.9877118	New York	110	NY	3rd Avenue	Matto Espresso	\N	\N	10003	\N	\N	\N	\N	\N	\N
 1839	10692993581	40.7271351	-73.9795427	New York	167	NY	Avenue B	Hekate Café & Elixir Lounge	\N	\N	10009	\N	\N	\N	\N	\N	\N
 1840	10693681226	40.7496503	-73.9479257	\N	\N	\N	\N	The Local Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1841	10693681228	40.7494889	-73.9499484	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1842	10695150094	40.6914599	-73.982586	\N	\N	\N	\N	Cafe d'Avignon	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1842	10695150094	40.6914599	-73.982586	\N	\N	\N	\N	Cafe d''Avignon	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1843	10695864090	40.7374343	-73.9903996	New York	861	NY	Broadway	Venchi	\N	\N	10003	\N	\N	\N	\N	\N	\N
 1844	10696133542	40.7400773	-73.989726	New York	921	NY	Broadway	Le Pain Quotidien	+1-332-910-6833	\N	10003	\N	\N	\N	\N	\N	\N
 1845	10697603105	40.7381907	-73.9983412	\N	\N	\N	\N	Modern Bread and Bagel	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1846	10698237278	40.7071344	-73.8545979	Forest Hills	8989	NY	Union Turnpike	Starbucks	+1 718-846-2310	\N	11375	\N	\N	\N	\N	\N	\N
 1847	10699487852	40.7500086	-73.9486443	\N	\N	\N	\N	Ninth Street Espresso	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1848	10703267650	40.7479155	-73.9422563	Long Island City	43-21	NY	Hunter Street	Teazzi Tea Shop	+1-347-554-2680	\N	11101	\N	\N	\N	\N	\N	\N
-1849	10712959086	40.6404442	-74.0153799	\N	\N	\N	\N	Generoso's	+1-718-492-0895	\N	\N	\N	\N	\N	\N	\N	\N
+1849	10712959086	40.6404442	-74.0153799	\N	\N	\N	\N	Generoso''s	+1-718-492-0895	\N	\N	\N	\N	\N	\N	\N	\N
 1850	10717839775	40.7325497	-73.9967931	\N	\N	\N	\N	Marlton Esprsso Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1851	10717839800	40.7332791	-73.9985251	\N	\N	\N	\N	Moshava Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1852	10732832182	40.7575663	-73.8345632	Skyview Center	40-24	NY	College Point Boulevard	Starbucks	+1 347-756-1663	\N	11354	\N	\N	\N	\N	\N	\N
 1853	10733191689	40.7567525	-73.8354882	\N	\N	\N	\N	CoCo Fresh Tea & Juice	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1854	10733191693	40.7567627	-73.8356531	\N	\N	\N	\N	Gong Cha	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1855	10751283105	40.7748669	-73.9542775	New York	247	NY	East 81st Street	Hutch and Waldo	\N	\N	10028	\N	\N	\N	\N	\N	\N
-1856	10751724805	40.7730659	-73.9910076	New York	235	NY	Freedom Place South	Harry's Table by Cipriani	+1 212-339-2015	\N	10069	\N	\N	\N	\N	\N	\N
+1856	10751724805	40.7730659	-73.9910076	New York	235	NY	Freedom Place South	Harry''s Table by Cipriani	+1 212-339-2015	\N	10069	\N	\N	\N	\N	\N	\N
 1857	10755612112	40.7755174	-73.9566349	\N	1424	\N	3rd Avenue	Maman	\N	\N	10028	\N	\N	\N	\N	\N	\N
 1858	10756703060	40.7189289	-73.9948154	New York	132	NY	Bowery	Matcha Cafe Maiko	+1-646-379-8778	\N	10013	\N	\N	\N	\N	\N	\N
 1859	10759352794	40.6290677	-74.0740103	\N	\N	\N	\N	Americano Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1860	10767181157	40.5494366	-74.2211548	\N	\N	\N	\N	Bloomin' Bean	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1860	10767181157	40.5494366	-74.2211548	\N	\N	\N	\N	Bloomin'' Bean	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1861	10769253446	40.7296098	-73.9963468	New York	45	NY	West 4th Street	Starbucks	\N	\N	10012	\N	\N	\N	\N	\N	\N
 1862	10771770502	40.6335595	-74.0214744	\N	\N	\N	\N	Meena House Cafe	+1-718-238-3274	\N	\N	\N	\N	\N	\N	\N	\N
 1863	10776441923	40.7402204	-73.8745297	Queens	48-36	NY	90th Street	Little Starry Cafe	\N	\N	11373	\N	\N	\N	\N	\N	\N
@@ -1933,7 +1933,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1876	10828749043	40.7154382	-73.9982044	New York	67	NY	Bayard Street	Yi Fang Tea	\N	\N	10013	\N	\N	\N	\N	\N	\N
 1877	10830968028	40.7260837	-74.001279	New York	161	NY	Prince Street	Joe & The Juice	+1-212-777-0034	\N	10012	\N	\N	\N	\N	\N	\N
 1878	10833095528	40.7404072	-74.0050369	New York	678	NY	Hudson Street	Starbucks	+1 646-634-9309	\N	10014	\N	\N	\N	\N	\N	\N
-1879	10835856480	40.7175808	-73.9590156	Brooklyn	142	NY	North 6th Street	I'Milky	+1-585-421-7795	\N	11249	\N	\N	\N	\N	\N	\N
+1879	10835856480	40.7175808	-73.9590156	Brooklyn	142	NY	North 6th Street	I''Milky	+1-585-421-7795	\N	11249	\N	\N	\N	\N	\N	\N
 1880	10836191952	40.7164698	-73.9590218	Brooklyn	219	NY	Bedford Avenue	Lattente	\N	\N	11211	\N	\N	\N	\N	\N	\N
 1881	10838005576	40.714913	-73.9627684	Brooklyn	255	NY	Berry Street	Caffe Valencia	+1-718-869-4459	\N	11249	\N	\N	\N	\N	\N	\N
 1882	10838647152	40.7142602	-73.9613129	Brooklyn	277	NY	Bedford Avenue	Blank Street Coffee	\N	\N	11211	\N	\N	\N	\N	\N	\N
@@ -1975,14 +1975,14 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1918	11005811332	40.7839974	-73.9779504	New York	420	NY	Amsterdam Avenue	Black Lab Cafe	+16463434089	\N	10024	\N	\N	\N	\N	\N	\N
 1919	11008681025	40.6270458	-74.0238142	\N	\N	\N	\N	Sheba Hookah Lounge	+1-585-456-0973	\N	\N	\N	\N	\N	\N	\N	\N
 1920	11020006881	40.6656295	-73.9714371	Brooklyn	40	NY	West Drive	Winner in the Park	\N	\N	11215	winnerinthepark@winner.nyc	\N	\N	\N	\N	\N
-1921	11021066798	40.7019379	-73.8823699	\N	69-11	NY	Myrtle Avenue	Russo's Pane & Cafe	\N	\N	11385	\N	\N	\N	\N	\N	\N
+1921	11021066798	40.7019379	-73.8823699	\N	69-11	NY	Myrtle Avenue	Russo''s Pane & Cafe	\N	\N	11385	\N	\N	\N	\N	\N	\N
 1922	11030368694	40.5769318	-73.9801202	Brooklyn	2896	NY	West 12th Street	Café Dacha	+1-347-240-7362	\N	11224	\N	\N	\N	\N	\N	\N
 1923	11031452795	40.7055551	-74.0039605	New York	84	NY	South Street	Loco Coco	+12122226300	\N	10038	\N	\N	\N	\N	\N	\N
 1924	11036322282	40.6322171	-73.9671576	Brooklyn	1015	NY	Foster Avenue	Gong Cha	+1-917-974-7247	\N	11230	\N	\N	\N	\N	\N	\N
 1925	11040468156	40.6102813	-74.0631483	\N	\N	\N	\N	Bella Beans Café	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1926	11040468182	40.6139871	-74.0658714	\N	\N	\N	\N	Bloom Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1927	11045286604	40.7453194	-73.9795124	\N	\N	\N	\N	Arvaci Ciffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1928	11046991906	40.7345114	-74.0006277	New York	138	NY	West 10th Street	Jack's Stir Brew Coffee	+1-212-929-0821	\N	10014	\N	\N	\N	\N	\N	\N
+1928	11046991906	40.7345114	-74.0006277	New York	138	NY	West 10th Street	Jack''s Stir Brew Coffee	+1-212-929-0821	\N	10014	\N	\N	\N	\N	\N	\N
 1929	11048022206	40.75534	-73.9909383	\N	600	\N	8th Avenue	Berlina Café	+16467999525	\N	10018	\N	\N	\N	\N	\N	\N
 1930	11048648635	40.7264448	-74.0020207	\N	\N	\N	\N	Blank Slate	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1931	11051498568	40.7597563	-73.9881924	\N	\N	\N	\N	Bistro 46	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2035,10 +2035,10 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 1978	11193936084	40.7631111	-73.9591348	\N	1198	\N	1st Avenue	Da Adriano	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1979	11196521509	40.7225587	-73.9884993	\N	\N	\N	\N	Beloved Café & Resto	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1980	11197809340	40.848325	-73.9309817	New York	2440	NY	Amsterdam Avenue	Milo Coffee Shop	+1 917-261-4750	\N	10033	\N	\N	\N	\N	\N	\N
-1981	11223060596	40.7080354	-74.0105959	\N	\N	\N	\N	Ashby's	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1981	11223060596	40.7080354	-74.0105959	\N	\N	\N	\N	Ashby''s	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1982	11236742641	40.7819547	-73.9759526	New York	102	NY	West 79th Street	Green Park Deli & Pizza	+1-212-724-5425	\N	10024	\N	\N	\N	\N	\N	\N
 1983	11240481215	40.6987921	-73.91743	Brooklyn	1432	NY	Myrtle Avenue	Matto Espresso	\N	\N	11237	\N	\N	\N	\N	\N	\N
-1984	11258767163	40.7163547	-74.0098581	\N	\N	\N	\N	Jack's Stir Brew Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1984	11258767163	40.7163547	-74.0098581	\N	\N	\N	\N	Jack''s Stir Brew Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 1985	11258782637	40.7151337	-74.0081532	\N	107	\N	Chambers Street	Chun Yang	\N	\N	10013	\N	\N	\N	\N	\N	\N
 1986	11265041506	40.7439012	-73.9275242	Long Island City	37-10	NY	Queens Boulevard	Vivi Bubble Tea	\N	\N	11101	\N	\N	\N	\N	\N	\N
 1987	11276029551	40.738909	-73.7916695	\N	\N	\N	\N	CoCo Fresh Tea & Juice	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2058,12 +2058,12 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2001	11372544124	40.7385793	-73.7927653	\N	\N	\N	\N	Kung Fu Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2002	11374517233	40.7207982	-73.9965628	\N	180	\N	Mulberry Street	Empanadas Soho	+1 914-602-0527	\N	10012	empanadassoho@gmail.com	\N	\N	\N	\N	\N
 2003	11386500757	40.7300314	-73.986353	\N	\N	\N	\N	Hokkaido Baked Cheese Tart	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2004	11396442169	40.6936478	-73.9290485	\N	\N	\N	\N	Lalin's	\N	\N	11221	\N	\N	\N	\N	\N	\N
+2004	11396442169	40.6936478	-73.9290485	\N	\N	\N	\N	Lalin''s	\N	\N	11221	\N	\N	\N	\N	\N	\N
 2005	11396534364	40.7430803	-73.8257302	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2006	11396534365	40.7471608	-73.8257641	Flushing	56-45	NY	Main Street	Starbucks	+1 917-578-9150	\N	11355	\N	\N	\N	\N	\N	\N
 2007	11399352938	40.7525257	-73.9897468	\N	\N	\N	\N	Song Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2008	11399352953	40.754545	-73.9882746	\N	\N	\N	\N	Frame Gourmet Eatery	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2009	11399352960	40.7542503	-73.9878848	\N	\N	\N	\N	Gregory's Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2009	11399352960	40.7542503	-73.9878848	\N	\N	\N	\N	Gregory''s Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2010	11399352963	40.7536851	-73.9884107	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2011	11399352965	40.7532206	-73.9887428	\N	\N	\N	\N	Café Hestia	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2012	11399454039	40.7003629	-73.9884217	\N	\N	\N	\N	Wonder Beach Café	+1929-969-7607	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2071,7 +2071,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2014	11405963743	40.7663194	-73.9562871	\N	\N	\N	\N	Matto	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2015	11406616606	40.7360963	-73.8197378	\N	\N	\N	\N	Library Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2016	11408018369	40.7599122	-73.9912526	\N	\N	\N	\N	Gregory’s	\N	\N	10036	\N	\N	\N	\N	\N	\N
-2017	11411008768	40.7981602	-73.9695635	NewYork	2661	NY	Broadway	Zelma's Caffe	+1-646-370-3851	\N	10025	\N	\N	\N	\N	\N	\N
+2017	11411008768	40.7981602	-73.9695635	NewYork	2661	NY	Broadway	Zelma''s Caffe	+1-646-370-3851	\N	10025	\N	\N	\N	\N	\N	\N
 2018	11411443529	40.8031476	-73.9677965	New York	2801	NY	Broadway	Omonia Cafe	+1-212-246-4050	\N	10025	\N	\N	\N	\N	\N	\N
 2019	11413866658	40.8014469	-73.964743	New York	971	NY	Amsterdam Avenue	Möge Tee	\N	\N	10025	\N	\N	\N	\N	\N	\N
 2020	11413869531	40.8015058	-73.9644654	New York	196	NY	West 108th Street	Super Nice Coffee and Bakery	+1-332-257-8886	\N	10025	\N	\N	\N	\N	\N	\N
@@ -2090,7 +2090,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2033	11505171169	40.7537445	-73.982553	New York	\N	NY	West 42nd Street	Bryant Park Café	+1-212-840-6500	\N	10018	\N	\N	\N	\N	\N	\N
 2034	11505171269	40.7182769	-73.9927278	New York	100	NY	Forsyth Street	Kodawari	\N	\N	10002	hello@kodawarinyc.com	\N	\N	\N	\N	\N
 2035	11505342959	40.7485722	-73.7561874	Oakland Gardens	61-15	NY	Springfield Boulevard	Anda Boba Tea	\N	\N	11364	\N	\N	\N	\N	\N	\N
-2036	11517456127	40.8012634	-73.9593439	New York	321	NY	Cathedral Parkway	Mom's Food Market	+1-646-964-4527	\N	10026	\N	\N	\N	\N	\N	\N
+2036	11517456127	40.8012634	-73.9593439	New York	321	NY	Cathedral Parkway	Mom''s Food Market	+1-646-964-4527	\N	10026	\N	\N	\N	\N	\N	\N
 2037	11517472730	40.8008299	-73.9575911	New York	285	NY	West 110th Street	Purple Waves	+1-212-927-1101	\N	10026	\N	\N	\N	\N	\N	\N
 2038	11521280861	40.7915836	-73.9736788	New York	2460	NY	Broadway	Joe & The Juice	\N	\N	10025	\N	\N	\N	\N	\N	\N
 2039	11528502978	40.6101536	-73.9554705	Brooklyn	1803	NY	Kings Highway	Safir Bakery & Cafe	\N	\N	11229	\N	\N	\N	\N	\N	\N
@@ -2141,11 +2141,11 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2084	11748507792	40.850251	-73.9344288	\N	177	\N	Wadsworth Avenue	Espresso Heights	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2085	11754487748	40.7054382	-74.0091433	New York	6	NY	Hanover Street	Conwell Coffee Hall	\N	\N	10005	concierge@conwellcoffeehall.com	\N	\N	\N	\N	\N
 2086	11761689742	40.7233551	-73.9881657	\N	14	\N	Allen Street	Lucien	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2087	11762033170	40.7538905	-73.9850776	\N	1065	\N	6th Avenue	Zucker's Bagels & Smoked Fish	212-671-2400	\N	\N	\N	\N	\N	\N	\N	\N
+2087	11762033170	40.7538905	-73.9850776	\N	1065	\N	6th Avenue	Zucker''s Bagels & Smoked Fish	212-671-2400	\N	\N	\N	\N	\N	\N	\N	\N
 2088	11766643572	40.6946861	-73.9934432	\N	\N	\N	\N	Blank Street Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2089	11776251817	40.6178859	-74.03352	\N	\N	\N	\N	Milk & Honey	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2090	11777048922	40.7447058	-73.9034401	\N	60-08	\N	Woodside Avenue	moa coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2091	11783969920	40.689538	-73.9851519	\N	217	\N	Livingston Street	Jack's Stir Brew Coffee	\N	\N	11201	\N	\N	\N	\N	\N	\N
+2091	11783969920	40.689538	-73.9851519	\N	217	\N	Livingston Street	Jack''s Stir Brew Coffee	\N	\N	11201	\N	\N	\N	\N	\N	\N
 2092	11786190334	40.7520948	-73.7030574	New Hyde Park	271-11	NY	Union Turnpike	YAAAS Tea	+1-718-347-1732	\N	11040	\N	\N	\N	\N	\N	\N
 2093	11795951919	40.6328554	-74.0055944	Brooklyn	6001	NY	Fort Hamilton Parkway	Sai Cafe	+1-646-361-1524	\N	11219	\N	\N	\N	\N	\N	\N
 2094	11806712843	40.616488	-73.9861326	\N	\N	\N	\N	Caffe Corretto	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2153,7 +2153,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2096	11820360453	40.790594	-73.9689247	New York	667	NY	Columbus Avenue	Picky Barista	+1-646-684-3037	\N	10025	\N	\N	\N	\N	\N	\N
 2097	11829025830	40.7729377	-73.9143042	\N	23-61	\N	31st Street	Eli’s Cafe & Creperie	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2098	11829025834	40.7737349	-73.9141078	\N	\N	\N	31st Street	Under Pressure Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2099	11836256036	40.6187085	-73.9904138	Brooklyn	6517	NY	18th Avenue	ViVi's Bubble Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2099	11836256036	40.6187085	-73.9904138	Brooklyn	6517	NY	18th Avenue	ViVi''s Bubble Tea	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2100	11842373514	40.7395346	-74.008533	\N	\N	\N	\N	Frenchette Bakery	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2101	11842400114	40.796445	-73.9348477	New York	2272	NY	1st Avenue	Cassava House	+1-646-928-0219	\N	10035	\N	\N	\N	\N	\N	\N
 2102	11854382369	40.7117857	-73.9491299	\N	\N	\N	\N	Olas Coffee Roasters and Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2177,7 +2177,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2120	11896814793	40.6821844	-74.0039128	\N	\N	\N	\N	BORED	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2121	11897354380	40.7228856	-74.0045762	\N	\N	\N	\N	Now or Never	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2122	11897453324	40.7239804	-73.9801699	\N	\N	\N	\N	Tokuyamatcha Onigirazubar	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2123	11907690088	40.6098296	-73.9625378	\N	1942	\N	Coney Island Avenue	Crawford's Coffee Bar & Cafe	+1 718-998-7002	\N	\N	\N	\N	\N	\N	\N	\N
+2123	11907690088	40.6098296	-73.9625378	\N	1942	\N	Coney Island Avenue	Crawford''s Coffee Bar & Cafe	+1 718-998-7002	\N	\N	\N	\N	\N	\N	\N	\N
 2124	11910381816	40.7292945	-73.989015	\N	\N	\N	\N	Spot Dessert Bar	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2125	11919348693	40.6985223	-73.9795751	Brooklyn	3	NY	Flushing Avenue	Starbucks	+1 718-701-3015	\N	11205	\N	\N	\N	\N	\N	\N
 2126	11920176973	40.7448142	-73.9486449	\N	13-33	\N	Jackson Avenue	Beanstalk Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2213,7 +2213,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2156	12043679262	40.6812052	-73.9940616	\N	\N	\N	\N	Liz’s  Book Bar	+1-718-210-2222	\N	\N	\N	\N	\N	\N	\N	\N
 2157	12055375089	40.6781757	-73.9684662	\N	631	\N	Vanderbilt Avenue	Bontree	\N	\N	11238	\N	\N	\N	\N	\N	\N
 2158	12055618255	40.725889	-73.9954623	New York	166	\N	Crosby Street	Cafe Lyria	\N	\N	10012	\N	\N	\N	\N	\N	\N
-2159	12055649675	40.7246991	-73.9932247	New York	290	\N	Elizabeth Street	Raf's	\N	\N	10012	\N	\N	\N	\N	\N	\N
+2159	12055649675	40.7246991	-73.9932247	New York	290	\N	Elizabeth Street	Raf''s	\N	\N	10012	\N	\N	\N	\N	\N	\N
 2160	12065422572	40.7744639	-73.9509001	\N	\N	\N	\N	Green Lane Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2161	12067967003	40.7410235	-73.9326532	\N	\N	\N	\N	Bella Blue	+1 718-392-1927	\N	\N	\N	\N	\N	\N	\N	\N
 2162	12081972242	40.783362	-73.974207	New York	445	NY	Columbus Avenue	About Coffee	\N	\N	10024	\N	\N	\N	\N	\N	\N
@@ -2267,7 +2267,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2210	12254980775	40.7217666	-73.9921781	\N	\N	\N	\N	The Dutchess Tea House	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2211	12259503231	40.6979898	-73.9367674	\N	\N	\N	\N	High & Dry	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2212	12269406401	40.7061778	-73.9211621	Brooklyn	1329	NY	Willoughby Avenue	Bunker Bk Cafe	\N	\N	11237	\N	\N	\N	\N	\N	\N
-2213	12272040575	40.6787836	-73.9495223	\N	\N	\N	\N	Furman's Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2213	12272040575	40.6787836	-73.9495223	\N	\N	\N	\N	Furman''s Coffee	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2214	12272139785	40.7060756	-73.9104845	Ridgewood	517	NY	Onderdonk Avenue	Honey Moon Coffee Shop	\N	\N	11385	\N	\N	\N	\N	\N	\N
 2215	12288613872	40.7494227	-73.9799574	\N	\N	\N	\N	Björk Cafe	+1-212-847-9745	\N	\N	\N	\N	\N	\N	\N	\N
 2216	12299680838	40.7470898	-73.890311	\N	\N	\N	\N	Starbucks	\N	\N	\N	\N	\N	\N	\N	\N	\N
@@ -2298,7 +2298,7 @@ COPY public.coffees ("Unnamed: 0", id, lat, lon, city, housenumber, state, stree
 2241	12456130217	40.6810692	-73.9755853	\N	216	\N	Flatbush Avenue	Sofreh Cafe	+1-929-294-9240	\N	\N	\N	\N	\N	\N	\N	\N
 2242	12459424114	40.6713653	-73.9634901	\N	\N	\N	\N	Brooklyn Museum Cafe	\N	\N	\N	\N	\N	\N	\N	\N	\N
 2243	12464782371	40.8337656	-73.8611442	Bronx	29	NY	Hugh J. Grant Circle	Starbucks	+1-718-319-1702	\N	10462	\N	\N	\N	\N	\N	\N
-2244	12466211114	40.8557102	-73.8881361	\N	\N	\N	\N	Gino's Pastry Shop & Café	+1-718-584-3558	\N	\N	\N	\N	\N	\N	\N	\N
+2244	12466211114	40.8557102	-73.8881361	\N	\N	\N	\N	Gino''s Pastry Shop & Café	+1-718-584-3558	\N	\N	\N	\N	\N	\N	\N	\N
 2245	12466211116	40.8546158	-73.8885636	\N	\N	\N	\N	Morrone Pastry Shop & Café	+1-718-733-0424	\N	\N	\N	\N	\N	\N	\N	\N
 2246	12469063673	40.7531442	-73.974998	New York	450	NY	Lexington Avenue	Angelina Bakery Grand Central	6466829497	\N	10017	\N	\N	\N	\N	\N	\N
 2247	12469112391	40.7500475	-73.9860309	New York	41	NY	West 35th Street	Angelina Bakery & Pizza	6468640111	\N	10001	\N	\N	\N	\N	\N	\N
