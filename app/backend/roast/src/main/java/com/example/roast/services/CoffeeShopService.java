@@ -5,6 +5,8 @@ import com.example.roast.models.CoffeeShop;
 import com.example.roast.repositories.CoffeeShopRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.roast.dtos.CoffeeMapDTO;
+import java.util.stream.Collectors;
 
 import java.util.List;
 
@@ -61,5 +63,18 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
             return true;
         }
         return false;
+    }
+
+    public List<CoffeeMapDTO> getMapData() {
+    List<CoffeeShop> shops = coffeeShopRepository.findAll();
+    return shops.stream()
+        .map(shop -> new CoffeeMapDTO(
+            shop.getId(),
+            shop.getName(),
+            shop.getLat(),
+            shop.getLon(),
+            shop.getRating()
+        ))
+        .collect(Collectors.toList());
     }
 }

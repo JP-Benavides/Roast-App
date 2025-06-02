@@ -4,6 +4,7 @@ import com.example.roast.services.CoffeeShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.roast.dtos.CoffeeMapDTO;
 
 import java.util.List;
 
@@ -39,5 +40,11 @@ public class CoffeeShopController {
     public boolean createCoffeeShop(@RequestBody CoffeeShop coffeeShop){
         return coffeeShopService.createCoffeeShop(coffeeShop);
     }
-
+    
+    //Endpoint for map pins
+    @GetMapping("/mapdata")
+    public ResponseEntity<List<CoffeeMapDTO>> getMapData() {
+    List<CoffeeMapDTO> mapData = coffeeShopService.getMapData();
+        return ResponseEntity.ok(mapData);
+    }
 }
