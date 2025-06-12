@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.roast.dtos.CoffeeMapDTO;
 import java.util.stream.Collectors;
-
 import java.util.List;
 
 @Service
@@ -56,7 +55,6 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
             newCoffeeShop.setEmail(coffeeShop.getEmail());
             newCoffeeShop.setCity(coffeeShop.getCity());
             newCoffeeShop.setState(coffeeShop.getState());
-            newCoffeeShop.setInstagram(coffeeShop.getInstagram());
             newCoffeeShop.setLocation(coffeeShop.getLocation());
             newCoffeeShop.setEmail(coffeeShop.getEmail());
             coffeeShopRepository.save(newCoffeeShop);
