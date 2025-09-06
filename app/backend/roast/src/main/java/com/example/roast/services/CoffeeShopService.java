@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Service
 @Transactional
-public class CoffeeShopService implements CoffeeShopServiceInter{
+public class CoffeeShopService{
     private final CoffeeShopRepository coffeeShopRepository;
     private final FavoriteRepository favoriteRepository;
     private final UserRepository userRepository;
@@ -26,7 +26,7 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
         this.userRepository = userRepository;
     }
 
-    @Override
+    //Functions for Coffee Shops
     public List<CoffeeShop> getCoffeeShopsByName(String coffeeShopName) {
         List<CoffeeShop> shops = coffeeShopRepository.findAllByName(coffeeShopName);
         if (shops.isEmpty()) {
@@ -35,27 +35,23 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
         return shops;
     }
 
-    public boolean addRating(String coffeeShopName,Double lat, Double lon ,Double rating){
-        List<CoffeeShop> shops = coffeeShopRepository.findAllByName(coffeeShopName);
-        CoffeeShop shop = new CoffeeShop();
-        if (!shops.isEmpty()) {
-            for(CoffeeShop coffeeShop : shops) {
-                if (Objects.equals(coffeeShop.getLat(), lat) && Objects.equals(coffeeShop.getLon(), lon)) {
-                    coffeeShop.addNewRating(rating);
-                    coffeeShopRepository.save(coffeeShop);
+    public boolean addRating(Long shopId, Double rating) {
+        return coffeeShopRepository.findById(shopId)
+                .map(shop -> {
+                    shop.addNewRating(rating);   // updates average/count in entity
+                    coffeeShopRepository.save(shop);
                     return true;
-                }
-            }
-        }
-        return false;
+                })
+                .orElse(false); // if no shop found
     }
 
-    @Override
+
     public List<CoffeeShop> getCoffeeShops() {
         List<CoffeeShop> shops = coffeeShopRepository.findAll();
         if (shops.isEmpty()) { return new ArrayList<>(); }
         return shops;
     }
+
 
     public boolean createCoffeeShop(CoffeeShop coffeeShop) {
         if (coffeeShopRepository.existsById(coffeeShop.getId())){
@@ -66,6 +62,26 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
     }
 
 
+    //Functions for User
+    public boolean addUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isEmpty()) {
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeUser(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
+
+
+
+    //Functions for Favorites
     public boolean addFavoriteCoffeeShop(Long userId, Long shopId) {
         if(!favoriteRepository.existsByUser_IdAndCoffeeShop_Id(userId,shopId)
                 && coffeeShopRepository.existsById(shopId)){
