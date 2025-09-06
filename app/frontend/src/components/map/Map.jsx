@@ -14,7 +14,7 @@ function Map() {
 
   //fills up list of coffee shops
   useEffect(() => {
-    fetch("/api/mapdata")
+    fetch("/api/allcoffeeshops")
       .then((res) => res.json())
       //checks for dup coffee shops
       .then((data) => {

@@ -1,22 +1,36 @@
 package com.example.roast.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "users") //Still have to create user db
+@Table(name = "users")
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String email;
 
-    public User(String id) {
-        this.id = id;
-    }
+    // ---- Constructors ----
     public User() {}
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public User(Long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+
+    public User(String email) {
+        this.email = email;
+    }
+
+    // ---- Getters & Setters ----
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
 }

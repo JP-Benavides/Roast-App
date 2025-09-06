@@ -1,38 +1,51 @@
 package com.example.roast.services;
-
-import com.example.roast.exceptions.NoCoffeeFoundException;
 import com.example.roast.models.CoffeeShop;
+import com.example.roast.models.User;
+import com.example.roast.models.Favorite;
 import com.example.roast.repositories.CoffeeShopRepository;
+import com.example.roast.repositories.FavoriteRepository;
+import com.example.roast.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.roast.dtos.CoffeeMapDTO;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Transactional
 public class CoffeeShopService implements CoffeeShopServiceInter{
     private final CoffeeShopRepository coffeeShopRepository;
+    private final FavoriteRepository favoriteRepository;
+    private final UserRepository userRepository;
 
-    public CoffeeShopService(CoffeeShopRepository coffeeShopRepository) {
+    public CoffeeShopService(CoffeeShopRepository coffeeShopRepository,
+                             FavoriteRepository favoriteRepository,
+                             UserRepository userRepository) {
         this.coffeeShopRepository = coffeeShopRepository;
+        this.favoriteRepository = favoriteRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public CoffeeShop getCoffeeShopByName(String coffeeShopName) {
-        CoffeeShop newCoffeeShop = coffeeShopRepository.getCoffeeShopByName(coffeeShopName);
-        if (newCoffeeShop == null) {
-            throw new NoCoffeeFoundException();
+    public List<CoffeeShop> getCoffeeShopsByName(String coffeeShopName) {
+        List<CoffeeShop> shops = coffeeShopRepository.findAllByName(coffeeShopName);
+        if (shops.isEmpty()) {
+            return new ArrayList<>();
         }
-        return newCoffeeShop;
+        return shops;
     }
 
-    public boolean addRating(String coffeeShopName, Double rating){
-        CoffeeShop updatedCoffeeShop = coffeeShopRepository.getCoffeeShopByName(coffeeShopName);
-        if (updatedCoffeeShop != null) {
-            updatedCoffeeShop.increaseRating(rating);
-            coffeeShopRepository.save(updatedCoffeeShop);
-            return true;
+    public boolean addRating(String coffeeShopName,Double lat, Double lon ,Double rating){
+        List<CoffeeShop> shops = coffeeShopRepository.findAllByName(coffeeShopName);
+        CoffeeShop shop = new CoffeeShop();
+        if (!shops.isEmpty()) {
+            for(CoffeeShop coffeeShop : shops) {
+                if (Objects.equals(coffeeShop.getLat(), lat) && Objects.equals(coffeeShop.getLon(), lon)) {
+                    coffeeShop.addNewRating(rating);
+                    coffeeShopRepository.save(coffeeShop);
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -40,39 +53,34 @@ public class CoffeeShopService implements CoffeeShopServiceInter{
     @Override
     public List<CoffeeShop> getCoffeeShops() {
         List<CoffeeShop> shops = coffeeShopRepository.findAll();
-        if(shops.isEmpty()){
-            throw new NoCoffeeFoundException();
-        }
+        if (shops.isEmpty()) { return new ArrayList<>(); }
         return shops;
     }
 
+    public boolean createCoffeeShop(CoffeeShop coffeeShop) {
+        if (coffeeShopRepository.existsById(coffeeShop.getId())){
+            return false;
+        }
+        coffeeShopRepository.save(coffeeShop);
+        return true;
+    }
 
-    public boolean createCoffeeShop(CoffeeShop coffeeShop){
-        if(coffeeShop.getName() != null) {
-            CoffeeShop newCoffeeShop = new CoffeeShop();
-            newCoffeeShop.setName(coffeeShop.getName());
-            newCoffeeShop.setPhone(coffeeShop.getPhone());
-            newCoffeeShop.setEmail(coffeeShop.getEmail());
-            newCoffeeShop.setCity(coffeeShop.getCity());
-            newCoffeeShop.setState(coffeeShop.getState());
-            newCoffeeShop.setLocation(coffeeShop.getLocation());
-            newCoffeeShop.setEmail(coffeeShop.getEmail());
-            coffeeShopRepository.save(newCoffeeShop);
+
+    public boolean addFavoriteCoffeeShop(Long userId, Long shopId) {
+        if(!favoriteRepository.existsByUser_IdAndCoffeeShop_Id(userId,shopId)
+                && coffeeShopRepository.existsById(shopId)){
+            favoriteRepository.addNewFavoriteCoffeeShop(userId, shopId);
             return true;
         }
         return false;
     }
 
-    public List<CoffeeMapDTO> getMapData() {
-    List<CoffeeShop> shops = coffeeShopRepository.findAll();
-    return shops.stream()
-        .map(shop -> new CoffeeMapDTO(
-            shop.getId(),
-            shop.getName(),
-            shop.getLat(),
-            shop.getLon(),
-            shop.getRating()
-        ))
-        .collect(Collectors.toList());
+    public boolean removeFavoriteCoffeeShop(Long userId, Long shopId) {
+        if(favoriteRepository.existsByUser_IdAndCoffeeShop_Id(userId, shopId) &&
+                coffeeShopRepository.existsById(shopId)){
+            favoriteRepository.deleteByUser_IdAndCoffeeShop_Id(userId,shopId);
+            return true;
+        }
+        return false;
     }
 }

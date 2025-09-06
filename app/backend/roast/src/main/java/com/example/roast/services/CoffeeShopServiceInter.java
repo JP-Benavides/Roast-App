@@ -6,12 +6,10 @@ import java.util.List;
 
 public interface CoffeeShopServiceInter {
 
-    public CoffeeShop getCoffeeShopByName(String coffeeShopName);
+    public List<CoffeeShop> getCoffeeShopsByName(String coffeeShopName);
 
     public List<CoffeeShop> getCoffeeShops();
 
-    public boolean createCoffeeShop(CoffeeShop coffeeShop);
-
-    public boolean addRating(String coffeeShopName, Double rating);
+    public boolean addRating(String coffeeShopName,Double lat, Double lon ,Double rating);
 
 }
