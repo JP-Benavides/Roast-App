@@ -26,7 +26,6 @@ public class CoffeeShop {
     @Column(name = "numofratings")
     private Integer numberOfRatings;
 
-
     // No-arg constructor
     public CoffeeShop() {}
 
@@ -96,6 +95,10 @@ public class CoffeeShop {
 
     public Double getRating() {
         return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
 

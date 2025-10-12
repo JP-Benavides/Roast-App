@@ -33,12 +33,18 @@ public class CoffeeShopControllerTest {
         mockMvc.perform(post("/api/coffeeshops")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(coffeeShopJson))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void testGetCoffeeShops() throws Exception {
+        mockMvc.perform(get("/api/coffeeshops"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testGetCoffeeShop() throws Exception {
-        mockMvc.perform(get("/api/coffeeshops")
+    public void testGetCoffeeShopsByName() throws Exception {
+        mockMvc.perform(get("/api/coffeeshops-byname")
                         .param("coffeeShopName", "Starbucks"))
                 .andExpect(status().isOk());
     }

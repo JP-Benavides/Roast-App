@@ -41,18 +41,16 @@ public class CoffeeShopController {
     // 201 Created on success, 409 Conflict if cannot create (e.g., duplicate)
     @PostMapping("/coffeeshops")
     public ResponseEntity<?> createCoffeeShop(@RequestBody CoffeeShop coffeeShop) {
-        CoffeeShop created = coffeeShopService.createCoffeeShop(coffeeShop)
-                ? coffeeShop
-                : null;
+        boolean created = coffeeShopService.createCoffeeShop(coffeeShop);
 
-        if (created == null) {
+        if (!created) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of("error", "Coffee shop could not be created"));
         }
 
         // Optional: set Location header if you know the new ID
-        return ResponseEntity.created(URI.create("/api/coffeeshops/" + created.getId()))
-                .body(created);
+        return ResponseEntity.created(URI.create("/api/coffeeshops/" + coffeeShop.getId()))
+                .body(coffeeShop);
     }
 
     // Patch rating; 200 OK with new rating, 404 if no matching shop
@@ -82,13 +80,31 @@ public class CoffeeShopController {
     }
 
     // 204 No Content on success, 404 Not Found if user doesn’t exist
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> removeUser(@PathVariable Long userId, @PathVariable String id) {
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<Void> removeUser(@PathVariable Long userId) {
         boolean removed = coffeeShopService.removeUser(userId);
         if (!removed) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.noContent().build();
+    }
+
+    // Get user by email
+    @GetMapping("/users")
+    public ResponseEntity<?> getUserByEmail(@RequestParam String email) {
+        User user = coffeeShopService.getUserByEmail(email);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "User not found"));
+        }
+        return ResponseEntity.ok(user);
+    }
+
+    // Get user favorites
+    @GetMapping("/users/{userId}/favorites")
+    public ResponseEntity<List<CoffeeShop>> getUserFavorites(@PathVariable Long userId) {
+        List<CoffeeShop> favorites = coffeeShopService.getUserFavorites(userId);
+        return ResponseEntity.ok(favorites);
     }
 
     // ---------- FAVORITES ----------

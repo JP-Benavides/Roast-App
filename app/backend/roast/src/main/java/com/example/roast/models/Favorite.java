@@ -1,11 +1,10 @@
 package com.example.roast.models;
 
 import jakarta.persistence.*;
-import java.time.Instant;
 
 @Entity
 @Table(
-        name = "userfavoriteshops",
+        name = "user_favorite_shops",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "coffee_id"})
 )
 
@@ -21,7 +20,6 @@ public class Favorite {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "coffee_id", referencedColumnName = "coffeePK", nullable = false)
     private CoffeeShop coffeeShop;
-
 
     // ---- constructors ----
     public Favorite() {}
@@ -39,5 +37,4 @@ public class Favorite {
 
     public CoffeeShop getCoffeeShop() { return coffeeShop; }
     public void setCoffeeShop(CoffeeShop coffeeShop) { this.coffeeShop = coffeeShop; }
-
 }

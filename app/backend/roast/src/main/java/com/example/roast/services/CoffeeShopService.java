@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Transactional
@@ -54,8 +53,11 @@ public class CoffeeShopService{
 
 
     public boolean createCoffeeShop(CoffeeShop coffeeShop) {
-        if (coffeeShopRepository.existsById(coffeeShop.getId())){
-            return false;
+        // For new coffee shops, ID should be null (auto-generated)
+        // Check if a coffee shop with the same name already exists instead
+        List<CoffeeShop> existingShops = coffeeShopRepository.findAllByName(coffeeShop.getName());
+        if (!existingShops.isEmpty()) {
+            return false; // Coffee shop with this name already exists
         }
         coffeeShopRepository.save(coffeeShop);
         return true;
@@ -79,13 +81,21 @@ public class CoffeeShopService{
         return false;
     }
 
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
+    public List<CoffeeShop> getUserFavorites(Long userId) {
+        return favoriteRepository.findFavoriteShopsByUserId(userId);
+    }
+
 
 
     //Functions for Favorites
     public boolean addFavoriteCoffeeShop(Long userId, Long shopId) {
         if(!favoriteRepository.existsByUser_IdAndCoffeeShop_Id(userId,shopId)
                 && coffeeShopRepository.existsById(shopId)){
-            favoriteRepository.addNewFavoriteCoffeeShop(userId, shopId);
+            favoriteRepository.save(new Favorite(userRepository.getReferenceById(userId), coffeeShopRepository.getReferenceById(shopId)));
             return true;
         }
         return false;

@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     //Add interface for changing user information
 
-    public Optional<User> findByEmail(String email);
+    Optional<User> findByEmail(String email);
 }

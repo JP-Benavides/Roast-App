@@ -2,7 +2,6 @@ package com.example.roast.repositories;
 
 import com.example.roast.models.Favorite;
 import com.example.roast.models.CoffeeShop;
-import com.example.roast.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,9 +16,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     // Check if a specific shop is already in a user's favorites
     boolean existsByUser_IdAndCoffeeShop_Id(Long userId, Long coffeeShopId);
 
-    //Adds new Coffee Shop Relationship(star functionality)
-    boolean addNewFavoriteCoffeeShop(Long userId, Long coffeeShopId);
-
     // Remove a favorite (for "unstar" functionality)
     void deleteByUser_IdAndCoffeeShop_Id(Long userId, Long coffeeShopId);
 
@@ -30,7 +26,4 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
         WHERE f.user.id = :userId
     """)
     List<CoffeeShop> findFavoriteShopsByUserId(@Param("userId") Long userId);
-
-
-    Long user(User user);
 }
