@@ -1,0 +1,437 @@
+/* Map container */
+#map {
+  height: 500px;
+  width: 100%;
+  margin: 2rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  outline: none !important;
+}
+
+/* Remove focus outlines */
+#map:focus,
+.leaflet-container,
+.leaflet-container:focus,
+.leaflet-marker-icon,
+.leaflet-marker-icon:focus,
+.leaflet-interactive:focus,
+.leaflet-popup-close-button:focus {
+  outline: none !important;
+}
+
+/* Zoom controls */
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #4A90E2 !important;
+  border: none !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(20px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  color: #357ABD !important;
+  transform: scale(1.05) !important;
+}
+
+.leaflet-control-zoom a:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Marker clusters */
+.marker-cluster {
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
+}
+
+.marker-cluster div {
+  background: transparent;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Coffee pins */
+.coffee-pin-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.coffee-map-pin {
+  position: relative;
+  width: 32px;
+  height: 45px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coffee-map-pin .pin-body {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.coffee-map-pin .coffee-icon {
+  transform: rotate(45deg);
+  width: 18px;
+  height: 18px;
+}
+
+.coffee-map-pin.selected {
+  transform: scale(1.2);
+}
+
+.coffee-map-pin.selected .pin-body {
+  background: linear-gradient(135deg, #357ABD 0%, #2A5A8A 100%);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.6);
+}
+
+.coffee-pin-marker:hover .coffee-map-pin:not(.selected) {
+  transform: scale(1.1);
+}
+
+/* User location marker */
+.user-location-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.user-location-pin {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-pin-outer {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(74, 144, 226, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+.user-pin-inner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4A90E2;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.5);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.user-popup {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  color: #4A90E2;
+}
+
+/* Popups */
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(20px) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.leaflet-popup-content {
+  margin: 16px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Remove all marker cluster highlights and focus states */
+.leaflet-marker-icon.marker-cluster:focus {
+  outline: none !important;
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4) !important;
+}
+
+.leaflet-marker-icon.marker-cluster:hover {
+  outline: none !important;
+}
+
+/* Remove the blue highlight box that appears around clusters */
+.leaflet-marker-icon {
+  outline: none !important;
+}
+
+.leaflet-marker-icon:focus {
+  outline: none !important;
+}
+
+/* Override any default cluster highlighting */
+.leaflet-cluster-anim .leaflet-marker-icon {
+  outline: none !important;
+}
+
+/* Remove any selection highlights */
+.marker-cluster::selection {
+  background: transparent !important;
+}
+
+.marker-cluster::-moz-selection {
+  background: transparent !important;
+}
+
+/* Modern zoom controls */
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #4A90E2 !important;
+  border: none !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  color: #357ABD !important;
+  transform: scale(1.05) !important;
+}
+
+/* Modern marker clusters - no highlights */
+.marker-cluster {
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: 50% !important;
+  color: white !important;
+  font-weight: 700;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none !important;
+}
+
+.marker-cluster:focus {
+  outline: none !important;
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4) !important;
+}
+
+/* Remove cluster hover highlights */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  outline: none !important;
+}
+
+.marker-cluster-small:focus,
+.marker-cluster-medium:focus,
+.marker-cluster-large:focus {
+  outline: none !important;
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4) !important;
+}
+
+.marker-cluster:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.5);
+  background: linear-gradient(135deg, #357ABD 0%, #2A5A8A 100%);
+}
+
+.marker-cluster div {
+  background: transparent;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Coffee pins */
+.coffee-pin-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.coffee-map-pin {
+  position: relative;
+  width: 32px;
+  height: 45px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coffee-map-pin .pin-body {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.coffee-map-pin .coffee-icon {
+  transform: rotate(45deg);
+  width: 18px;
+  height: 18px;
+}
+
+.coffee-map-pin.selected {
+  transform: scale(1.2);
+}
+
+.coffee-map-pin.selected .pin-body {
+  background: linear-gradient(135deg, #357ABD 0%, #2A5A8A 100%);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.6);
+}
+
+.coffee-pin-marker:hover .coffee-map-pin:not(.selected) {
+  transform: scale(1.1);
+}
+
+/* Modern popups */
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(20px) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.leaflet-popup-content {
+  margin: 16px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* User location marker */
+.user-location-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.user-location-pin {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-pin-outer {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(74, 144, 226, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+.user-pin-inner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4A90E2;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.5);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.user-popup {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  color: #4A90E2;
+}
+
+/* Style or hide attribution control */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 8px !important;
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+.leaflet-control-attribution {
+  display: none !important;
+} 
