@@ -1,13 +1,15 @@
 import re
 import pandas as pd
 from sqlalchemy import create_engine, text
+from dotenv import env
+
 
 # --- CONFIGURE THESE ---
-DB_USER = "jean-pierrebenavidescruzatte"
-DB_PASS = "BenavidesJ23"
-DB_NAME = "roastdb"
-DB_HOST = "localhost"
-DB_PORT = "5433"
+DB_USER = env.get('DB_USER', 'your_username')
+DB_PASS = env.get('DB_PASSWORD', 'your_password') 
+DB_HOST = env.get('DB_HOST', 'localhost')
+DB_PORT = env.get('DB_PORT', '5432')
+DB_NAME = env.get('DB_NAME', 'your_database')
 # ------------------------
 
 engine = create_engine(f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
