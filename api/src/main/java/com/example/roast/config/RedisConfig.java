@@ -9,9 +9,12 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableCaching
@@ -35,15 +38,34 @@ public class RedisConfig {
     }
 
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofHours(1)) // Cache for 1 hour
-                .serializeKeysWith(org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                .serializeValuesWith(org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
-                .disableCachingNullValues();
+    public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+        // Default cache configuration
+        RedisCacheConfiguration defaultConfig = RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofMinutes(30)) // Default: 30 minutes
+                .serializeValuesWith(RedisSerializationContext.SerializationPair
+                        .fromSerializer(new GenericJackson2JsonRedisSerializer()));
+
+        // Specific cache configurations with different TTLs
+        Map<String, RedisCacheConfiguration> cacheConfigurations = new HashMap<>();
+        
+        // Tile cache: 2 hours (tiles don't change often)
+        cacheConfigurations.put("coffeeShopsByTiles", defaultConfig.entryTtl(Duration.ofMinutes(10)));
+        
+        // All coffee shops: 1 hour (updates less frequently)
+        cacheConfigurations.put("allCoffeeShops", defaultConfig.entryTtl(Duration.ofHours(1)));
+        
+        // Bounds cache: 15 minutes (more dynamic)
+        cacheConfigurations.put("coffeeShopsByBounds", defaultConfig.entryTtl(Duration.ofMinutes(15)));
+        
+        // Optimized bounds cache: 20 minutes (rounded coordinates)
+        cacheConfigurations.put("coffeeShopsBoundsOptimized", defaultConfig.entryTtl(Duration.ofMinutes(20)));
+        
+        // Map cache: 30 minutes
+        cacheConfigurations.put("allCoffeeShopsMap", defaultConfig.entryTtl(Duration.ofMinutes(30)));
 
         return RedisCacheManager.builder(connectionFactory)
-                .cacheDefaults(config)
+                .cacheDefaults(defaultConfig)
+                .withInitialCacheConfigurations(cacheConfigurations)
                 .build();
     }
 }
