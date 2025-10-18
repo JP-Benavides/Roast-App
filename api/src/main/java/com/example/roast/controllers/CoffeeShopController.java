@@ -1,7 +1,6 @@
 package com.example.roast.controllers;
 
 import com.example.roast.dto.CoffeeShopMapDto;
-import com.example.roast.dto.ViewportResponse;
 import com.example.roast.models.CoffeeShop;
 import com.example.roast.services.CoffeeShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,16 +117,28 @@ public class CoffeeShopController {
         return ResponseEntity.ok(coffeeShops);
     }
 
-    // Apple Maps-style viewport with smart clustering
-    @GetMapping("/viewport")
-    public ResponseEntity<ViewportResponse> getViewportData(
+    // Takes in Tiles -> Coffee Places 
+    @GetMapping("/tiles")
+    public ResponseEntity<List<CoffeeShopMapDto>> getCoffeeShopsByTiles(
+            @RequestParam List<String> tileIds) {
+        List<CoffeeShopMapDto> shops = coffeeShopService.getCoffeeShopsByTiles(tileIds);
+        return ResponseEntity.ok(shops);
+    }
+
+    //Input Viewport Area for Map -> tiles within that map
+    @GetMapping("/tiles/calculate")
+    public ResponseEntity<List<String>> calculateViewportTiles(
             @RequestParam Double north,
-            @RequestParam Double south, 
+            @RequestParam Double south,
             @RequestParam Double east,
-            @RequestParam Double west,
-            @RequestParam(defaultValue = "12") Integer zoom) {
-        
-        ViewportResponse response = coffeeShopService.getViewportData(north, south, east, west, zoom);
-        return ResponseEntity.ok(response);
+            @RequestParam Double west) {
+        List<String> tileIds = coffeeShopService.calculateViewportTiles(north, south, east, west);
+        return ResponseEntity.ok(tileIds);
+    }
+
+    // Check tile popularity stats
+    @GetMapping("/tiles/stats")
+    public ResponseEntity<String> getTileStats() {
+        return ResponseEntity.ok("Check console logs for tile popularity stats!");
     }
 }

@@ -17,5 +17,10 @@ public interface CoffeeShopRepository extends JpaRepository<CoffeeShop, Long> {
         @Param("east") Double east,
         @Param("west") Double west
     );
+    
+    // Find coffee shops by tile IDs (much faster!)
+    @Query("SELECT c FROM CoffeeShop c WHERE c.tileId IN :tileIds")
+    List<CoffeeShop> findCoffeeShopsByTileIds(@Param("tileIds") List<String> tileIds);
+    
 }
 
