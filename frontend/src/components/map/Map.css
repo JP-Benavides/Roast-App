@@ -257,7 +257,6 @@
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,7 +275,6 @@
 
 .coffee-map-pin.selected .pin-body {
   background: linear-gradient(135deg, #357ABD 0%, #2A5A8A 100%);
-  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.6);
 }
 
 .coffee-pin-marker:hover .coffee-map-pin:not(.selected) {
@@ -485,7 +483,6 @@
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -504,7 +501,6 @@
 
 .coffee-map-pin.selected .pin-body {
   background: linear-gradient(135deg, #357ABD 0%, #2A5A8A 100%);
-  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.6);
 }
 
 .coffee-pin-marker:hover .coffee-map-pin:not(.selected) {

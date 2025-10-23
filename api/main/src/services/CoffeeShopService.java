@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import roast.dto.CoffeeShopMapDto;
 import roast.models.CoffeeShop;
 import roast.repositories.CoffeeShopRepository;
-import roast.repositories.RedisRepository;
+// import roast.repositories.RedisRepository;
 
 import java.time.Duration;
 import java.util.*;
@@ -17,11 +17,9 @@ import java.util.stream.Collectors;
 @Transactional
 public class CoffeeShopService {
     private final CoffeeShopRepository coffeeShopRepository;
-    private final RedisRepository adaptiveCacheManager;
 
-    public CoffeeShopService(CoffeeShopRepository coffeeShopRepository, RedisRepository adaptiveCacheManager) {
+    public CoffeeShopService(CoffeeShopRepository coffeeShopRepository) {
         this.coffeeShopRepository = coffeeShopRepository;
-        this.adaptiveCacheManager = adaptiveCacheManager;
     }
 
     // Get coffee shops by name
@@ -32,6 +30,23 @@ public class CoffeeShopService {
             return new ArrayList<>();
         }
         return shops;
+    }
+
+
+    // Get coffee shop by ID
+    @Transactional(readOnly = true)
+    public Optional<CoffeeShop> getCoffeeShopById(Long id) {
+        return coffeeShopRepository.findById(id);
+    }
+
+    // Get coffee shops within bounds (simple method)
+    @Transactional(readOnly = true)
+    public List<CoffeeShopMapDto> getCoffeeShopsInBounds(Double north, Double south, Double east, Double west) {
+        System.out.println("🔍 Getting coffee shops in bounds: N=" + north + ", S=" + south + ", E=" + east + ", W=" + west);
+        
+        // For now, let's use the tile system as a fallback
+        List<String> tileIds = calculateViewportTiles(north, south, east, west);
+        return getCoffeeShopsByTiles(tileIds);
     }
 
     // Add rating to a coffee shop (legacy method - consider using UserRatingService instead)
@@ -56,17 +71,6 @@ public class CoffeeShopService {
         return shops;
     }
 
-    // Get coffee shops within geographic bounds (cached)
-    @Cacheable(value = "coffeeShopsByBounds", key = "#north + '_' + #south + '_' + #east + '_' + #west", unless = "#result.isEmpty()")
-    @Transactional(readOnly = true)
-    public List<CoffeeShop> getCoffeeShopsInBounds(Double north, Double south, Double east, Double west) {
-        List<CoffeeShop> shops = coffeeShopRepository.findCoffeeShopsInBounds(north, south, east, west);
-        if (shops.isEmpty()) { 
-            return new ArrayList<>(); 
-        }
-        return shops;
-    }
-    
     // Create a new coffee shop
     @CacheEvict(value = {"allCoffeeShops", "coffeeShopsByBounds", "allCoffeeShopsMap", "coffeeShopsBoundsOptimized", "coffeeShopsByTiles"}, allEntries = true)
     public boolean createCoffeeShop(CoffeeShop coffeeShop) {
@@ -78,12 +82,6 @@ public class CoffeeShopService {
         }
         coffeeShopRepository.save(coffeeShop);
         return true;
-    }
-
-    // Get coffee shop by ID
-    @Transactional(readOnly = true)
-    public CoffeeShop getCoffeeShopById(Long id) {
-        return coffeeShopRepository.findById(id).orElse(null);
     }
 
 
@@ -103,26 +101,6 @@ public class CoffeeShopService {
                 ))
                 .collect(Collectors.toList());
     }
-
-    // Get coffee shops in bounds with smart caching (scalable version)
-    @Cacheable(value = "coffeeShopsBoundsOptimized", 
-               key = "T(Math).round(#north * 1000) + '_' + T(Math).round(#south * 1000) + '_' + T(Math).round(#east * 1000) + '_' + T(Math).round(#west * 1000)")
-    @Transactional(readOnly = true)
-    public List<CoffeeShopMapDto> getCoffeeShopsInBoundsOptimized(Double north, Double south, Double east, Double west) {
-        List<CoffeeShop> shops = coffeeShopRepository.findCoffeeShopsInBounds(north, south, east, west);
-        return shops.stream()
-                .map(shop -> new CoffeeShopMapDto(
-                    shop.getId(), 
-                    shop.getName(), 
-                    shop.getLat(), 
-                    shop.getLon(),
-                    shop.getRating(),
-                    shop.getNumberOfRatings()
-                ))
-                .collect(Collectors.toList());
-    }
-
-
 
     // ===== TILE SYSTEM METHODS =====
     
@@ -157,6 +135,8 @@ public class CoffeeShopService {
     }
     
     // Get coffee shops by tile IDs (the main tile loading method)
+    // Replace the getCoffeeShopsByTiles method (lines 123-145) with this:
+
     @Cacheable(value = "coffeeShopsByTiles", key = "#tileIds.toString()", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
     public List<CoffeeShopMapDto> getCoffeeShopsByTiles(List<String> tileIds) {
@@ -164,20 +144,21 @@ public class CoffeeShopService {
             return new ArrayList<>();
         }
         
-        // Record cache hit for adaptive TTL
-        String cacheKey = tileIds.toString();
-        adaptiveCacheManager.recordHit("coffeeShopsByTiles::" + cacheKey);
+        System.out.println("🎯 Getting coffee shops for tiles: " + tileIds);
         
-        // Log popular tiles
-        int hitCount = adaptiveCacheManager.getHitCount("coffeeShopsByTiles::" + cacheKey);
-        if (hitCount % 5 == 0) { // Log every 5th hit
-            Duration baseTTL = Duration.ofMinutes(10);
-            Duration adaptiveTTL = adaptiveCacheManager.calculateAdaptiveTTL("coffeeShopsByTiles::" + cacheKey, baseTTL);
-            System.out.println("🔥 Tiles " + tileIds + " accessed " + hitCount + " times. Adaptive TTL: " + adaptiveTTL.toMinutes() + " minutes");
+        // First, let's see what tiles all our coffee shops are in
+        List<CoffeeShop> allShops = coffeeShopRepository.findAll();
+        System.out.println("📊 Total shops in DB: " + allShops.size());
+        
+        for (CoffeeShop shop : allShops) {
+            String shopTileId = calculateTileId(shop.getLat(), shop.getLon());
+            boolean inRequestedTiles = tileIds.contains(shopTileId);
+            System.out.println("   " + shop.getName() + " at (" + shop.getLat() + ", " + shop.getLon() + ") -> tile " + shopTileId + " (requested: " + inRequestedTiles + ")");
         }
         
-        //Direct database query by tile IDs
+        // Direct database query by tile IDs
         List<CoffeeShop> shops = coffeeShopRepository.findCoffeeShopsByTileIds(tileIds);
+        System.out.println("� Repository returned " + shops.size() + " shops for tiles: " + tileIds);
         
         return shops.stream()
                 .map(shop -> new CoffeeShopMapDto(
@@ -193,17 +174,30 @@ public class CoffeeShopService {
     
     // Calculate which tiles are needed for a given viewport
     public List<String> calculateViewportTiles(Double north, Double south, Double east, Double west) {
+        System.out.println("🔍 Calculating viewport tiles:");
+        System.out.println("   Bounds: N=" + north + ", S=" + south + ", E=" + east + ", W=" + west);
+        System.out.println("   Lat range: " + (north - south) + ", Lon range: " + (east - west));
+        System.out.println("   Tile size: " + TILE_SIZE);
+        
         List<String> tileIds = new ArrayList<>();
         
         // Start from south-west corner, go to north-east corner
+        int latSteps = 0, lonSteps = 0;
         for (double lat = south; lat <= north; lat += TILE_SIZE) {
+            latSteps++;
+            lonSteps = 0;
             for (double lon = west; lon <= east; lon += TILE_SIZE) {
+                lonSteps++;
                 String tileId = calculateTileId(lat, lon);
                 if (tileId != null && !tileIds.contains(tileId)) {
                     tileIds.add(tileId);
+                    System.out.println("   Added tile: " + tileId + " for coords (" + lat + ", " + lon + ")");
                 }
             }
         }
+        
+        System.out.println("🎯 Calculated " + tileIds.size() + " unique tiles from " + latSteps + "x" + lonSteps + " grid");
+        System.out.println("   Tiles: " + tileIds);
         
         return tileIds;
     }

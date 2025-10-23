@@ -20,6 +20,15 @@ public class Comment {
 
     private List<Reply> replies;
 
+    // No-args constructor for Spring/MongoDB
+    public Comment() {}
+
+    public Comment(String userId, String shopId, String text){
+        this.userId = userId;
+        this.shopId = shopId;
+        this.text = text;
+    }
+
     // --- Inner class for embedded replies ---
     public static class Reply {
         private String userId;

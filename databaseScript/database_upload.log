@@ -340,3 +340,27 @@ LINE 1: ... name, city, state, street, rating, numofratings, source) VA...
 2025-10-12 19:54:02,635 - INFO - Yelp: 0 coffee shops
 2025-10-12 19:54:02,635 - INFO - Total scraped: 1339
 2025-10-12 19:54:02,635 - INFO - After deduplication: 1277 unique coffee shops
+2025-10-23 14:05:02,478 - WARNING - Google Maps API key not found. Google Places scraping will be skipped.
+2025-10-23 14:05:02,479 - INFO - Starting automated coffee shop data upload from multiple sources
+2025-10-23 14:05:02,479 - INFO - Using database: jean-pierrebenavidescruzatte@localhost:5433/roastdb
+2025-10-23 14:05:02,779 - INFO - Database connection established successfully
+2025-10-23 14:05:02,779 - INFO - Scraping OSM coffee shops in Manhattan, New York City
+2025-10-23 14:05:02,782 - INFO - Found 1178 coffee shops from OSM
+2025-10-23 14:05:02,782 - WARNING - Google Maps client not available. Skipping Google Places scraping.
+2025-10-23 14:05:02,783 - INFO - ====== WebDriver manager ======
+2025-10-23 14:05:02,945 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-23 14:05:02,980 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-23 14:05:03,010 - INFO - There is no [mac64] chromedriver "141.0.7390.122" for browser google-chrome "141.0.7390" in cache
+2025-10-23 14:05:03,015 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-23 14:05:03,347 - INFO - WebDriver version 141.0.7390.122 selected
+2025-10-23 14:05:03,349 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.122/mac-arm64/chromedriver-mac-arm64.zip
+2025-10-23 14:05:03,349 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.122/mac-arm64/chromedriver-mac-arm64.zip
+2025-10-23 14:05:03,398 - INFO - Driver downloading response is 200
+2025-10-23 14:05:03,609 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-23 14:05:03,705 - INFO - Driver has been saved in cache [/Users/jean-pierrebenavidescruzatte/.wdm/drivers/chromedriver/mac64/141.0.7390.122]
+2025-10-23 14:05:04,608 - INFO - Selenium WebDriver initialized
+2025-10-23 14:05:04,609 - INFO - Scraping Yelp coffee shops in Manhattan, New York City
+2025-10-23 14:05:18,119 - INFO - Found 0 coffee shops in Manhattan from Yelp
+2025-10-23 14:05:18,200 - INFO - Total scraped: 1178 coffee shops from all sources
+2025-10-23 14:05:18,200 - INFO - Processing coffee shop data from all sources
+2025-10-23 14:05:18,365 - INFO - Processed 1178 coffee shops from OSM

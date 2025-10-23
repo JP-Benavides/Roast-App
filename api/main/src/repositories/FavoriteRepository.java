@@ -6,9 +6,10 @@ import org.springframework.data.repository.query.Param;
 
 import roast.models.CoffeeShop;
 import roast.models.Favorite;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
     // Find all favorites for a user (returns Favorite entities)
