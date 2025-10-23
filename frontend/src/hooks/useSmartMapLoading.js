@@ -30,12 +30,13 @@ export const useSmartMapLoading = (mapBounds, zoom) => {
       if (!resp.ok) return;
       const data = await resp.json();
       const filtered = filterShopsForZoom(data || [], z);
+      console.log(`Zoom ${z}: minRating ${getMinRatingForZoom(z)}, fetched ${data?.length || 0}, filtered ${filtered.length}`);
       // Set the filtered shops directly so pins show only allowed ones
       setCoffeeShops(filtered);
     } catch {
       // ignore fetch errors
     }
-  }, [filterShopsForZoom]);
+  }, [filterShopsForZoom, getMinRatingForZoom]);
 
   useEffect(() => {
     if (!mapBounds) return;
