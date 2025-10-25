@@ -44,6 +44,7 @@ public class CoffeeShopController {
         return ResponseEntity.ok(shops);
     }
 
+
     // Search coffee shops by name
     @GetMapping("/search")
     public ResponseEntity<List<CoffeeShop>> searchCoffeeShops(@RequestParam String name) {

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import roast.dto.CoffeeShopMapDto;
 import roast.models.CoffeeShop;
 import roast.repositories.CoffeeShopRepository;
+import org.javatuples.Pair;
 // import roast.repositories.RedisRepository;
 
 import java.time.Duration;
@@ -74,12 +75,16 @@ public class CoffeeShopService {
     // Create a new coffee shop
     @CacheEvict(value = {"allCoffeeShops", "coffeeShopsByBounds", "allCoffeeShopsMap", "coffeeShopsBoundsOptimized", "coffeeShopsByTiles"}, allEntries = true)
     public boolean createCoffeeShop(CoffeeShop coffeeShop) {
-        // For new coffee shops, ID should be null (auto-generated)
-        // Check if a coffee shop with the same name already exists instead
         List<CoffeeShop> existingShops = coffeeShopRepository.findAllByName(coffeeShop.getName());
-        if (!existingShops.isEmpty()) {
-            return false; // Coffee shop with this name already exists
+        
+        boolean locationExists = existingShops.stream()
+            .anyMatch(shop -> Objects.equals(shop.getLat(), coffeeShop.getLat()) && 
+                            Objects.equals(shop.getLon(), coffeeShop.getLon()));
+        
+        if (locationExists) {
+            return false;
         }
+        
         coffeeShopRepository.save(coffeeShop);
         return true;
     }
@@ -135,8 +140,6 @@ public class CoffeeShopService {
     }
     
     // Get coffee shops by tile IDs (the main tile loading method)
-    // Replace the getCoffeeShopsByTiles method (lines 123-145) with this:
-
     @Cacheable(value = "coffeeShopsByTiles", key = "#tileIds.toString()", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
     public List<CoffeeShopMapDto> getCoffeeShopsByTiles(List<String> tileIds) {

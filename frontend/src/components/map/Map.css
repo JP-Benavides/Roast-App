@@ -252,21 +252,22 @@
 
 .coffee-map-pin .pin-body {
   width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
+  height: 40px;
+  background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   border: 2px solid rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  clip-path: ellipse(50% 60% at 50% 35%);
 }
 
 .coffee-map-pin .coffee-icon {
-  transform: rotate(45deg);
   width: 18px;
   height: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 .coffee-map-pin.selected {
@@ -478,21 +479,22 @@
 
 .coffee-map-pin .pin-body {
   width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
+  height: 40px;
+  background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   border: 2px solid rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  clip-path: ellipse(50% 60% at 50% 35%);
 }
 
 .coffee-map-pin .coffee-icon {
-  transform: rotate(45deg);
   width: 18px;
   height: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 .coffee-map-pin.selected {
