@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Database Script Setup and Upload Script
-# This script sets up the environment and runs the automated upload
+# Roast Database Master Script Runner
+# This script sets up the environment and runs the master database operations
 
 set -e  # Exit on any error
 
-echo "🚀 Starting Coffee Shop Database Upload Setup..."
+echo "🚀 Starting Roast Database Master Script Setup..."
 
 # Check if Python is installed
 if ! command -v python3 &> /dev/null; then
@@ -52,8 +52,8 @@ if [ -f "$ROOT_ENV_FILE" ]; then
     export $(cat "$ROOT_ENV_FILE" | grep -v '^#' | grep -v '^$' | xargs)
 fi
 
-# Run the automated upload
-echo "🚀 Starting automated upload..."
-python3 automated_upload.py "${SCRAPE_LOCATION:-New York City}"
+# Run the master database script
+echo "🚀 Starting master database operations..."
+python3 master_database.py
 
-echo "✅ Setup and upload completed!"
+echo "✅ Master database operations completed!"

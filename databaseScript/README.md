@@ -1,53 +1,116 @@
-# Multi-Source Coffee Shop Database Upload Scripts
+# Roast Database Scripts
 
-This directory contains scripts to automatically scrape coffee shop data from multiple sources and upload it to your PostgreSQL database.
-
-## Data Sources
-
-The enhanced scraper now collects data from:
-
-1. **OpenStreetMap (OSM)** - Free, community-driven map data
-2. **Google Places API** - Comprehensive business data with ratings and reviews (requires API key)
-3. **Yelp** - Web scraping for ratings, reviews, and business details
+This directory contains scripts for managing the Roast app's coffee shop database.
 
 ## Files
 
-- `automated_upload.py` - Enhanced multi-source scraping and database upload script
-- `run_upload.py` - Simple Python runner script
-- `run_upload.sh` - Shell script with environment setup
-- `requirements.txt` - Python dependencies (updated with new packages)
+- `master_database.py` - **NEW MASTER SCRIPT** - Combines all database operations
+- `AddTileIDs.py` - Adds tile IDs to coffee shops for efficient map loading
+- `zipcodes.py` - Extracts ZIP codes from city field
+- `run_upload.py` - Runner script for data scraping (requires automated_upload.py)
+- `requirements.txt` - Python dependencies
 - `README.md` - This documentation
+
+## Master Script (`master_database.py`)
+
+The new master script combines all database maintenance operations into one convenient script:
+
+### Features
+- ✅ **OSM Data Scraping**: Scrapes coffee shop data from OpenStreetMap (free, no API keys needed)
+- ✅ **Data Processing**: Cleans and deduplicates the scraped data
+- ✅ **Database Upload**: Safely uploads data with backups
+- ✅ **Interactive Menu**: Easy-to-use menu system for different operations
+
+### Data Sources
+- **OpenStreetMap (OSM)** - Free, community-driven map data (no API keys required)
+
+### Usage
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the master script
+python master_database.py
+```
+
+The script provides an interactive menu with options to:
+1. Run full upload (scrape → process → upload)
+2. Scrape OSM data only
+3. Process existing data
+4. Upload data to database
+5. Backup database
+6. View database stats
+
+## Individual Scripts
+
+### AddTileIDs.py
+Calculates tile IDs for coffee shops to enable efficient map loading.
+
+```bash
+python AddTileIDs.py
+```
+
+### zipcodes.py
+Extracts 5-digit ZIP codes from the city field using regex.
+
+```bash
+python zipcodes.py
+```
+
+### run_upload.py
+Runner for the automated upload functionality (requires `automated_upload.py` which is currently missing).
 
 ## Prerequisites
 
-1. **Python 3.7+** installed on your system
-2. **PostgreSQL database** running and accessible
-3. **Chrome browser** installed (for web scraping)
-4. **Environment variables** configured in the root `.env` file
-5. **Google Maps API key** (optional but recommended for best results)
-
-## Environment Configuration
-
-The script uses the `.env` file from the root directory of the Roast-App project. Required variables:
+1. **Python 3.7+** installed
+2. **PostgreSQL database** running
+3. **Environment variables** in `.env` file:
 
 ```env
-# Database Configuration
 DB_HOST=localhost
-DB_PORT=5433
-DB_NAME=roastdb
-DB_USER="your_username"
+DB_PORT=5432
+DB_NAME=roast_db
+DB_USER=postgres
 DB_PASSWORD=your_password
-
-# Google Maps API Key (optional but recommended)
-GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 ```
 
-### Setting up Google Maps API (Recommended)
+## Installation
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing one
-3. Enable the following APIs:
-   - Places API
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+```
+
+## Database Schema
+
+The scripts expect a `coffees` table with these columns:
+- `coffeepk` (primary key)
+- `name`, `city`, `lat`, `lon`
+- `tile_id` (added by AddTileIDs.py)
+- `zipcode` (added by zipcodes.py)
+
+## Troubleshooting
+
+### Database Connection Issues
+- Verify PostgreSQL is running
+- Check `.env` file has correct credentials
+- Ensure database and user exist
+
+### Missing Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Permission Issues
+- Ensure your database user has CREATE and UPDATE permissions
+
+## Next Steps
+
+1. Run the master script to set up tile IDs and ZIP codes
+2. Implement the scraping functionality in `master_database.py` if needed
+3. Test with your Spring Boot application
+4. Verify map loading performance improvements
    - Geocoding API
    - Maps JavaScript API
 4. Create credentials (API Key)
