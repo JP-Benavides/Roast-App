@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import roast.dto.UserRatingDto;
+import roast.models.UserRating;
 import roast.services.UserRatingService;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class UserRatingController {
             Double rating = Double.valueOf(request.get("rating").toString());
             String reviewText = request.get("reviewText") != null ? request.get("reviewText").toString() : null;
 
-            UserRatingDto result = userRatingService.createOrUpdateRating(userId, coffeeShopId, rating, reviewText);
+            UserRating result = userRatingService.createOrUpdateRating(userId, coffeeShopId, rating, reviewText);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -41,7 +41,7 @@ public class UserRatingController {
     // Get a user's rating for a specific coffee shop
     @GetMapping("/ratings/user/{userId}/coffeeshop/{coffeeShopId}")
     public ResponseEntity<?> getUserRatingForCoffeeShop(@PathVariable Long userId, @PathVariable Long coffeeShopId) {
-        Optional<UserRatingDto> rating = userRatingService.getUserRatingForCoffeeShop(userId, coffeeShopId);
+        Optional<UserRating> rating = userRatingService.getUserRatingForCoffeeShop(userId, coffeeShopId);
         
         if (rating.isPresent()) {
             return ResponseEntity.ok(rating.get());
@@ -53,15 +53,15 @@ public class UserRatingController {
 
     // Get all ratings by a user
     @GetMapping("/ratings/user/{userId}")
-    public ResponseEntity<List<UserRatingDto>> getUserRatings(@PathVariable Long userId) {
-        List<UserRatingDto> ratings = userRatingService.getUserRatings(userId);
+    public ResponseEntity<List<UserRating>> getUserRatings(@PathVariable Long userId) {
+        List<UserRating> ratings = userRatingService.getUserRatings(userId);
         return ResponseEntity.ok(ratings);
     }
 
     // Get all ratings for a coffee shop
     @GetMapping("/ratings/coffeeshop/{coffeeShopId}")
-    public ResponseEntity<List<UserRatingDto>> getCoffeeShopRatings(@PathVariable Long coffeeShopId) {
-        List<UserRatingDto> ratings = userRatingService.getCoffeeShopRatings(coffeeShopId);
+    public ResponseEntity<List<UserRating>> getCoffeeShopRatings(@PathVariable Long coffeeShopId) {
+        List<UserRating> ratings = userRatingService.getCoffeeShopRatings(coffeeShopId);
         return ResponseEntity.ok(ratings);
     }
 

@@ -4,11 +4,9 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import roast.dto.CoffeeShopDto;
-import roast.dto.DtoMapper;
 import roast.models.CoffeeShop;
 import roast.repositories.CoffeeShopRepository;
-import roast.repositories.RedisRepository;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.time.Duration;
 import java.util.*;
@@ -18,39 +16,24 @@ import java.util.stream.Collectors;
 @Transactional
 public class CoffeeShopService {
     private final CoffeeShopRepository coffeeShopRepository;
+    private final RedisTemplate<String, Object> redisTemplate;
 
-    public CoffeeShopService(CoffeeShopRepository coffeeShopRepository) {
+    public CoffeeShopService(CoffeeShopRepository coffeeShopRepository, RedisTemplate<String, Object> redisTemplate) {
         this.coffeeShopRepository = coffeeShopRepository;
+        this.redisTemplate = redisTemplate;
     }
 
     // Get coffee shops by name
     @Transactional(readOnly = true)
-    public List<CoffeeShopDto> getCoffeeShopsByName(String coffeeShopName) {
-        List<CoffeeShop> shops = coffeeShopRepository.findAllByName(coffeeShopName);
-        if (shops.isEmpty()) {
-            return new ArrayList<>();
-        }
-        return shops.stream()
-                .map(DtoMapper::toCoffeeShopDto)
-                .collect(Collectors.toList());
+    public List<CoffeeShop> getCoffeeShopsByName(String coffeeShopName) {
+        return coffeeShopRepository.findAllByName(coffeeShopName);
     }
 
 
     // Get coffee shop by ID
     @Transactional(readOnly = true)
-    public Optional<CoffeeShopDto> getCoffeeShopById(Long id) {
-        return coffeeShopRepository.findById(id)
-                .map(DtoMapper::toCoffeeShopDto);
-    }
-
-    // Get coffee shops within bounds (simple method)
-    @Transactional(readOnly = true)
-    public List<CoffeeShopDto> getCoffeeShopsInBounds(Double north, Double south, Double east, Double west) {
-        System.out.println("🔍 Getting coffee shops in bounds: N=" + north + ", S=" + south + ", E=" + east + ", W=" + west);
-        
-        // For now, let's use the tile system as a fallback
-        List<String> tileIds = calculateViewportTiles(north, south, east, west);
-        return getCoffeeShopsByTiles(tileIds);
+    public Optional<CoffeeShop> getCoffeeShopById(Long id) {
+        return coffeeShopRepository.findById(id);
     }
 
     // Add rating to a coffee shop (legacy method - consider using UserRatingService instead)
@@ -67,18 +50,12 @@ public class CoffeeShopService {
     // Get all coffee shops (cached)
     @Cacheable(value = "allCoffeeShops", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShopDto> getCoffeeShops() {
-        List<CoffeeShop> shops = coffeeShopRepository.findAll();
-        if (shops.isEmpty()) { 
-            return new ArrayList<>(); 
-        }
-        return shops.stream()
-                .map(DtoMapper::toCoffeeShopDto)
-                .collect(Collectors.toList());
+    public List<CoffeeShop> getCoffeeShops() {
+        return coffeeShopRepository.findAll();
     }
 
     // Create a new coffee shop
-    @CacheEvict(value = {"allCoffeeShops", "coffeeShopsByBounds", "allCoffeeShopsMap", "coffeeShopsBoundsOptimized", "coffeeShopsByTiles"}, allEntries = true)
+    @CacheEvict(value = {"allCoffeeShops", "coffeeShopsByTiles"}, allEntries = true)
     public boolean createCoffeeShop(CoffeeShop coffeeShop) {
         List<CoffeeShop> existingShops = coffeeShopRepository.findAllByName(coffeeShop.getName());
         
@@ -94,15 +71,23 @@ public class CoffeeShopService {
         return true;
     }
 
+    //Update CoffeeShop
+    public boolean updateCoffeeShop(Long shopId, CoffeeShop coffeeShop) {
+        Optional<CoffeeShop> existingOpt = coffeeShopRepository.findById(shopId);
+        if (existingOpt.isEmpty()) {
+            return false;
+        }
+        coffeeShop.setId(shopId); // Ensure the ID is set
+        CoffeeShop updated = coffeeShopRepository.save(coffeeShop);
+        redisTemplate.opsForValue().set("coffeeShop:" + shopId, updated, Duration.ofMinutes(5)); // Update cache with 5-minute TTL
+        return true;
+    }
 
-    // Get all coffee shops for map display (lightweight)
-    @Cacheable(value = "allCoffeeShopsMap", unless = "#result.isEmpty()")
+    // Get all coffee shops
+    @Cacheable(value = "allCoffeeShops", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShopDto> getAllCoffeeShopsForMap() {
-        List<CoffeeShop> shops = coffeeShopRepository.findAll();
-        return shops.stream()
-                .map(DtoMapper::toCoffeeShopDto)
-                .collect(Collectors.toList());
+    public List<CoffeeShop> getAllCoffeeShops() {
+        return coffeeShopRepository.findAll();
     }
 
     // ===== TILE SYSTEM METHODS =====
@@ -140,7 +125,7 @@ public class CoffeeShopService {
     // Get coffee shops by tile IDs (the main tile loading method)
     @Cacheable(value = "coffeeShopsByTiles", key = "#tileIds.toString()", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShopDto> getCoffeeShopsByTiles(List<String> tileIds) {
+    public List<CoffeeShop> getCoffeeShopsByTiles(List<String> tileIds) {
         if (tileIds == null || tileIds.isEmpty()) {
             return new ArrayList<>();
         }
@@ -161,9 +146,7 @@ public class CoffeeShopService {
         List<CoffeeShop> shops = coffeeShopRepository.findCoffeeShopsByTileIds(tileIds);
         System.out.println("� Repository returned " + shops.size() + " shops for tiles: " + tileIds);
         
-        return shops.stream()
-                .map(DtoMapper::toCoffeeShopDto)
-                .collect(Collectors.toList());
+        return shops;
     }
     
     // Calculate which tiles are needed for a given viewport

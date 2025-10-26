@@ -1,5 +1,6 @@
 package roast.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -52,13 +53,13 @@ public class CoffeeShop {
         this.zipcode = zipcode;
     }
 
+    @JsonIgnore
     public String getTileId() {
         return tileId;
     }
 
-    public void setTileId(String tileId) {
-        this.tileId = tileId;
-    }
+    // tileId is read-only and auto-calculated
+    // No setter to prevent external modification
 
     public Long getId() {
         return id;
@@ -84,6 +85,13 @@ public class CoffeeShop {
     public void setLon(Double lon) {
         this.lon = lon;
         updateTileId(); // Auto-recalculate when lon changes
+    }
+
+    // Static method to create tile ID from coordinates
+    public static String createTileId(double lat, double lon) {
+        int tileX = (int) Math.floor(lat / TILE_SIZE);
+        int tileY = (int) Math.floor(lon / TILE_SIZE);
+        return tileX + "_" + tileY;
     }
 
     // Helper method to update tile ID
@@ -156,5 +164,7 @@ public class CoffeeShop {
         numberOfRatings++;
         rating = (rating + newRating) / numberOfRatings;
     }
+
+
 }
 

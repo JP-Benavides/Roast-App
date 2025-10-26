@@ -48,20 +48,11 @@ public class RedisConfig {
         // Specific cache configurations with different TTLs
         Map<String, RedisCacheConfiguration> cacheConfigurations = new HashMap<>();
         
-        // Tile cache: 2 hours (tiles don't change often)
-        cacheConfigurations.put("coffeeShopsByTiles", defaultConfig.entryTtl(Duration.ofMinutes(10)));
+        // Tile cache: 3 minutes (for map pins, need freshness)
+        cacheConfigurations.put("coffeeShopsByTiles", defaultConfig.entryTtl(Duration.ofMinutes(3)));
         
-        // All coffee shops: 1 hour (updates less frequently)
-        cacheConfigurations.put("allCoffeeShops", defaultConfig.entryTtl(Duration.ofHours(1)));
-        
-        // Bounds cache: 15 minutes (more dynamic)
-        cacheConfigurations.put("coffeeShopsByBounds", defaultConfig.entryTtl(Duration.ofMinutes(15)));
-        
-        // Optimized bounds cache: 20 minutes (rounded coordinates)
-        cacheConfigurations.put("coffeeShopsBoundsOptimized", defaultConfig.entryTtl(Duration.ofMinutes(20)));
-        
-        // Map cache: 30 minutes
-        cacheConfigurations.put("allCoffeeShopsMap", defaultConfig.entryTtl(Duration.ofMinutes(30)));
+        // All coffee shops: 15 minutes (moderate updates)
+        cacheConfigurations.put("allCoffeeShops", defaultConfig.entryTtl(Duration.ofMinutes(15)));
 
         return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(defaultConfig)
