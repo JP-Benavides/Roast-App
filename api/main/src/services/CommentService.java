@@ -35,15 +35,20 @@ public class CommentService {
     public boolean addComment(String userId, String coffeeShopId, String text){
         
         // Validate that coffee shop exists
-        if (!coffeeShopRepository.existsById(Long.valueOf(coffeeShopId))) {
+        if (!coffeeShopRepository.existsById(coffeeShopId)) {
             System.out.println("Add Comment: Coffee shop not found with ID: " + coffeeShopId);
             return false;
         }
 
         // Validate that user exists  
-        if (!userRepository.existsById(Long.valueOf(userId))) {
+        if (!userRepository.existsById(userId)) {
             System.out.println("Add Comment: User not found with ID: " + userId);
             return false;
+        }
+
+        Optional<Comment> oldComment = commentRepository.findByUserAndShop(userId, coffeeShopId); 
+        if(oldComment.isPresent()){
+            return false; 
         }
 
         // Create new comment
@@ -86,8 +91,9 @@ public class CommentService {
         return true;
     }
 
-    
-
-
+    public boolean hasUserCommented(String userId, String coffeeShopId){
+        Optional<Comment> oldComment = commentRepository.findByUserAndShop(userId, coffeeShopId); 
+        return oldComment.isPresent();
+    }
 
 }

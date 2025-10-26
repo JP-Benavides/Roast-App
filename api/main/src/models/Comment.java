@@ -1,17 +1,23 @@
 package roast.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Instant;
 import java.util.List;
 
 @Document(collection = "comments") // The name of your Mongo collection
+@CompoundIndex(name = "user_shop_idx", def = "{'userId': 1, 'shopId':1}", unique = true)
 public class Comment {
 
     @Id
     private String id;
 
+    @Indexed
     private String shopId; 
+
+    @Indexed
     private String userId; 
 
     private String text;

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import roast.dto.CoffeeShopMapDto;
 import roast.models.CoffeeShop;
 import roast.repositories.CoffeeShopRepository;
-// import roast.repositories.RedisRepository;
+import roast.repositories.RedisRepository;
 
 import java.time.Duration;
 import java.util.*;

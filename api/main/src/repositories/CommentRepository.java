@@ -11,4 +11,5 @@ import java.util.List;
 public interface CommentRepository extends MongoRepository<Comment, String> {
     List<Comment> findByUserId(String userId); 
     List<Comment> findByShopId(String shopId); 
+    Optional<Commen> findByUserAndShop(String userId, String shopId);
 }
