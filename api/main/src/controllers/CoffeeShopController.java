@@ -3,11 +3,15 @@ package roast.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import roast.dto.CoffeeShopMapDto;
+import roast.dto.CoffeeShopDto;
 import roast.models.CoffeeShop;
 import roast.services.CoffeeShopService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Optional;
@@ -26,7 +30,7 @@ public class CoffeeShopController {
 
     // Main map endpoint - uses tile system
     @GetMapping("/map")
-    public ResponseEntity<List<CoffeeShopMapDto>> getCoffeeShopsForMap(
+    public ResponseEntity<List<CoffeeShopDto>> getCoffeeShopsForMap(
         @RequestParam double north,
         @RequestParam double south, 
         @RequestParam double east,
@@ -38,31 +42,69 @@ public class CoffeeShopController {
         List<String> tileIds = coffeeShopService.calculateViewportTiles(north, south, east, west);
         System.out.println("🎯 Calculated tiles: " + tileIds);
         
-        List<CoffeeShopMapDto> shops = coffeeShopService.getCoffeeShopsByTiles(tileIds);
+        List<CoffeeShopDto> shops = coffeeShopService.getCoffeeShopsByTiles(tileIds);
         System.out.println("📊 Returning " + shops.size() + " coffee shops");
         
         return ResponseEntity.ok(shops);
     }
 
+    @GetMapping("/map-paginated")
+    public ResponseEntity<Map<String, Object>> getCoffeeShopsForMap(@RequestParam double north,
+    @RequestParam double south, 
+    @RequestParam double east,
+    @RequestParam double west,
+    @RequestParam int page,
+    @RequestParam int size){
+
+    System.out.println("🗺️ Paginated Map API called with bounds: N=" + north + ", S=" + south + ", E=" + east + ", W=" + west);
+    System.out.println("📄 Pagination parameters: page=" + page + ", size=" + size);
+    
+    //Calculates all tiles within bounds
+    List<String> tileIds = coffeeShopService.calculateViewportTiles(north, south, east, west);
+    System.out.println("🎯 Calculated tiles: " + tileIds);
+    
+    //Fetch Coffee data with given tile
+    List<CoffeeShopDto> allShops = coffeeShopService.getCoffeeShopsByTiles(tileIds);
+    System.out.println("📊 Total coffee shops found: " + allShops.size());
+    
+    //apply pagination
+    int start = page * size;
+    int end = Math.min(start + size, allShops.size());
+    List<CoffeeShopDto> paginatedShops = allShops.subList(start, end);
+    
+    //prep Response
+    Map<String, Object> response = new HashMap<>();
+    response.put("currentPage", page);
+    response.put("pageSize", size);
+    response.put("totalItems", allShops.size());
+    response.put("totalPages", (int) Math.ceil((double) allShops.size() / size));
+    response.put("coffeeShops", paginatedShops);
+    
+    return ResponseEntity.ok(response);
+    }
+
 
     // Search coffee shops by name
     @GetMapping("/search")
-    public ResponseEntity<List<CoffeeShop>> searchCoffeeShops(@RequestParam String name) {
-        List<CoffeeShop> shops = coffeeShopService.getCoffeeShopsByName(name);
+    public ResponseEntity<List<CoffeeShopDto>> searchCoffeeShops(@RequestParam String name) {
+        List<CoffeeShopDto> shops = coffeeShopService.getCoffeeShopsByName(name);
+        if(shops.isEmpty()){
+            return ResponseEntity.badRequest().body(new ArrayList<>()); 
+        }
         return ResponseEntity.ok(shops);
     }
 
     // Get all coffee shops
     @GetMapping
-    public ResponseEntity<List<CoffeeShop>> getAllCoffeeShops() {
-        List<CoffeeShop> shops = coffeeShopService.getCoffeeShops();
+    public ResponseEntity<List<CoffeeShopDto>> getAllCoffeeShops() {
+        List<CoffeeShopDto> shops = coffeeShopService.getCoffeeShops();
         return ResponseEntity.ok(shops);
     }
 
     // Get coffee shop by ID
     @GetMapping("/{id}")
-    public ResponseEntity<CoffeeShop> getCoffeeShopById(@PathVariable Long id) {
-        Optional<CoffeeShop> shop = coffeeShopService.getCoffeeShopById(id);
+    public ResponseEntity<CoffeeShopDto> getCoffeeShopById(@PathVariable Long id) {
+        Optional<CoffeeShopDto> shop = coffeeShopService.getCoffeeShopById(id);
         return shop.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
     }
@@ -103,36 +145,5 @@ public class CoffeeShopController {
             response.put("message", "Coffee shop not found");
             return ResponseEntity.notFound().build();
         }
-    }
-
-    // Debug endpoint to test tile system
-    @GetMapping("/debug/tiles")
-    public ResponseEntity<Map<String, Object>> debugTiles(
-        @RequestParam double lat,
-        @RequestParam double lon) {
-        
-        String tileId = coffeeShopService.calculateTileId(lat, lon);
-        Map<String, Double> bounds = coffeeShopService.getTileBounds(tileId);
-        
-        List<CoffeeShop> allShops = coffeeShopService.getCoffeeShops();
-        
-        Map<String, Object> debug = new HashMap<>();
-        debug.put("inputLat", lat);
-        debug.put("inputLon", lon);
-        debug.put("tileId", tileId);
-        debug.put("tileBounds", bounds);
-        debug.put("totalShopsInDB", allShops.size());
-        
-        if (!allShops.isEmpty()) {
-            CoffeeShop sample = allShops.get(0);
-            debug.put("sampleShop", Map.of(
-                "name", sample.getName(),
-                "lat", sample.getLat(),
-                "lon", sample.getLon(),
-                "tileId", coffeeShopService.calculateTileId(sample.getLat(), sample.getLon())
-            ));
-        }
-        
-        return ResponseEntity.ok(debug);
-    }
+    }    
 }

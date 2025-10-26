@@ -30,21 +30,8 @@ public class DtoMapper {
             coffeeShop.getState(),
             coffeeShop.getStreet(),
             coffeeShop.getRating(),
-            coffeeShop.getNumberOfRatings()
-        );
-    }
-    
-    // Convert CoffeeShop entity to lightweight CoffeeShopMapDto
-    public static CoffeeShopMapDto toCoffeeShopMapDto(CoffeeShop coffeeShop) {
-        if (coffeeShop == null) return null;
-        
-        return new CoffeeShopMapDto(
-            coffeeShop.getId(),
-            coffeeShop.getName(),
-            coffeeShop.getLat(),
-            coffeeShop.getLon(),
-            coffeeShop.getRating(),
-            coffeeShop.getNumberOfRatings()
+            coffeeShop.getNumberOfRatings(),
+            coffeeShop.getTileId()
         );
     }
     

@@ -10,12 +10,13 @@ public class CoffeeShopDto {
     private String street;
     private Double rating;
     private Integer numberOfRatings;
+    private String tileId; 
     
     // Constructors
     public CoffeeShopDto() {}
     
     public CoffeeShopDto(Long id, String name, Double lat, Double lon, String city, 
-                        String state, String street, Double rating, Integer numberOfRatings) {
+                        String state, String street, Double rating, Integer numberOfRatings, String tileId) {
         this.id = id;
         this.name = name;
         this.lat = lat;
@@ -25,6 +26,7 @@ public class CoffeeShopDto {
         this.street = street;
         this.rating = rating;
         this.numberOfRatings = numberOfRatings;
+        this.tileId = tileId; 
     }
     
     // Getters and Setters
@@ -98,5 +100,13 @@ public class CoffeeShopDto {
     
     public void setNumberOfRatings(Integer numberOfRatings) {
         this.numberOfRatings = numberOfRatings;
+    }
+
+    public String getTileId(){
+        return tileId; 
+    }
+
+    public void setTileId(String tileId){
+        this.tileId = tileId; 
     }
 }

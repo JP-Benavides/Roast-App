@@ -23,8 +23,5 @@ public interface CoffeeShopRepository extends JpaRepository<CoffeeShop, Long> {
     // Find coffee shops by tile IDs (much faster!)
     @Query("SELECT c FROM CoffeeShop c WHERE c.tileId IN :tileIds")
     List<CoffeeShop> findCoffeeShopsByTileIds(@Param("tileIds") List<String> tileIds);
-
-    
-    
 }
 

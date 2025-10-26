@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CommentService {
 
     private final CommentRepository commentRepository;
@@ -32,7 +33,7 @@ public class CommentService {
         this.userRepository = userRepository;
     }
 
-    public boolean addComment(String userId, String coffeeShopId, String text){
+    public boolean addComment(Long userId, Long coffeeShopId, String text){
         
         // Validate that coffee shop exists
         if (!coffeeShopRepository.existsById(coffeeShopId)) {
@@ -46,7 +47,7 @@ public class CommentService {
             return false;
         }
 
-        Optional<Comment> oldComment = commentRepository.findByUserAndShop(userId, coffeeShopId); 
+        Optional<Comment> oldComment = commentRepository.findByUserIdAndShopId(userId, coffeeShopId); 
         if(oldComment.isPresent()){
             return false; 
         }
@@ -91,8 +92,8 @@ public class CommentService {
         return true;
     }
 
-    public boolean hasUserCommented(String userId, String coffeeShopId){
-        Optional<Comment> oldComment = commentRepository.findByUserAndShop(userId, coffeeShopId); 
+    public boolean hasUserCommented(Long userId, Long coffeeShopId){
+        Optional<Comment> oldComment = commentRepository.findByUserIdAndShopId(userId, coffeeShopId); 
         return oldComment.isPresent();
     }
 

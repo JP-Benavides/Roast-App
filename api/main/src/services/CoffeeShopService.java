@@ -4,7 +4,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import roast.dto.CoffeeShopMapDto;
+import roast.dto.CoffeeShopDto;
+import roast.dto.DtoMapper;
 import roast.models.CoffeeShop;
 import roast.repositories.CoffeeShopRepository;
 import roast.repositories.RedisRepository;
@@ -24,24 +25,27 @@ public class CoffeeShopService {
 
     // Get coffee shops by name
     @Transactional(readOnly = true)
-    public List<CoffeeShop> getCoffeeShopsByName(String coffeeShopName) {
+    public List<CoffeeShopDto> getCoffeeShopsByName(String coffeeShopName) {
         List<CoffeeShop> shops = coffeeShopRepository.findAllByName(coffeeShopName);
         if (shops.isEmpty()) {
             return new ArrayList<>();
         }
-        return shops;
+        return shops.stream()
+                .map(DtoMapper::toCoffeeShopDto)
+                .collect(Collectors.toList());
     }
 
 
     // Get coffee shop by ID
     @Transactional(readOnly = true)
-    public Optional<CoffeeShop> getCoffeeShopById(Long id) {
-        return coffeeShopRepository.findById(id);
+    public Optional<CoffeeShopDto> getCoffeeShopById(Long id) {
+        return coffeeShopRepository.findById(id)
+                .map(DtoMapper::toCoffeeShopDto);
     }
 
     // Get coffee shops within bounds (simple method)
     @Transactional(readOnly = true)
-    public List<CoffeeShopMapDto> getCoffeeShopsInBounds(Double north, Double south, Double east, Double west) {
+    public List<CoffeeShopDto> getCoffeeShopsInBounds(Double north, Double south, Double east, Double west) {
         System.out.println("🔍 Getting coffee shops in bounds: N=" + north + ", S=" + south + ", E=" + east + ", W=" + west);
         
         // For now, let's use the tile system as a fallback
@@ -63,12 +67,14 @@ public class CoffeeShopService {
     // Get all coffee shops (cached)
     @Cacheable(value = "allCoffeeShops", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShop> getCoffeeShops() {
+    public List<CoffeeShopDto> getCoffeeShops() {
         List<CoffeeShop> shops = coffeeShopRepository.findAll();
         if (shops.isEmpty()) { 
             return new ArrayList<>(); 
         }
-        return shops;
+        return shops.stream()
+                .map(DtoMapper::toCoffeeShopDto)
+                .collect(Collectors.toList());
     }
 
     // Create a new coffee shop
@@ -92,17 +98,10 @@ public class CoffeeShopService {
     // Get all coffee shops for map display (lightweight)
     @Cacheable(value = "allCoffeeShopsMap", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShopMapDto> getAllCoffeeShopsForMap() {
+    public List<CoffeeShopDto> getAllCoffeeShopsForMap() {
         List<CoffeeShop> shops = coffeeShopRepository.findAll();
         return shops.stream()
-                .map(shop -> new CoffeeShopMapDto(
-                    shop.getId(), 
-                    shop.getName(), 
-                    shop.getLat(), 
-                    shop.getLon(),
-                    shop.getRating(),
-                    shop.getNumberOfRatings()
-                ))
+                .map(DtoMapper::toCoffeeShopDto)
                 .collect(Collectors.toList());
     }
 
@@ -141,7 +140,7 @@ public class CoffeeShopService {
     // Get coffee shops by tile IDs (the main tile loading method)
     @Cacheable(value = "coffeeShopsByTiles", key = "#tileIds.toString()", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShopMapDto> getCoffeeShopsByTiles(List<String> tileIds) {
+    public List<CoffeeShopDto> getCoffeeShopsByTiles(List<String> tileIds) {
         if (tileIds == null || tileIds.isEmpty()) {
             return new ArrayList<>();
         }
@@ -163,14 +162,7 @@ public class CoffeeShopService {
         System.out.println("� Repository returned " + shops.size() + " shops for tiles: " + tileIds);
         
         return shops.stream()
-                .map(shop -> new CoffeeShopMapDto(
-                    shop.getId(), 
-                    shop.getName(), 
-                    shop.getLat(), 
-                    shop.getLon(),
-                    shop.getRating(),
-                    shop.getNumberOfRatings()
-                ))
+                .map(DtoMapper::toCoffeeShopDto)
                 .collect(Collectors.toList());
     }
     

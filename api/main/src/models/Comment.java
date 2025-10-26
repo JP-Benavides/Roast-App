@@ -15,13 +15,13 @@ public class Comment {
     private String id;
 
     @Indexed
-    private String shopId; 
+    private Long shopId; 
 
     @Indexed
-    private String userId; 
+    private Long userId; 
 
     private String text;
-    private int rating;
+    private double rating;
     private Instant createdAt = Instant.now();
 
     private List<Reply> replies;
@@ -29,7 +29,7 @@ public class Comment {
     // No-args constructor for Spring/MongoDB
     public Comment() {}
 
-    public Comment(String userId, String shopId, String text){
+    public Comment(Long userId, Long shopId, String text){
         this.userId = userId;
         this.shopId = shopId;
         this.text = text;
@@ -37,13 +37,13 @@ public class Comment {
 
     // --- Inner class for embedded replies ---
     public static class Reply {
-        private String userId;
+        private Long userId;
         private String text;
         private Instant createdAt = Instant.now();
 
         // Getters and setters
-        public String getUserId() { return userId; }
-        public void setUserId(String userId) { this.userId = userId; }
+        public Long getUserId() { return userId; }
+        public void setUserId(Long userId) { this.userId = userId; }
 
         public String getText() { return text; }
         public void setText(String text) { this.text = text; }
@@ -56,17 +56,17 @@ public class Comment {
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    public String getShopId() { return shopId; }
-    public void setShopId(String shopId) { this.shopId = shopId; }
+    public Long getShopId() { return shopId; }
+    public void setShopId(Long shopId) { this.shopId = shopId; }
 
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
     public String getText() { return text; }
     public void setText(String text) { this.text = text; }
 
-    public int getRating() { return rating; }
-    public void setRating(int rating) { this.rating = rating; }
+    public double getRating() { return rating; }
+    public void setRating(double rating) { this.rating = rating; }
 
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
