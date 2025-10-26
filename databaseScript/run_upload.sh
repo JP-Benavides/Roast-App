@@ -38,7 +38,7 @@ echo "📦 Installing dependencies..."
 pip install -r requirements.txt
 
 # Check if root .env file exists
-ROOT_ENV_FILE="$SCRIPT_DIR/../.env"
+ROOT_ENV_FILE="$SCRIPT_DIR/.env"
 if [ ! -f "$ROOT_ENV_FILE" ]; then
     echo "❌ .env file not found at $ROOT_ENV_FILE"
     echo "Please create a .env file in the root directory with your database configuration."

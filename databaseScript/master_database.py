@@ -15,6 +15,7 @@ from OSMPythonTools.overpass import Overpass, overpassQueryBuilder
 from dotenv import load_dotenv
 from geopy.geocoders import Nominatim as GeopyNominatim
 from geopy.distance import geodesic
+import math
 
 # Configure logging
 logging.basicConfig(
@@ -26,6 +27,17 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+TILE_SIZE = 0.003  # Same as in Java
+
+def calculate_tile_id(lat, lon):
+    """Calculate tile ID for given coordinates."""
+    if lat is None or lon is None:
+        return None
+
+    tile_x = int(lat // TILE_SIZE)
+    tile_y = int(lon // TILE_SIZE)
+    return f"{tile_x}_{tile_y}"
 
 class MasterDatabaseManager:
     def __init__(self):
@@ -89,9 +101,25 @@ class MasterDatabaseManager:
             logger.error(f"Error scraping OSM coffee shop data: {e}")
             return []
 
+    def calculate_tile(self, lat, lon, zoom=15):
+        """Calculate tile based on latitude, longitude, and zoom level."""
+        n = 2 ** zoom
+        x_tile = int((lon + 180.0) / 360.0 * n)
+        y_tile = int((1.0 - (math.log(math.tan(math.radians(lat)) + 1 / math.cos(math.radians(lat))) / math.pi)) / 2.0 * n)
+        return {'x': x_tile, 'y': y_tile, 'z': zoom}
+
     def process_osm_data(self, osm_data):
         """Process OpenStreetMap data"""
         processed = []
+        coffeepk = 1  # Initialize primary key counter
+
+        # Define Manhattan boundaries (latitude and longitude)
+        manhattan_bounds = {
+            'min_lat': 40.7003,
+            'max_lat': 40.8776,
+            'min_lon': -74.0479,
+            'max_lon': -73.9067
+        }
 
         for cafe in osm_data:
             try:
@@ -101,25 +129,39 @@ class MasterDatabaseManager:
                     tags = pd.Series(cafe['tags'])
                     df_row = pd.concat([df_row, tags])
 
+                # Extract latitude and longitude, filter to Manhattan bounds
+                lat = cafe.get('lat')
+                lon = cafe.get('lon')
+
+                if lat is None or lon is None or not (
+                    manhattan_bounds['min_lat'] <= lat <= manhattan_bounds['max_lat'] and
+                    manhattan_bounds['min_lon'] <= lon <= manhattan_bounds['max_lon']):
+                    continue  # Skip locations outside Manhattan
+
+                # Calculate tile ID using the updated Python implementation
+                tile = calculate_tile_id(lat, lon)
+
                 coffee_shop = {
-                    'lat': cafe.get('lat'),
-                    'lon': cafe.get('lon'),
+                    'coffeepk': coffeepk,  # Assign primary key
+                    'lat': lat,
+                    'lon': lon,
                     'name': df_row.get('name', 'Unknown Coffee Shop'),
                     'city': self.extract_city(df_row),
                     'state': self.extract_state(df_row),
                     'street': self.extract_street(df_row),
                     'rating': 0.0,
-                    'numofratings': 0
+                    'numofratings': 0,
+                    'tile': tile  # Ensure tile is a string
                 }
 
-                if coffee_shop['lat'] and coffee_shop['lon']:
-                    processed.append(coffee_shop)
+                processed.append(coffee_shop)
+                coffeepk += 1  # Increment primary key
 
             except Exception as e:
                 logger.debug(f"Error processing OSM cafe: {e}")
                 continue
 
-        logger.info(f"Processed {len(processed)} coffee shops from OSM")
+        logger.info(f"Processed {len(processed)} coffee shops from OSM within Manhattan")
         return processed
 
     def extract_city(self, row):
@@ -216,6 +258,29 @@ class MasterDatabaseManager:
         except SQLAlchemyError as e:
             logger.warning(f"Could not create backup (table might not exist yet): {e}")
 
+    def create_coffees_table(self):
+        """Create the coffees table if it does not exist"""
+        create_table_query = """
+        CREATE TABLE IF NOT EXISTS coffees (
+            coffeepk SERIAL PRIMARY KEY,
+            lat DOUBLE PRECISION NOT NULL,
+            lon DOUBLE PRECISION NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            city VARCHAR(255) NOT NULL,
+            state VARCHAR(255) NOT NULL,
+            street VARCHAR(255),
+            rating DOUBLE PRECISION DEFAULT 0.0,
+            numofratings INT DEFAULT 0,
+            tile VARCHAR(150) NOT NULL
+        );
+        """
+        try:
+            with self.engine.begin() as conn:  # Use begin() to ensure the transaction is committed
+                conn.execute(text(create_table_query))
+            logger.info("Coffees table created or already exists.")
+        except SQLAlchemyError as e:
+            logger.error(f"Error creating coffees table: {e}")
+
     def upload_to_database(self, df):
         """Upload processed data to PostgreSQL database"""
         try:
@@ -280,7 +345,10 @@ class MasterDatabaseManager:
                 logger.error("Failed to establish database connection. Aborting.")
                 return False
 
-            # Step 2: Scrape coffee shop data from OSM
+            # Step 2: Ensure the coffees table exists
+            self.create_coffees_table()
+
+            # Step 3: Scrape coffee shop data from OSM
             osm_data = self.scrape_osm_coffee_shops(location)
 
             if not osm_data:
@@ -289,7 +357,7 @@ class MasterDatabaseManager:
 
             logger.info(f"Total scraped: {len(osm_data)} coffee shops from OSM")
 
-            # Step 3: Process the data
+            # Step 4: Process the data
             processed_data = self.process_osm_data(osm_data)
             deduplicated_data = self.remove_duplicates(processed_data)
 
@@ -299,10 +367,10 @@ class MasterDatabaseManager:
 
             processed_df = pd.DataFrame(deduplicated_data)
 
-            # Step 4: Save CSV backup
+            # Step 5: Save CSV backup
             self.save_csv_backup(processed_df)
 
-            # Step 5: Upload to database
+            # Step 6: Upload to database
             success = self.upload_to_database(processed_df)
 
             if success:
@@ -317,90 +385,20 @@ class MasterDatabaseManager:
             logger.error(f"Unexpected error during full upload: {e}")
             return False
 
-    def show_menu(self):
-        """Display the main menu"""
-        print("\n" + "="*50)
-        print("� ROAST APP - MASTER DATABASE MANAGER (OSM ONLY)")
-        print("="*50)
-        print("1. Run Full Upload (Scrape OSM → Process → Upload)")
-        print("2. Scrape OSM Data Only")
-        print("3. Process Existing Data")
-        print("4. Upload Data to Database")
-        print("5. Backup Database")
-        print("6. View Database Stats")
-        print("7. Exit")
-        print("="*50)
-
-    def run_menu(self):
-        """Run the interactive menu"""
-        while True:
-            self.show_menu()
-            try:
-                choice = input("Enter your choice (1-7): ").strip()
-
-                if choice == '1':
-                    location = input("Enter location (default: Manhattan, New York City): ").strip()
-                    if not location:
-                        location = "Manhattan, New York City"
-                    self.run_full_upload(location)
-
-                elif choice == '2':
-                    location = input("Enter location (default: Manhattan, New York City): ").strip()
-                    if not location:
-                        location = "Manhattan, New York City"
-                    osm_data = self.scrape_osm_coffee_shops(location)
-                    print(f"Scraped {len(osm_data)} coffee shops from OSM")
-
-                elif choice == '3':
-                    # This would require loading existing scraped data
-                    print("Processing feature not implemented in menu yet")
-
-                elif choice == '4':
-                    # This would require loading processed data
-                    print("Upload feature not implemented in menu yet")
-
-                elif choice == '5':
-                    if self.create_database_connection():
-                        self.backup_existing_data()
-                        print("Database backup completed")
-                    else:
-                        print("Failed to connect to database")
-
-                elif choice == '6':
-                    if self.create_database_connection():
-                        try:
-                            with self.engine.connect() as conn:
-                                result = conn.execute(text("SELECT COUNT(*) FROM coffees"))
-                                count = result.scalar()
-                                print(f"Total coffee shops in database: {count}")
-                        except SQLAlchemyError as e:
-                            print(f"Error querying database: {e}")
-                    else:
-                        print("Failed to connect to database")
-
-                elif choice == '7':
-                    print("Goodbye!")
-                    break
-
-                else:
-                    print("Invalid choice. Please enter 1-7.")
-
-            except KeyboardInterrupt:
-                print("\nGoodbye!")
-                break
-            except Exception as e:
-                print(f"Error: {e}")
-
-
 def main():
-    """Main function"""
+    """Main function to run the full upload process without user input"""
     print("🍵 Roast Database Master Manager (OSM Only)")
-    print("This script scrapes coffee shop data from OpenStreetMap only.")
-    print("No Google Places or Yelp integration required.")
+    print("Running full upload process for Manhattan, New York City...")
 
     manager = MasterDatabaseManager()
-    manager.run_menu()
 
+    # Run the full upload process for Manhattan
+    success = manager.run_full_upload(location="Manhattan, New York City")
+
+    if success:
+        print("✅ Full upload process completed successfully!")
+    else:
+        print("❌ Full upload process failed.")
 
 if __name__ == "__main__":
     main()
