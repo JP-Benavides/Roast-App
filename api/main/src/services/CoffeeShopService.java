@@ -36,21 +36,10 @@ public class CoffeeShopService {
         return coffeeShopRepository.findById(id);
     }
 
-    // Add rating to a coffee shop (legacy method - consider using UserRatingService instead)
-    public boolean addRating(Long shopId, Double rating) {
-        return coffeeShopRepository.findById(shopId)
-                .map(shop -> {
-                    shop.addNewRating(rating);   // updates average/count in entity
-                    coffeeShopRepository.save(shop);
-                    return true;
-                })
-                .orElse(false); // if no shop found
-    }
-
     // Get all coffee shops (cached)
     @Cacheable(value = "allCoffeeShops", unless = "#result.isEmpty()")
     @Transactional(readOnly = true)
-    public List<CoffeeShop> getCoffeeShops() {
+    public List<CoffeeShop> getAllCoffeeShops() {
         return coffeeShopRepository.findAll();
     }
 
@@ -67,27 +56,29 @@ public class CoffeeShopService {
             return false;
         }
         
+        // Manually recalculate tileId
+        coffeeShop.updateTileId();
+
         coffeeShopRepository.save(coffeeShop);
         return true;
     }
 
-    //Update CoffeeShop
+    // Update CoffeeShop
     public boolean updateCoffeeShop(Long shopId, CoffeeShop coffeeShop) {
         Optional<CoffeeShop> existingOpt = coffeeShopRepository.findById(shopId);
         if (existingOpt.isEmpty()) {
             return false;
         }
-        coffeeShop.setId(shopId); // Ensure the ID is set
+        if (coffeeShop.getId() == null) {
+            coffeeShop.setId(shopId);
+        }
+
+        // Manually recalculate tileId
+        coffeeShop.updateTileId();
+
         CoffeeShop updated = coffeeShopRepository.save(coffeeShop);
         redisTemplate.opsForValue().set("coffeeShop:" + shopId, updated, Duration.ofMinutes(5)); // Update cache with 5-minute TTL
         return true;
-    }
-
-    // Get all coffee shops
-    @Cacheable(value = "allCoffeeShops", unless = "#result.isEmpty()")
-    @Transactional(readOnly = true)
-    public List<CoffeeShop> getAllCoffeeShops() {
-        return coffeeShopRepository.findAll();
     }
 
     // ===== TILE SYSTEM METHODS =====
@@ -151,13 +142,21 @@ public class CoffeeShopService {
     
     // Calculate which tiles are needed for a given viewport
     public List<String> calculateViewportTiles(Double north, Double south, Double east, Double west) {
+        // Validate input bounds
+        if (north == null || south == null || east == null || west == null) {
+            throw new IllegalArgumentException("Bounds cannot be null");
+        }
+        if (north <= south || east <= west) {
+            throw new IllegalArgumentException("Invalid bounds: north must be greater than south, and east must be greater than west");
+        }
+
         System.out.println("🔍 Calculating viewport tiles:");
         System.out.println("   Bounds: N=" + north + ", S=" + south + ", E=" + east + ", W=" + west);
         System.out.println("   Lat range: " + (north - south) + ", Lon range: " + (east - west));
         System.out.println("   Tile size: " + TILE_SIZE);
-        
+
         List<String> tileIds = new ArrayList<>();
-        
+
         // Start from south-west corner, go to north-east corner
         int latSteps = 0, lonSteps = 0;
         for (double lat = south; lat <= north; lat += TILE_SIZE) {
@@ -168,15 +167,13 @@ public class CoffeeShopService {
                 String tileId = calculateTileId(lat, lon);
                 if (tileId != null && !tileIds.contains(tileId)) {
                     tileIds.add(tileId);
-                    System.out.println("   Added tile: " + tileId + " for coords (" + lat + ", " + lon + ")");
                 }
             }
         }
-        
+
         System.out.println("🎯 Calculated " + tileIds.size() + " unique tiles from " + latSteps + "x" + lonSteps + " grid");
         System.out.println("   Tiles: " + tileIds);
-        
+
         return tileIds;
     }
-
 }

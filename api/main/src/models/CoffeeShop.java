@@ -22,10 +22,8 @@ public class CoffeeShop {
     @Column(name = "addr")
     private Double address;
 
+    // Rating fields (average rating and count of ratings)
     private Double rating;
-
-    @Column(name = "numofratings")
-    private Integer numberOfRatings;
 
     private String zipcode;
 
@@ -39,27 +37,23 @@ public class CoffeeShop {
     public CoffeeShop() {}
 
     // Auto-calculate tile ID when lat/lon changes
-    @PrePersist
-    @PreUpdate
     private void calculateTileId() {
         updateTileId();
     }
 
-    public String getZipcode(){
-        return zipcode;
-    }
 
-    public void setZipCode(String zipcode){
-        this.zipcode = zipcode;
-    }
-
-    @JsonIgnore
     public String getTileId() {
         return tileId;
     }
 
-    // tileId is read-only and auto-calculated
-    // No setter to prevent external modification
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
 
     public Long getId() {
         return id;
@@ -75,7 +69,6 @@ public class CoffeeShop {
 
     public void setLat(Double lat) {
         this.lat = lat;
-        updateTileId(); // Auto-recalculate when lat changes
     }
 
     public Double getLon() {
@@ -84,23 +77,18 @@ public class CoffeeShop {
 
     public void setLon(Double lon) {
         this.lon = lon;
-        updateTileId(); // Auto-recalculate when lon changes
     }
 
     // Static method to create tile ID from coordinates
-    public static String createTileId(double lat, double lon) {
+    private static String createTileId(double lat, double lon) {
         int tileX = (int) Math.floor(lat / TILE_SIZE);
         int tileY = (int) Math.floor(lon / TILE_SIZE);
         return tileX + "_" + tileY;
     }
 
     // Helper method to update tile ID
-    private void updateTileId() {
-        if (this.lat != null && this.lon != null) {
-            int tileX = (int) Math.floor(this.lat / TILE_SIZE);
-            int tileY = (int) Math.floor(this.lon / TILE_SIZE);
-            this.tileId = tileX + "_" + tileY;
-        }
+    public void updateTileId() {
+        this.tileId = createTileId(this.lat, this.lon);
     }
 
     public String getCity() {
@@ -142,29 +130,6 @@ public class CoffeeShop {
     public void setAddress(Double address) {
         this.address = address;
     }
-
-    public Double getRating() {
-        return rating;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
-
-
-    public Integer getNumberOfRatings() {
-        return numberOfRatings;
-    }
-
-    public void setNumberOfRatings(Integer numberOfRatings) {
-        this.numberOfRatings = numberOfRatings;
-    }
-
-    public void addNewRating(Double newRating){
-        numberOfRatings++;
-        rating = (rating + newRating) / numberOfRatings;
-    }
-
 
 }
 

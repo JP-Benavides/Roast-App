@@ -45,7 +45,7 @@ public class CoffeeShopController {
     }
 
     @GetMapping("/map-paginated")
-    public ResponseEntity<Map<String, Object>> getCoffeeShopsForMap(@RequestParam double north,
+    public ResponseEntity<Map<String, Object>> getCoffeeShopsForMapPaginated(@RequestParam double north,
     @RequestParam double south, 
     @RequestParam double east,
     @RequestParam double west,
@@ -81,8 +81,8 @@ public class CoffeeShopController {
 
 
     // Search coffee shops by name
-    @GetMapping("/search")
-    public ResponseEntity<List<CoffeeShop>> searchCoffeeShops(@RequestParam String name) {
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<CoffeeShop>> searchCoffeeShops(@PathVariable String name) {
         List<CoffeeShop> shops = coffeeShopService.getCoffeeShopsByName(name);
         if(shops.isEmpty()){
             return ResponseEntity.badRequest().body(new ArrayList<>()); 
@@ -90,12 +90,6 @@ public class CoffeeShopController {
         return ResponseEntity.ok(shops);
     }
 
-    // Get all coffee shops
-    @GetMapping
-    public ResponseEntity<List<CoffeeShop>> getAllCoffeeShops() {
-        List<CoffeeShop> shops = coffeeShopService.getCoffeeShops();
-        return ResponseEntity.ok(shops);
-    }
 
     // Get coffee shop by ID
     @GetMapping("/{id}")
@@ -106,7 +100,7 @@ public class CoffeeShopController {
     }
 
     // Create new coffee shop
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Map<String, String>> createCoffeeShop(@RequestBody CoffeeShop coffeeShop) {
         boolean created = coffeeShopService.createCoffeeShop(coffeeShop);
         

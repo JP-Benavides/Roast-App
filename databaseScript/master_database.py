@@ -149,8 +149,6 @@ class MasterDatabaseManager:
                     'city': self.extract_city(df_row),
                     'state': self.extract_state(df_row),
                     'street': self.extract_street(df_row),
-                    'rating': 0.0,
-                    'numofratings': 0,
                     'tile': tile  # Ensure tile is a string
                 }
 
@@ -269,8 +267,6 @@ class MasterDatabaseManager:
             city VARCHAR(255) NOT NULL,
             state VARCHAR(255) NOT NULL,
             street VARCHAR(255),
-            rating DOUBLE PRECISION DEFAULT 0.0,
-            numofratings INT DEFAULT 0,
             tile VARCHAR(150) NOT NULL
         );
         """

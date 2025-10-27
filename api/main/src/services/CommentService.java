@@ -5,7 +5,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import roast.models.Comment; 
+import roast.models.CoffeeShopComment; 
 import roast.repositories.CommentRepository; 
 import roast.repositories.CoffeeShopRepository;
 import roast.repositories.UserRepository; 
@@ -14,6 +14,7 @@ import roast.repositories.UserRepository;
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
+
 import java.util.Optional;
 
 @Service
@@ -33,68 +34,89 @@ public class CommentService {
         this.userRepository = userRepository;
     }
 
-    public boolean addComment(Long userId, Long coffeeShopId, String text){
+    public boolean addCoffeeShopComment(Long userId, Long coffeeShopId, String text){
         
         // Validate that coffee shop exists
         if (!coffeeShopRepository.existsById(coffeeShopId)) {
-            System.out.println("Add Comment: Coffee shop not found with ID: " + coffeeShopId);
             return false;
         }
 
         // Validate that user exists  
         if (!userRepository.existsById(userId)) {
-            System.out.println("Add Comment: User not found with ID: " + userId);
             return false;
         }
 
-        Optional<Comment> oldComment = commentRepository.findByUserIdAndShopId(userId, coffeeShopId); 
-        if(oldComment.isPresent()){
-            return false; 
+        // Get or create CoffeeShopComment
+        CoffeeShopComment coffeeShopComment = commentRepository.findById(coffeeShopId.toString())
+            .orElse(new CoffeeShopComment(coffeeShopId));
+
+        // Check if user has already commented
+        boolean userAlreadyCommented = coffeeShopComment.getComments() != null && 
+            coffeeShopComment.getComments().stream()
+                .anyMatch(comment -> comment.getUserId().equals(userId));
+
+        if (userAlreadyCommented) {
+            return false; // User already commented
         }
 
         // Create new comment
-        Comment newComment = new Comment();
-        newComment.setUserId(userId);
-        newComment.setShopId(coffeeShopId);
-        newComment.setText(text);
+        CoffeeShopComment.Comment newComment = new CoffeeShopComment.Comment(userId, text);
         
-        commentRepository.save(newComment);
-        return true; 
-    }
-
-    public boolean removeComment(String commentId) {
-        
-        //Get the comment to validate it exists
-        Optional<Comment> commentOpt = commentRepository.findById(commentId);
-        if (!commentOpt.isPresent()) {
-            System.out.println("Remove Comment: Comment not found with ID: " + commentId);
-            return false; 
+        // Initialize comments list if null
+        if (coffeeShopComment.getComments() == null) {
+            coffeeShopComment.setComments(new ArrayList<>());
         }
         
-        // Delete the comment
-        commentRepository.deleteById(commentId);
-
+        // Add the comment
+        coffeeShopComment.getComments().add(newComment);
+        commentRepository.save(coffeeShopComment);
         return true;
     }
 
-    public boolean editComment(String commentId, String newText){
-
-        Optional<Comment> commentOpt = commentRepository.findById(commentId);
-        if(!commentOpt.isPresent()){
-            System.out.println("Edit Comment: Comment not found with ID: " + commentId); 
+    public boolean removeComment(Long coffeeShopId) {
+        
+        // Check if comment exists
+        Optional<CoffeeShopComment> commentOpt = commentRepository.findById(coffeeShopId.toString());
+        if (!commentOpt.isPresent()) {
+            System.out.println("Remove Comment: Comment not found with ID: " + coffeeShopId);
             return false;
         }
 
-        Comment comment = commentOpt.get();
-        comment.setText(newText); 
-        commentRepository.save(comment); 
+        // Remove all comments for this coffee shop
+        commentRepository.deleteById(coffeeShopId.toString());
+        return true;
+    }
+
+    public boolean editComment(Long coffeeShopId, Long userId, String newText){
+
+        Optional<CoffeeShopComment> commentOpt = commentRepository.findById(coffeeShopId.toString());
+        if(!commentOpt.isPresent()){
+            System.out.println("Edit Comment: Comment not found with ID: " + coffeeShopId); 
+            return false;
+        }
+
+        CoffeeShopComment coffeeShopComment = commentOpt.get();
+        CoffeeShopComment.Comment userComment = coffeeShopComment.getComments().stream()
+            .filter(c -> c.getUserId().equals(userId))
+            .findFirst()
+            .orElse(null);
+            
+        if (userComment == null) {
+            System.out.println("Edit Comment: User has not commented on this coffee shop.");
+            return false;
+        }
         
+        userComment.setText(newText);
+        commentRepository.save(coffeeShopComment);
         return true;
     }
 
     public boolean hasUserCommented(Long userId, Long coffeeShopId){
-        Optional<Comment> oldComment = commentRepository.findByUserIdAndShopId(userId, coffeeShopId); 
-        return oldComment.isPresent();
+        Optional<CoffeeShopComment> coffeeShopComment = commentRepository.findById(coffeeShopId.toString());
+        return coffeeShopComment.isPresent() && 
+               coffeeShopComment.get().getComments() != null &&
+               coffeeShopComment.get().getComments().stream()
+                   .anyMatch(comment -> comment.getUserId().equals(userId));
     }
 
 }
