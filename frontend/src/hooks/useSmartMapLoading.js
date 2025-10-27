@@ -4,8 +4,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 export const useSmartMapLoading = (mapBounds, zoom) => {
   const [coffeeShops, setCoffeeShops] = useState([]);
   const debounceRef = useRef(null);
+  const layoutDebounceRef = useRef(null);
 
-  //Filter based on ratings 
+  //Filter based on ratings - legacy code - apply once we are able to rate shops
+  /*
   const getMinRatingForZoom = useCallback((z) => {
     const zoomVal = (typeof z === 'number' && !isNaN(z)) ? z : 16;
     if (zoomVal >= 15) return 0;   
@@ -14,53 +16,93 @@ export const useSmartMapLoading = (mapBounds, zoom) => {
     if (zoomVal >= 12) return 4.5; 
     return 4.5; 
   }, []);
+  */
 
+  // Basic in-bounds filter (don't filter by rating here anymore)
   const filterShopsForZoom = useCallback((shops, z, bounds) => {
-    const minRating = getMinRatingForZoom(z);
-    return (shops || []).filter(shop => { 
-      const rating = Number(shop.rating);
+    return (shops || []).filter(shop => {
       const isInBounds = bounds && typeof shop.lat === 'number' && typeof shop.lon === 'number' &&
         shop.lat >= bounds.south && shop.lat <= bounds.north &&
         shop.lon >= bounds.west && shop.lon <= bounds.east;
-
-      const meetsRatingCriteria = z === 16 || (Number.isFinite(rating) && rating >= minRating);
-      const shouldShow = isInBounds && meetsRatingCriteria;
-
-      return shouldShow;
+      return isInBounds;
     });
-  }, [getMinRatingForZoom]);
+  }, []);
 
   // Apply density-based filter: show more shops in dense areas, fewer in sparse areas
+  // Density reduction using tile-based sampling (no ratings required)
+  // Groups shops into small geo-tiles and picks one representative per tile.
   const applyDensityBasedFilter = useCallback((shops, bounds, zoom) => {
-    if (!shops || shops.length === 0) return [];
+    if (!shops || shops.length === 0 || !bounds) return [];
 
-    const viewportArea = (bounds.north - bounds.south) * (bounds.east - bounds.west);
+    // Smooth transition: progressively reveal more markers as zoom increases.
+    // We'll interpolate between MIN_ZOOM and MAX_ZOOM; at or above MAX_ZOOM show all.
+    const MIN_ZOOM = 8;
+    const MAX_ZOOM = 14.35; // user-requested max where full detail is shown
+    const zoomVal = (typeof zoom === 'number' && !isNaN(zoom)) ? zoom : MIN_ZOOM;
+    const frac = Math.min(1, Math.max(0, (zoomVal - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM)));
 
-    // Loosen density filtering: always show at least 40 shops at low zoom, 80 at medium, 160 at high
-    let ratingThreshold, maxShops;
-    if (zoom <= 10) {
-      ratingThreshold = 4.0;
-      maxShops = Math.max(40, Math.floor(viewportArea * 100));
-    } else if (zoom <= 11) {
-      ratingThreshold = 3.5;
-      maxShops = Math.max(80, Math.floor(viewportArea * 200));
-    } else if (zoom <= 12) {
-      ratingThreshold = 3.0;
-      maxShops = Math.max(160, Math.floor(viewportArea * 400));
-    } else {
-      ratingThreshold = 0;
-      maxShops = shops.length;
+    // Tile size loosely tied to zoom: larger tiles at low zoom (coarser sampling)
+    // Base tile size (degrees) - tuned to backend TILE_SIZE
+    const BASE_TILE = 0.003;
+    // Adjust tile multiplier by zoom (higher zoom -> smaller tiles)
+    const zoomMultiplier = Math.max(1, Math.floor(16 - zoomVal));
+    const tileSize = BASE_TILE * Math.max(1, zoomMultiplier);
+
+    // Helper to compute tile id
+    const tileId = (lat, lon) => {
+      const tx = Math.floor(lat / tileSize);
+      const ty = Math.floor(lon / tileSize);
+      return `${tx}_${ty}`;
+    };
+
+    // Group shops by tile
+    const groups = new Map();
+    for (const s of shops) {
+      if (typeof s.lat !== 'number' || typeof s.lon !== 'number') continue;
+      const id = tileId(s.lat, s.lon);
+      if (!groups.has(id)) groups.set(id, []);
+      groups.get(id).push(s);
     }
 
-    // Filter shops by rating threshold first
-    const ratingFiltered = shops.filter(shop => (shop.rating || 0) >= ratingThreshold);
-    const targetCount = Math.min(ratingFiltered.length, maxShops);
+    // Pick representative per tile. Prefer the shop closest to viewport center.
+    const centerLat = (bounds.north + bounds.south) / 2;
+    const centerLon = (bounds.east + bounds.west) / 2;
 
-    // Sort by rating (highest first) and take top shops
-    const sortedByRating = [...ratingFiltered].sort((a, b) => (b.rating || 0) - (a.rating || 0));
-    const selectedShops = sortedByRating.slice(0, targetCount);
+    const reps = [];
+    for (const [, list] of groups.entries()) {
+      let best = list[0];
+      let bestDist = Number.POSITIVE_INFINITY;
+      for (const c of list) {
+        const dx = c.lat - centerLat;
+        const dy = c.lon - centerLon;
+        const d = dx * dx + dy * dy;
+        if (d < bestDist) {
+          bestDist = d;
+          best = c;
+        }
+      }
+      reps.push(best);
+    }
 
-    return selectedShops;
+    // If fully zoomed in, show all
+    if (frac >= 1) {
+      return shops.filter(s => typeof s.lat === 'number' && typeof s.lon === 'number');
+    }
+
+    // Determine desired number of representatives based on zoom fraction
+    const minCap = 8; // minimum markers to show at lowest zoom
+    const desiredCount = Math.max(minCap, Math.round(minCap + frac * (reps.length - minCap)));
+
+    if (reps.length <= desiredCount) return reps;
+
+    // Keep those closest to center when we must trim
+    reps.sort((a, b) => {
+      const ad = Math.pow(a.lat - centerLat, 2) + Math.pow(a.lon - centerLon, 2);
+      const bd = Math.pow(b.lat - centerLat, 2) + Math.pow(b.lon - centerLon, 2);
+      return ad - bd;
+    });
+
+    return reps.slice(0, desiredCount);
   }, []);
 
   // Real-time density filtering as user moves/zooms
@@ -85,9 +127,28 @@ export const useSmartMapLoading = (mapBounds, zoom) => {
 
   // Real-time filtering effect - runs on every bounds/zoom change
   useEffect(() => {
-    if (!mapBounds || allShops.length === 0) return;
-    const densityFiltered = applyDensityBasedFilter(allShops, mapBounds, zoom);
-    setCoffeeShops(densityFiltered);
+    // Debounce layout/density calculations so we don't re-run expensive sampling
+    // while the user is panning/zooming continuously. Wait until movement stops.
+    if (!mapBounds || allShops.length === 0) {
+      if (layoutDebounceRef.current) {
+        clearTimeout(layoutDebounceRef.current);
+        layoutDebounceRef.current = null;
+      }
+      return;
+    }
+
+    if (layoutDebounceRef.current) clearTimeout(layoutDebounceRef.current);
+    layoutDebounceRef.current = setTimeout(() => {
+      const densityFiltered = applyDensityBasedFilter(allShops, mapBounds, zoom);
+      setCoffeeShops(densityFiltered);
+      layoutDebounceRef.current = null;
+    }, 200); // 200ms debounce for layout update (tunable)
+
+    return () => {
+      if (layoutDebounceRef.current) {
+        clearTimeout(layoutDebounceRef.current);
+      }
+    };
   }, [mapBounds, zoom, allShops, applyDensityBasedFilter]);
 
   useEffect(() => {
