@@ -10,7 +10,19 @@ export default function Map() {
   const [mapBounds, setMapBounds] = useState(null);
   const [zoom, setZoom] = useState(12);
 
-  const { coffeeShops } = useSmartMapLoading(mapBounds, zoom);
+  const [coffeeShops, setCoffeeShops] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/coffeeshops")
+      .then(res => res.json())
+      .then(data => {
+        console.log("Fetched coffee shops:", data.length);
+        setCoffeeShops(data);
+      })
+      .catch(err => console.error("Error fetching coffee shops:", err));
+  }, []);
+
+  //const { coffeeShops } = useSmartMapLoading(mapBounds, zoom);
 
   const mapApiKey = import.meta.env.VITE_MAP_API_KEY;
 

@@ -1,0 +1,90 @@
+.large-coffee-card {
+  width: 25%;
+  height: fit-content;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  margin-left: 20px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 100;
+  overflow-y: hidden;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.large-coffee-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;;
+}
+
+.large-coffee-card-image {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.large-coffee-card-info {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.shop-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.rating-section {
+  margin-bottom: 20px;
+}
+
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-icon {
+  color: gold;
+  margin-right: 5px;
+}
+
+.rating-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rating-count {
+  font-size: 14px;
+  color: #555;
+}
+
+.coffee-shop-address {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.reviews-section {
+  margin-top: 30px;
+}
+
+.review-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review-item {
+  margin: 10px 0;
+}
+
+.review-item strong {
+  color: #007BFF;
+}
