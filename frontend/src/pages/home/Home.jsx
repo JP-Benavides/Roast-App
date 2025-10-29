@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import Map from '../../components/map/Map.jsx';
 import CoffeeCard from "../../components/CoffeeCard.jsx";
+import LargeCoffeeCard from "../../components/LargeCoffeeCard.jsx";
 
 function Home(){
     // Test data for the CoffeeCard
@@ -12,8 +14,16 @@ function Home(){
         numberOfRatings: 25
     };
 
-    const handleSelect = () => {
-        console.log("Coffee shop selected:", testShop.name);
+    // Track the selected coffee shop
+    const [selectedShop, setSelectedShop] = useState(null);
+
+    const handleSelect = (shop) => {
+        if (selectedShop?.id === shop.id) {
+            setSelectedShop(null);
+        } else {
+            setSelectedShop(shop);
+        }
+        console.log("Selected shop:", shop);
     };
 
     const handleToggleFavorite = () => {
@@ -30,7 +40,9 @@ function Home(){
                 right: '20px',
                 zIndex: 1000,
                 pointerEvents: 'none'
-            }}>
+            }}
+            >
+                {/* Coffee Card display */}
                 <div style={{ pointerEvents: 'auto', maxWidth: '400px' }}>
                     <CoffeeCard
                         shop={testShop}
@@ -42,6 +54,16 @@ function Home(){
                     />
                 </div>
             </div>
+            {/* Large Coffee Card on the right side */}
+            {selectedShop && (
+                <LargeCoffeeCard
+                    shop={selectedShop}  // Pass the selected shop to LargeCoffeeCard
+                    onSelect={() => setSelectedShop(null)}  // Close the card when clicked
+                    onToggleFavorite={() => handleToggleFavorite(selectedShop.id)}
+                    isAuthenticated={true}
+                    isFavorite={false}
+                />
+            )}
         </div>
     );
 }

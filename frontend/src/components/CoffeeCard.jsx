@@ -2,6 +2,7 @@ import React from "react";
 import { Star, Heart } from "lucide-react";
 import PropTypes from "prop-types";
 import "./CoffeeCard.css";
+import "./LargeCoffeeCard.css";
 
 const CoffeeCard = ({
   shop,
@@ -14,7 +15,10 @@ const CoffeeCard = ({
 
   return (
     <div
-      onClick={onSelect}
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelect(shop);
+      }}
       className={`coffee-card ${isSelected ? 'selected' : ''}`}
     >
       {/* Card Layout */}
@@ -32,7 +36,7 @@ const CoffeeCard = ({
               }}
               className={`favorite-btn ${isFavorite ? 'favorited' : ''}`}
             >
-              <Heart className="favorite-icon" />
+              <Heart className="favorite-icon" style={{ fill: isFavorite ? "#ffffffff" : "#aa2e2ea0" }}/>
             </button>
           )}
         </div>
@@ -63,7 +67,6 @@ const CoffeeCard = ({
   );
 };
 
-//Prop Types 
 CoffeeCard.propTypes = {
   shop: PropTypes.shape({
     id: PropTypes.number.isRequired,
